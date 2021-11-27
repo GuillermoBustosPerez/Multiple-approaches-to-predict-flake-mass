@@ -8,6 +8,18 @@ Autónoma de Madrid, Madrid, Spain
 <sup>2</sup> Corresponding author at:
 <guillermo.bustos@estudiante.uam.es> \| <guillermo.willbustos@gmail.com>
 
+## 01 Table of contents
+
+-   01 Installing packages  
+-   02 Loading and describing the data  
+-   03 Model training:
+    -   03.1 Multiple Linear Regression  
+    -   03.2 Random Forest Regression  
+    -   03.3 Artificial Neuronal Network (ANN)  
+-   04 Model evaluation
+    -   04.1 Hyperparmeter grid search  
+    -   04.2
+
 ``` r
 # Load the data
 Reg_Data <- read.csv("Data/Flake Mass v02 Eng.csv")
