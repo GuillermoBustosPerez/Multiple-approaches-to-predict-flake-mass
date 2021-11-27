@@ -1,7 +1,7 @@
 # Multiple approaches to predict flake mass
 
--   Guillermo Bustos-Pérez<sup>(1,2)</sup>  
--   Javier Baena Preysler<sup>(1)</sup>
+-   Guillermo Bustos-Pérez <sup>(1,2)</sup>  
+-   Javier Baena Preysler <sup>(1)</sup>
 
 <sup>1</sup> Departamento de Prehistoria y Arqueología, Universidad
 Autónoma de Madrid, Madrid, Spain  
