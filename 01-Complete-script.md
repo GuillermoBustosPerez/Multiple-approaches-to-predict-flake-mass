@@ -8,7 +8,7 @@ Autónoma de Madrid, Madrid, Spain
 <sup>2</sup> Corresponding author at:
 <guillermo.bustos@estudiante.uam.es> \| <guillermo.willbustos@gmail.com>
 
-## 01 Table of contents
+## Table of contents
 
 -   01 Installing packages  
 -   02 Loading and describing the data  
@@ -18,16 +18,29 @@ Autónoma de Madrid, Madrid, Spain
     -   03.3 Artificial Neuronal Network (ANN)  
 -   04 Model evaluation
     -   04.1 Hyperparmeter grid search  
-    -   04.2
+    -   04.2 Model evaluation  
+    -   04.3 Variable importance
 
 ``` r
 # Load the data
 Reg_Data <- read.csv("Data/Flake Mass v02 Eng.csv")
 ```
 
+## 01 Installing packages
+
 ``` r
-## load("Data/Reg_Data.RData")
-library(neuralnet); library(tidyverse); library(caret)
+list.of.packages <- c("tidyverse", "caret", "pROC", "neuralnet", "lattice")
+
+new.packages <- list.of.packages[!(list.of.packages %in% 
+                                     installed.packages()[,"Package"])]
+
+if(length(new.packages)) install.packages(new.packages)
+```
+
+``` r
+list.of.packages <- c("tidyverse", "caret",  "ranger", "knitr")
+
+lapply(list.of.packages, library, character.only = TRUE)
 ```
 
     ## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
@@ -38,9 +51,8 @@ library(neuralnet); library(tidyverse); library(caret)
     ## v readr   2.0.2     v forcats 0.5.1
 
     ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-    ## x dplyr::compute() masks neuralnet::compute()
-    ## x dplyr::filter()  masks stats::filter()
-    ## x dplyr::lag()     masks stats::lag()
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
 
     ## Loading required package: lattice
 
@@ -50,6 +62,44 @@ library(neuralnet); library(tidyverse); library(caret)
     ## The following object is masked from 'package:purrr':
     ## 
     ##     lift
+
+    ## Warning: package 'knitr' was built under R version 4.1.2
+
+    ## [[1]]
+    ##  [1] "forcats"   "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"    
+    ##  [7] "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"
+    ## [13] "utils"     "datasets"  "methods"   "base"     
+    ## 
+    ## [[2]]
+    ##  [1] "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"    
+    ##  [7] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"    
+    ## [13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+    ## 
+    ## [[3]]
+    ##  [1] "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [7] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"
+    ## [13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
+    ## [19] "base"     
+    ## 
+    ## [[4]]
+    ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"  
+    ##  [7] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"  
+    ## [13] "tidyverse" "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+    ## [19] "methods"   "base"
+
+## 02 Loading and describing the data
+
+``` r
+## load("Data/Reg_Data.RData")
+library(neuralnet); library(tidyverse); library(caret)
+```
+
+    ## 
+    ## Attaching package: 'neuralnet'
+
+    ## The following object is masked from 'package:dplyr':
+    ## 
+    ##     compute
 
 ``` r
 #### Select columns and variables #####
