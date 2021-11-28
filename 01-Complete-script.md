@@ -208,6 +208,21 @@ Reg_Data %>%
 ![](01-Complete-script_files/figure-markdown_github/Baggolini%20scatter%20plot-1.png)
 
 ``` r
+Reg_Data %>% ggplot(aes(Weight)) +
+  geom_histogram(binwidth = 10,
+                 color = "black", fill = "gray") +
+  theme_light() +
+  ylab("Count") +
+  scale_x_continuous(breaks = seq(0, 200, 20)) +
+  theme(
+    axis.text = element_text(color = "black", size = 9),
+    axis.title = element_text(color = "black", size = 10),
+  )
+```
+
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+``` r
 #### Select columns and variables #####
 Reg_Data <- Reg_Data %>% 
   select(Log_Weight,
