@@ -228,6 +228,7 @@ histogram shows a highly skewed distribution with flakes weighting
 between 10 g and 20 g the most frequent.
 
 ``` r
+# Histogram of flake weight
 Reg_Data %>% ggplot(aes(Weight)) +
   geom_histogram(binwidth = 10,
                  color = "black", fill = "gray") +
@@ -237,8 +238,7 @@ Reg_Data %>% ggplot(aes(Weight)) +
   scale_x_continuous(breaks = seq(0, 200, 20)) +
   theme(
     axis.text = element_text(color = "black", size = 9),
-    axis.title = element_text(color = "black", size = 10),
-  )
+    axis.title = element_text(color = "black", size = 10))
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
