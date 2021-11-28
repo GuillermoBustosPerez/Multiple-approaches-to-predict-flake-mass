@@ -110,6 +110,7 @@ kable(Reg_Data[1:10,])
 |   49.2 |  60.6 | 11.233333 |      14.0 |  40.16 |      158.080 |          12.8 |      5 |        2 | Hinge            |  68 |  1.6037937 |     1.1461280 | 2.198877 |   1.1072100 |
 
 ``` r
+#  Summary statistics of the experimental assemblage
 Summary_Assem <- data.frame(
   rbind(data.frame(data.matrix(summary(Reg_Data$Length))) %>% t(),
         data.frame(data.matrix(summary(Reg_Data$Width))) %>% t(),
@@ -133,6 +134,78 @@ kable(Summary_Assem)
 | Mean Thickness   |  1.800000 |  6.058333 |  8.516667 |  9.249567 |  11.28333 |  26.50 |
 | Platform Surface |  2.591814 | 31.350000 | 62.933736 | 93.254685 | 116.11875 | 620.00 |
 | Weight           |  1.140000 |  5.870000 | 12.965000 | 21.390400 |  26.95750 | 200.73 |
+
+``` r
+kable(data.frame(table(Reg_Data$Termination_type)))
+```
+
+| Var1     | Freq |
+|:---------|-----:|
+| Feather  |  449 |
+| Hinge    |   42 |
+| Inflexed |    2 |
+| Plunging |    2 |
+| Step     |    5 |
+
+``` r
+Reg_Data %>% 
+  ggplot(aes(Width, Length)) +
+  geom_segment(x = 40, y = 0, xend = 0, yend = 40, color = "gray48") +
+  geom_segment(x = 60, y = 0, xend = 0, yend = 60, color = "gray48") +
+  geom_segment(x = 80, y = 0, xend = 0, yend = 80, color = "gray48") +
+  
+  geom_segment(x = 0, y = 0, xend = 105, yend = 105, color = "gray48") +
+  
+  geom_segment(x = 0, y = 0, xend = (105/6), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = (105/3), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = (105/2), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = (105/1.5), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = (105/0.75), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = (105/0.5), yend = 105, color = "gray48") +
+  geom_segment(x = 0, y = 0, xend = 105, yend = (105/2), color = "gray48") +
+  
+  annotate("text", x = 0, y = 104, adj = 0, 
+           label = "Very thin blade", size = 2.5) +
+  annotate("text", x = 20, y = 104, adj = 0, 
+           label = "Thin blade", size = 2.5) +
+  annotate("text", x = 40, y = 104, adj = 0, 
+           label = "Blade", size = 2.5) +
+  annotate("text", x = 53, y = 104, adj = 0, 
+           label = "Elongated flake", size = 2.5) +
+  annotate("text", x = 85, y = 104, adj = 0, 
+           label = "Flake", size = 2.5) +
+  annotate("text", x = 103, y = 92.5, adj = 0, 
+           label = "Wide\nflake", size = 2.5) +
+  annotate("text", x = 103, y = 65, adj = 0, 
+           label = "Very\nwide\nflake", size = 2.5) +
+  annotate("text", x = 103, y = 25, adj = 0, 
+           label = "Wider\nflake", size = 2.5) +
+  
+  annotate("text", x = 20, y = 1, adj = 0, 
+           label = "Micro", size = 2.5) +
+  annotate("text", x = 47, y = 1, adj = 0, 
+           label = "Small", size = 2.5) +
+  annotate("text", x = 65, y = 1, adj = 0, 
+           label = "Normal", size = 2.5) +
+  annotate("text", x = 85, y = 1, adj = 0, 
+           label = "Big", size = 2.5) +
+  
+  geom_point(aes(color = Termination_type), size = 2, alpha = 0.75) +
+  scale_x_continuous(breaks = seq(0, 105, 5), lim = c(0, 105)) +
+  scale_y_continuous(breaks = seq(0, 105, 5), lim = c(0, 105)) +
+  ylab("Length (mm)") +
+  xlab("Width (mm)") +
+  theme_light() +
+  ggsci::scale_color_aaas() +
+  labs(color = "Termination type") +
+  guides(color = guide_legend(nrow = 1, title.position = "top")) +
+  theme(axis.title = element_text(size = 9, color = "black", face = "bold"),
+        axis.text = element_text(size = 7.5, color = "black"),
+        legend.position = "bottom") +
+  coord_fixed() 
+```
+
+![](01-Complete-script_files/figure-markdown_github/Baggolini%20scatter%20plot-1.png)
 
 ``` r
 #### Select columns and variables #####
