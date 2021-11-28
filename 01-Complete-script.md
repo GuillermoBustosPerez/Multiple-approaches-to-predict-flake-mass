@@ -93,7 +93,7 @@ Reg_Data <- read.csv("Data/Flake Mass v02 Eng.csv")
 ```
 
 ``` r
-kable(Reg_Data[1:10])
+kable(Reg_Data[1:10],)
 ```
 
 | Length | Width | MeanThick | Max_Thick | Weight | Surface.Plat | Platfom_Depth | Cortex | No_Scars | Termination_type |
@@ -598,6 +598,31 @@ kable(Reg_Data[1:10])
 |   45.0 |  30.3 |  9.100000 |     12.30 |  11.82 |    10.744247 |           1.9 |      5 |        2 | Feather          |
 |   35.5 |  33.0 |  6.066667 |      8.10 |   4.91 |    11.845000 |           2.3 |      5 |        3 | Feather          |
 |   43.1 |  31.8 |  4.900000 |      6.10 |   6.58 |    95.260000 |           4.4 |      5 |        3 | Feather          |
+
+``` r
+Summary_Assem <- data.frame(
+  rbind(data.frame(data.matrix(summary(Reg_Data$Length))) %>% t(),
+        data.frame(data.matrix(summary(Reg_Data$Width))) %>% t(),
+        data.frame(data.matrix(summary(Reg_Data$MeanThick))) %>% t(),
+        data.frame(data.matrix(summary(Reg_Data$Surface.Plat))) %>% t(),
+        data.frame(data.matrix(summary(Reg_Data$Weight))) %>% t()))
+Measure <- c("Length", "Width", "Mean Thickness", "Platform Surface",
+             "Weight")
+Summary_Assem <- cbind(Measure, Summary_Assem)
+rownames(Summary_Assem) <- 1:nrow(Summary_Assem)
+```
+
+``` r
+kable(Summary_Assem)
+```
+
+| Measure          |      Min. |  X1st.Qu. |    Median |      Mean |  X3rd.Qu. |   Max. |
+|:-----------------|----------:|----------:|----------:|----------:|----------:|-------:|
+| Length           | 16.500000 | 36.300000 | 45.900000 | 48.253200 |  59.60000 | 100.90 |
+| Width            | 14.900000 | 31.175000 | 39.000000 | 40.559200 |  46.82500 |  85.50 |
+| Mean Thickness   |  1.800000 |  6.058333 |  8.516667 |  9.249567 |  11.28333 |  26.50 |
+| Platform Surface |  2.591814 | 31.350000 | 62.933736 | 93.254685 | 116.11875 | 620.00 |
+| Weight           |  1.140000 |  5.870000 | 12.965000 | 21.390400 |  26.95750 | 200.73 |
 
 ``` r
 #### Select columns and variables #####
