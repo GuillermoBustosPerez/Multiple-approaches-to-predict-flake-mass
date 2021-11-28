@@ -213,6 +213,7 @@ Reg_Data %>% ggplot(aes(Weight)) +
                  color = "black", fill = "gray") +
   theme_light() +
   ylab("Count") +
+  xlab("Weight (g)") +
   scale_x_continuous(breaks = seq(0, 200, 20)) +
   theme(
     axis.text = element_text(color = "black", size = 9),
