@@ -28,14 +28,25 @@ Reg_Data <- read.csv("Data/Flake Mass v02 Eng.csv")
 
 ## 01 Installing packages
 
+The following code provides the list of packages employed in the
+analysis, checks if they are missing and installs the missing ones. This
+is set to meet reproducibility standards for machine learning (Heil et
+al., 2021).
+
 ``` r
-list.of.packages <- c("tidyverse", "caret", "pROC", "neuralnet", "lattice")
+list.of.packages <- c("tidyverse", "caret", "neuralnet", "lattice", "ranger")
 
 new.packages <- list.of.packages[!(list.of.packages %in% 
                                      installed.packages()[,"Package"])]
 
 if(length(new.packages)) install.packages(new.packages)
 ```
+
+ 
+
+After this we can load the packages to perform model training and
+analysis. Additionally in this markdown we are going to use package
+knitr to show a nice output of tables.
 
 ``` r
 list.of.packages <- c("tidyverse", "caret",  "ranger", "knitr")
@@ -87,7 +98,15 @@ lapply(list.of.packages, library, character.only = TRUE)
     ## [13] "tidyverse" "stats"     "graphics"  "grDevices" "utils"     "datasets" 
     ## [19] "methods"   "base"
 
+ 
+
 ## 02 Loading and describing the data
+
+Sample for analysis is composed of 500 experimentally knapped flakes
+using hard hammer. Flakes belong to 30 knapping sequences where a wide
+variety of knapping methods were employed —hierarchical (Levallois and
+Hierarchical Discoid), bifacial (Discoid), and unipolar— to generate the
+experimental sample, ensuring a wide range of morphologies.
 
 ``` r
 ## load("Data/Reg_Data.RData")
