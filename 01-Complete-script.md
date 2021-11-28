@@ -85,7 +85,10 @@ Sample for analysis is composed of 500 experimentally knapped flakes
 using hard hammer. Flakes belong to 30 knapping sequences where a wide
 variety of knapping methods were employed —hierarchical (Levallois and
 Hierarchical Discoid), bifacial (Discoid), and unipolar— to generate the
-experimental sample, ensuring a wide range of morphologies.
+experimental sample, ensuring a wide range of morphologies. This is an
+expansion of a previous dataset employed for similar purposes
+(Bustos-Pérez and Baena, 2021) which allows to expand the range of
+dimensions and mass of the assemblage.
 
 ``` r
 # Load the data
@@ -147,6 +150,18 @@ kable(data.frame(table(Reg_Data$Termination_type)))
 | Plunging |    2 |
 | Step     |    5 |
 
+ 
+
+A fast to explore lithic assemblage composition is through a Bagolini
+scatter plot (Bagolini, 1968). Comparison of the experimental dataset
+with the one of the previous study (Bustos-Pérez and Baena, 2021) shows
+an increase on the size and average mass of experimentally knapped
+flakes. While in the previous study 50% of the flakes had mass values
+between 4.15g and 14.02g (Bustos-Pérez and Baena, 2021), in the present
+study 50% of the flakes weight between 5.87g and 26.96g. This indicates
+that the expansion of the dataset has been done by the inclusion of
+heavier and bigger flakes.
+
 ``` r
 Reg_Data %>% 
   ggplot(aes(Width, Length)) +
@@ -206,6 +221,11 @@ Reg_Data %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Baggolini%20scatter%20plot-1.png)
+ 
+
+Additionally, exploratory visual analysis of flake mass through
+histogram shows a highly skewed distribution with flakes weighting
+between 10 g and 20 g the most frequent.
 
 ``` r
 Reg_Data %>% ggplot(aes(Weight)) +
@@ -221,11 +241,4 @@ Reg_Data %>% ggplot(aes(Weight)) +
   )
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-5-1.png)
-
-``` r
-#### Select columns and variables #####
-Reg_Data <- Reg_Data %>% 
-  select(Log_Weight,
-         MeanThick, Log_Max_Thick, EPA, Log_Plat, Log_Plat_De, Cortex, No_Scars)
-```
+![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
