@@ -11,15 +11,16 @@ Autónoma de Madrid, Madrid, Spain
 ## Table of contents
 
 -   01 Installing packages  
--   02 Loading and describing the data  
--   03 Model training:
+-   02 Loading and describing the data
+    -   02.1 Loading and describing the data  
+    -   02.2 Variable selection  
+-   03 Model training and hyperparameter tunning:
     -   03.1 Multiple Linear Regression  
     -   03.2 Random Forest Regression  
     -   03.3 Artificial Neuronal Network (ANN)  
 -   04 Model evaluation
-    -   04.1 Hyperparmeter grid search  
-    -   04.2 Model evaluation  
-    -   04.3 Variable importance
+    -   04.1 Model evaluation metrics  
+    -   04.2 Variable importance
 
 ## 01 Installing packages
 
@@ -242,3 +243,24 @@ Reg_Data %>% ggplot(aes(Weight)) +
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
+ 
+
+## 03 Model training
+
+### 03.1 Multiple Linear regression
+
+``` r
+### Set Train control ####
+train.control <- trainControl(method = "repeatedcv", 
+                              number = 10, repeats = 50,
+                              savePredictions = TRUE)
+
+# Train the model
+frmla <- Log_Weight ~ MeanThick + Cortex + No_Scars + EPA + Log_Max_Thick + Log_Plat + Log_Plat_De
+
+set.seed(123)
+model <- train(frmla, 
+               data = Reg_Data, 
+               method = "lm",
+               trControl = train.control)
+```
