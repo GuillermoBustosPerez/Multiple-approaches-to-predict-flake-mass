@@ -259,8 +259,37 @@ train.control <- trainControl(method = "repeatedcv",
 frmla <- Log_Weight ~ MeanThick + Cortex + No_Scars + EPA + Log_Max_Thick + Log_Plat + Log_Plat_De
 
 set.seed(123)
-model <- train(frmla, 
+lm.model <- train(frmla, 
                data = Reg_Data, 
                method = "lm",
                trControl = train.control)
 ```
+
+``` r
+summary(lm.model)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = .outcome ~ ., data = dat)
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -0.69473 -0.13616  0.01939  0.13186  0.47859 
+    ## 
+    ## Coefficients:
+    ##                 Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)   -0.4427689  0.1301456  -3.402 0.000723 ***
+    ## MeanThick      0.0337557  0.0064369   5.244 2.34e-07 ***
+    ## Cortex        -0.0814959  0.0093836  -8.685  < 2e-16 ***
+    ## No_Scars       0.0731414  0.0101348   7.217 2.03e-12 ***
+    ## EPA            0.0017785  0.0009083   1.958 0.050805 .  
+    ## Log_Max_Thick  0.9273949  0.1430721   6.482 2.20e-10 ***
+    ## Log_Plat       0.3358338  0.0469619   7.151 3.13e-12 ***
+    ## Log_Plat_De   -0.3522401  0.0898045  -3.922 0.000100 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.2083 on 492 degrees of freedom
+    ## Multiple R-squared:  0.779,  Adjusted R-squared:  0.7759 
+    ## F-statistic: 247.8 on 7 and 492 DF,  p-value: < 2.2e-16
