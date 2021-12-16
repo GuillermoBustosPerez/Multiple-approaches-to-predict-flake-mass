@@ -249,6 +249,9 @@ Reg_Data %>% ggplot(aes(Weight)) +
 
 ### 03.1 Multiple Linear regression
 
+Multiple linear regression extends the simple linear regression to
+accomodate multiple predictors
+
 ``` r
 ### Set Train control ####
 train.control <- trainControl(method = "repeatedcv", 
