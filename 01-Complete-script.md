@@ -912,13 +912,135 @@ the experimental assemblage (24.83) which is indicative of a good
 general performance.
 
 ``` r
+# Transform into linear scale
 Temp <- Temp %>% 
   mutate(Observed = 10^Obs,
          Predicted = 10^Pred,
          Line_Res = Observed - Predicted)
+```
 
+``` r
+ANN <- Temp %>% filter(Model == "ANN")
+summary(lm(Observed ~ Predicted, ANN))
+```
 
-#### Regression plot ####
+    ## 
+    ## Call:
+    ## lm(formula = Observed ~ Predicted, data = ANN)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -56.081  -3.415  -0.453   3.697  75.017 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)  0.15587    0.68590   0.227     0.82    
+    ## Predicted    1.08481    0.02422  44.796   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 11.08 on 498 degrees of freedom
+    ## Multiple R-squared:  0.8012, Adjusted R-squared:  0.8008 
+    ## F-statistic:  2007 on 1 and 498 DF,  p-value: < 2.2e-16
+
+``` r
+RMSE(ANN$Predicted, ANN$Observed)
+```
+
+    ## [1] 11.34445
+
+``` r
+MAE(ANN$Predicted, ANN$Observed)
+```
+
+    ## [1] 6.941889
+
+``` r
+MLR <- Temp %>% filter(Model == "Multiple linear regression")
+summary(lm(Observed ~ Predicted, MLR))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Observed ~ Predicted, data = MLR)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -57.314  -4.046  -1.417   4.205  55.097 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)   2.2848     0.6312    3.62 0.000325 ***
+    ## Predicted     0.9558     0.0205   46.62  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 10.73 on 498 degrees of freedom
+    ## Multiple R-squared:  0.8136, Adjusted R-squared:  0.8132 
+    ## F-statistic:  2173 on 1 and 498 DF,  p-value: < 2.2e-16
+
+``` r
+RMSE(MLR$Predicted, MLR$Observed)
+```
+
+    ## [1] 10.85346
+
+``` r
+MAE(MLR$Predicted, MLR$Observed)
+```
+
+    ## [1] 6.792697
+
+``` r
+RF <- Temp %>% filter(Model == "Random Forest")
+summary(lm(Observed ~ Predicted, RF))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Observed ~ Predicted, data = RF)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -45.514  -5.996   0.463   4.293 127.957 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)  -5.6560     1.0840  -5.218 2.66e-07 ***
+    ## Predicted     1.6120     0.0518  31.121  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 14.49 on 498 degrees of freedom
+    ## Multiple R-squared:  0.6604, Adjusted R-squared:  0.6597 
+    ## F-statistic: 968.5 on 1 and 498 DF,  p-value: < 2.2e-16
+
+``` r
+RMSE(RF$Predicted, RF$Observed)
+```
+
+    ## [1] 16.99632
+
+``` r
+MAE(RF$Predicted, RF$Observed)
+```
+
+    ## [1] 8.700332
+
+ 
+
+Visualization of regression plots also supports the better
+generalization of multiple linear regression to the linear scale. Random
+Forest limits its maximum prediction to 57.2 g resulting in a poor
+generalization to the linear scale. Due to this, residuals from the
+Random Forest indicate important underestimations of flake weight with
+an average underestimation of 4.6 g. 50% of the residuals of the Random
+Forest range between overestimations of 2.64 g and underestimations of
+7.06 g. 90% of the residuals from the random forest range between
+overestimations of 10.35 g and underestimations of 29.74 g.
+
+``` r
+## Regression plot on linear scale
 Temp %>% ggplot(aes(Predicted, Observed)) +
   geom_point(alpha = 0.5, size = 1.5) +
   geom_line(aes(y = Predicted), size = 1, col = "blue") +
@@ -934,4 +1056,4 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-11-1.png)
