@@ -375,7 +375,8 @@ for (x in my_seq){
  
 
 The previous code is computationally expensive, but it ensures finding
-the best combination of hyperparameters.
+the best combination of hyperparameters. The following table presents
+the results of hyperparameter grid search.
 
 ``` r
 kable(best_tune)
@@ -392,5 +393,28 @@ kable(best_tune)
 |    2 |             5 |       650 | 0.7277806 |
 |    2 |             5 |       675 | 0.7279673 |
 |    2 |             4 |       700 | 0.7296423 |
+
+On the table we can see that **mtry** is constant at a value of 2 for
+all combinations of number of trees and minimum node size. This
+simplifies the visualization of hyperparameters.
+
+``` r
+#### Hyperparameters of Random forest ####
+data.frame(best_tune) %>% 
+  ggplot(aes(factor(Num_Trees), min_node.size, fill = r_squared)) + 
+  geom_tile(alpha = 0.75) +
+  xlab("Number of trees") +
+  ylab("Min node size") +
+  scale_y_continuous(breaks = seq(4, 5, 1), lim = c(3.5, 5.5)) +
+  geom_text(aes(label = round(r_squared, 4)), size = 3) +
+  ggsci::scale_fill_gsea(reverse = TRUE) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black", size = 8))
+```
+
+![](01-Complete-script_files/figure-markdown_github/graph%20of%20random%20forest%20hyperparamters-1.png)
+
+The following code selects the
 
 ### 03.3 Artificial Neuronal Network (ANN)
