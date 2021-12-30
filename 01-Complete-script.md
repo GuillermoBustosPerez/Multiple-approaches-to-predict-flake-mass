@@ -296,3 +296,85 @@ summary(lm.model)
     ## Residual standard error: 0.2083 on 492 degrees of freedom
     ## Multiple R-squared:  0.779,  Adjusted R-squared:  0.7759 
     ## F-statistic: 247.8 on 7 and 492 DF,  p-value: < 2.2e-16
+
+ 
+
+### 03.2 Random Forest Regression
+
+Random Forests build multiple decision trees from the training data
+(Breiman, 2001). Using different data adds diversity to the models.
+Predictiobs are obtained through the average of examples that reach a
+leaf. Finally, the results are averaged along all the grown trees.
+
+Cartesian grid search is performed on the following hyperparameters:
+number of trees to grow for each model (ranging from 500 to 700 by 25);
+number of variables to possibly split at each node (ranging from 1 to
+5); and minimal node size (ranging from 1 to 5).
+
+Please note that while **mtry** (random number of variables to consider
+in each split) and **min.node.size** can be integrated into a cartesian
+grid search, the number of trees to grow cannot. Thus, it is necessary
+to include the training of the models in a loop were the number of trees
+changes in a sequence. At the end of each loop the best combination of
+mtry and min.node.size for the given number of trees is extracted (along
+with the results).
+
+``` r
+#### Hyperparameter tuning for random forest ####
+
+# Train control
+fitControl <- trainControl(method = "repeatedcv",
+                           number = 10,
+                           repeats = 50,
+                           verboseIter = TRUE)
+
+# range of hyperparameters
+mtry <- seq(1, 5, 1)
+min.node.size <- seq(1, 5, 1)
+splitrule = "variance"
+
+# Grid of possible combinations
+hyper_grid <- expand.grid(
+  mtry = mtry,
+  min.node.size = min.node.size ,
+  splitrule = "variance")
+
+# Loop over different number of trees
+best_tune <- data.frame(
+  mtry = numeric(0),
+  min_node.size = numeric(0),
+  Num_Trees = numeric(0),
+  r_squared = numeric(0))
+
+my_seq <- seq(500, 700, 25)
+
+set.seed(123)
+for (x in my_seq){
+  
+  RF_weight <- train(frmla, 
+                       Reg_Data,
+                       method = "ranger",
+                       trControl = fitControl,
+                       num.trees = x,
+                       tuneGrid = hyper_grid 
+  )
+  
+  Bst_R <- data.frame(
+    mtry = RF_weight$bestTune[[1]],
+    min_node.size = RF_weight$bestTune[[3]],
+    Num_Trees = x,
+    r_squared = RF_weight$finalModel[[10]])
+  
+  best_tune <- rbind(best_tune, Bst_R)
+  
+  Bst_R <- c()
+  
+}
+```
+
+ 
+
+The previous code is computationally expensive, but it ensures finding
+the best combination of hyperparameters.
+
+### 03.3 Artificial Neuronal Network (ANN)
