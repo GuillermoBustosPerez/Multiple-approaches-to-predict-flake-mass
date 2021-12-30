@@ -538,19 +538,19 @@ values of RMSE (0.24) and MAE (0.19).
 
 ``` r
 Temp <- data.frame(rbind(
-  MLR_model$results[2:4],
-  nnet_model_f$results[4:6],
-  RF_model$results[4:6]))
+  round(MLR_model$results[2:4],2),
+  round(nnet_model_f$results[4:6],2),
+  round(RF_model$results[4:6],2)))
 
 Temp <- cbind(data.frame(model = c("MLR", "ANN", "RF")), Temp)
 
 kable(Temp)
 ```
 
-| model |      RMSE |  Rsquared |       MAE |
-|:------|----------:|----------:|----------:|
-| MLR   | 0.2088634 | 0.7761463 | 0.1661431 |
-| ANN   | 0.2086654 | 0.7766675 | 0.1656524 |
-| RF    | 0.2392614 | 0.7212704 | 0.1924296 |
+| model | RMSE | Rsquared |  MAE |
+|:------|-----:|---------:|-----:|
+| MLR   | 0.21 |     0.78 | 0.17 |
+| ANN   | 0.21 |     0.78 | 0.17 |
+| RF    | 0.24 |     0.72 | 0.19 |
 
 ### 04.2 Variable importance
