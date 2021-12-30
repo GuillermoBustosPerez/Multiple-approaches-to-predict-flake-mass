@@ -982,6 +982,20 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
+ 
+
+Visual representation of residuals of the Random Forest through density
+plot shows that despite peaking on the 0 value it presents a long tale
+of positive residuals as a result of underestimations of predictions.
+ANN generalizes better to the linear scale with a higher range of
+predictions which reach a maximum value of 123 g. Density plot of
+residuals from the ANN present a concentrated peak on the 0 value with a
+mean value of 1.82 g. Despite this ANN residuals still present a
+slightly long tale of positive values for residuals as a result of some
+underestimations. 50% of residuals from ANN range between
+overestimations of 2.52 g and underestimations of 5.55 g. 90% of the
+residuals from ANN range between overestimations of 13.18 g and
+underestimations of 18.79 g.
 
 ``` r
 #  Density plot of residuals in the linear scale
@@ -1001,6 +1015,17 @@ Temp %>% ggplot(aes(Line_Res, color = Model)) +
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals%20in%20the%20linear%20scale-1.png)
+
+As previously mentioned Multiple Linear Regression generalizes better to
+the linear scale with a maximum predicted value of 170 g. Residuals
+present an average 1.4 g value, with the density plot peaking near the 0
+value and similar tales to the positive and negative values (Figure 12).
+50% of residuals from Multiple Linear Regression range between
+overestimations of 2.42 g and underestimations of 5.73 g. 90% of
+residuals from Multiple Linear Regression range between overestimations
+of 13.18 g and underestimations of 18.79 g. Thus, Multiple Linear
+regression presents the concentration of 90% of residuals in the
+shortest range.
 
 ``` r
 # Descriptive statistics of residuals in the linear scale
