@@ -619,6 +619,6 @@ Temp %>%
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](01-Complete-script_files/figure-markdown_github/Regression%20plots%20of%20all%20models-1.png)
 
 ### 04.2 Variable importance
