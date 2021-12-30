@@ -939,7 +939,8 @@ kable(data.frame(
     round(RMSE(MLR$Observed, MLR$Predicted),3),
     round(MAE(MLR$Observed, MLR$Predicted), 3)),
   
-  "Random Forest" = c(round(R2(RF$Observed, RF$Predicted),3),
+  "Random Forest" = 
+    c(round(R2(RF$Observed, RF$Predicted),3),
     round(RMSE(RF$Observed, RF$Predicted),3),
     round(MAE(RF$Observed, RF$Predicted), 3))
 ))
@@ -981,3 +982,44 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+``` r
+#  Density plot of residuals in the linear scale
+Temp %>% ggplot(aes(Line_Res, color = Model)) +
+  geom_density(size = 0.75) +
+  ggsci::scale_color_aaas() +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_hline(yintercept = 0) +
+  ylab("Density") +
+  xlab("Residuals (g)") +
+  theme_light() +
+  theme(legend.position = "bottom",
+        legend.title = element_text(face = "bold",size = 9),
+        axis.text = element_text(color = "black", size = 9),
+        axis.title = element_text(color = "black", size = 10),
+        legend.text = element_text(size = 9))
+```
+
+![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals%20in%20the%20linear%20scale-1.png)
+
+``` r
+# Descriptive statistics of residuals in the linear scale
+
+kable(Temp %>% group_by(Model) %>% 
+  summarise(
+    Min = min(Line_Res),
+    `5 Percentil` = quantile(Line_Res, 0.05),
+    `1Quantile` = quantile(Line_Res, 0.25),
+    Mean = mean(Line_Res),
+    Median = quantile(Line_Res, 0.5),
+    `3Quantile` = quantile(Line_Res, 0.75),
+    `95 Percentil` = quantile(Line_Res, 0.95),
+    Max = max(Line_Res)
+  ))
+```
+
+| Model                      |       Min | 5 Percentil | 1Quantile |     Mean |    Median | 3Quantile | 95 Percentil |       Max |
+|:---------------------------|----------:|------------:|----------:|---------:|----------:|----------:|-------------:|----------:|
+| ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
+| Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
+| Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
