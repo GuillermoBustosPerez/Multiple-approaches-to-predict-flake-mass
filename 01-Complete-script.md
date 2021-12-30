@@ -533,8 +533,8 @@ The following table presents the precision metrics for each model. On
 general ANN and multiple linear regression perform similarly with
 similar values of r2 (0.78), RMSE (0.21) and MAE (0.17), although ANN
 performs slightly better. On the other hand Random Forest regression
-performs slightly worst with a lower value of r2 (0.72) and higher
-values of RMSE (0.24) and MAE (0.19).
+performs slightly worst with a lower value of *r*<sup>2</sup> (0.72) and
+higher values of RMSE (0.24) and MAE (0.19).
 
 ``` r
 Temp <- data.frame(rbind(
@@ -552,5 +552,73 @@ kable(Temp)
 | MLR   | 0.21 |     0.78 | 0.17 |
 | ANN   | 0.21 |     0.78 | 0.17 |
 | RF    | 0.24 |     0.72 | 0.19 |
+
+ 
+
+Visualization of regression plots for each model provides additional
+information of the performance of each model. The poor performance of
+Random Forest (lowest value of *r*<sup>2</sup>) is reflected in a
+limited range of prediction. The prediction range of the Random Forest
+is limited between a minimum value of 0.55 and a maximum value of 1.76
+for log10 of flake mass. As a result of this, data is not evenly
+distributed among the regression line. In the lowest values of
+prediction most points fall below the regression line while most data
+points falling above for the highest values of the regression line. ANN
+and multiple linear regression plots present similar patterns of
+distribution with data evenly distributed among the regression line.
+Flakes with a log10 value of flake mass above 2 are lightly more evenly
+distributed for the multiple linear regression than for the ANN.
+
+``` r
+#### Linear model ####
+MLR_results <- as.data.frame(MLR_model$pred) %>% 
+  group_by(rowIndex) %>% 
+  summarise(Pred = mean(pred),
+            Obs = mean(obs)) %>% 
+  mutate(Residual = Obs - Pred)
+
+#### ANN model ####
+nnet_results <- as.data.frame(nnet_model_f$pred) %>% 
+  group_by(rowIndex) %>% 
+  summarise(Pred = mean(pred),
+            Obs = mean(obs)) %>% 
+  mutate(Residual = Obs - Pred)
+
+#### RF Model ####
+RF_results <- as.data.frame(RF_model$pred) %>% 
+  group_by(rowIndex) %>% 
+  summarise(Pred = mean(pred),
+            Obs = mean(obs)) %>% 
+  mutate(Residual = Obs - Pred)
+
+#### Put models together #####
+rm(nnet_model_f, MLR_model, RF_model)
+
+Temp <- rbind(MLR_results, nnet_results, RF_results)
+Temp$Model <- "Multiple linear regression"
+Temp$Model[501:1000] <- "ANN"
+Temp$Model[1001:1500] <- "Random Forest"
+
+#### Correlation plot ####
+Temp %>% 
+  ggplot(aes(Pred, Obs)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Pred), size = 1, col = "blue") +
+  
+  scale_x_continuous(breaks = seq(0, 2.55, 0.25), lim = c(-0.1, 2.35)) +
+  scale_y_continuous(breaks = seq(0, 2.55, 0.25), lim = c(-0.1, 2.35)) +
+  
+  xlab("Predicted") +
+  ylab("Observed") +
+
+  facet_wrap(~ Model, ncol = 3) + 
+  coord_fixed() +
+  theme_light() +
+  theme(strip.text = element_text(color = "black", face = "bold", size = 9),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        axis.text = element_text(size = 7.5, color = "black"))
+```
+
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ### 04.2 Variable importance
