@@ -664,5 +664,85 @@ Temp %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Plots%20of%20observed%20values%20and%20residuals-1.png)
+ 
+
+Correlation between observed values and residuals allows to evaluate if
+residuals increase along with increasing values of log10 of weight. ANN
+and multiple linear regression models present the same value of
+*r*<sup>2</sup> for correlation of observed values and residuals
+(*r*<sup>2</sup> = 0.22; p \< 0.01) while Random Forest presents a
+higher value of correlation (*r*<sup>2</sup> = 0.5; p \< 0.01).
+
+``` r
+# Residuals and multiple linear regression
+summary(lm(Residual ~ Obs, MLR_results))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Residual ~ Obs, data = MLR_results)
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -0.54486 -0.11287  0.00723  0.12352  0.53357 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) -0.24837    0.02260  -10.99   <2e-16 ***
+    ## Obs          0.22306    0.01889   11.81   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.1857 on 498 degrees of freedom
+    ## Multiple R-squared:  0.2188, Adjusted R-squared:  0.2172 
+    ## F-statistic: 139.4 on 1 and 498 DF,  p-value: < 2.2e-16
+
+``` r
+# Residuals and ANN
+summary(lm(Residual ~ Obs, nnet_results))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Residual ~ Obs, data = nnet_results)
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -0.55719 -0.10717 -0.00036  0.13051  0.51214 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) -0.24798    0.02258  -10.98   <2e-16 ***
+    ## Obs          0.22286    0.01887   11.81   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.1855 on 498 degrees of freedom
+    ## Multiple R-squared:  0.2188, Adjusted R-squared:  0.2172 
+    ## F-statistic: 139.5 on 1 and 498 DF,  p-value: < 2.2e-16
+
+``` r
+# Residuals and RF model
+summary(lm(Residual ~ Obs, RF_results))
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Residual ~ Obs, data = RF_results)
+    ## 
+    ## Residuals:
+    ##      Min       1Q   Median       3Q      Max 
+    ## -0.49052 -0.11216  0.00151  0.10916  0.47628 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) -0.42164    0.02052  -20.55   <2e-16 ***
+    ## Obs          0.38224    0.01715   22.29   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 0.1686 on 498 degrees of freedom
+    ## Multiple R-squared:  0.4994, Adjusted R-squared:  0.4984 
+    ## F-statistic: 496.8 on 1 and 498 DF,  p-value: < 2.2e-16
 
 ### 04.2 Variable importance
