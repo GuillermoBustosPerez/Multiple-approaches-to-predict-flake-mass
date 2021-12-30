@@ -395,8 +395,9 @@ kable(best_tune)
 |    2 |             4 |       700 | 0.7296423 |
 
 On the table we can see that **mtry** is constant at a value of 2 for
-all combinations of number of trees and minimum node size. This
-simplifies the visualization of hyperparameters.
+all combinations of number of trees and minimum node size. Additionally
+values of minimum node size range either from 4 or 5. This simplifies
+the visualization of hyperparameters.
 
 ``` r
 #### Hyperparameters of Random forest ####
@@ -415,6 +416,42 @@ data.frame(best_tune) %>%
 
 ![](01-Complete-script_files/figure-markdown_github/graph%20of%20random%20forest%20hyperparamters-1.png)
 
-The following code selects the
+ 
+
+The following code returns the best combination of hyperparameters.
+
+``` r
+best_tune_2 <- best_tune[which.max(best_tune$r_squared),]
+best_tune_2
+```
+
+    ##   mtry min_node.size Num_Trees r_squared
+    ## 6    2             4       625 0.7312961
+
+ 
+
+Finally, the Random forest with optimal combination of hyperparameters
+can be trained.
+
+``` r
+#### Final random forest model ####
+newr_grid <- expand.grid(mtry = best_tune$mtry,
+                          min.node.size = best_tune$min_node.size,
+                          splitrule = "variance"
+)
+
+# Train control
+fitControl <- trainControl(method = "repeatedcv",
+                           number = 10,
+                           repeats = 50)
+
+RF_weight <- train(frmla, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = fitControl,
+                   tuneGrid = newr_grid, 
+                   num.trees = best_tune$Num_Trees,
+                   importance = "impurity_corrected")
+```
 
 ### 03.3 Artificial Neuronal Network (ANN)
