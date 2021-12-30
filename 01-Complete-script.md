@@ -19,8 +19,9 @@ Autónoma de Madrid, Madrid, Spain
     -   03.2 Random Forest Regression  
     -   03.3 Artificial Neuronal Network (ANN)  
 -   04 Model evaluation
-    -   04.1 Model evaluation metrics  
-    -   04.2 Variable importance
+    -   04.1 Model evaluation metrics and plots  
+    -   04.2 Residuals analysis and distribution  
+    -   04.3 Variable importance
 
 ## 01 Installing packages
 
@@ -620,5 +621,48 @@ Temp %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Regression%20plots%20of%20all%20models-1.png)
+ 
+
+### 04.2 Residuals analysis and distribution
+
+Visual analysis of the scatter plot for observed and residual values
+allows to observe model performance for different ranges of log10 of
+flake mass values. Residuals of the Random Forest present a systematic
+bias for the upper and lowest values of observed weight. In the case of
+flakes with a log10 value of 0.50 there is a systematic overestimation
+of the size. In the case of flakes with a log10 value of 1.75 there is a
+systematic underestimation of values. ANN and multiple linear regression
+present very similar plots for observed values and residuals. In both
+cases residual values indicate a systematic overestimation of a log10
+flake mass when the actual value is below 0.25.  
+Between values of 0.25 and 2 both models present a very similar
+performance with residual values falling evenly among the 0 value. ANN
+seems to present a slightly systematic underestimation of flakes with a
+log10 of flake mass above a value of 2. Multiple linear regression does
+seem to perform better for flakes with a log10 flake mass value above 2
+with residual values falling evenly or very close to the 0 value line.
+
+``` r
+## Plots of observed values and residuals
+Temp %>% 
+  ggplot(aes(Obs, Residual)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  
+  xlab("Observed") +
+  ylab("Residual") +
+  
+  scale_x_continuous(breaks = seq(0, 2.55, 0.25), lim = c(min(Temp$Obs), max(Temp$Obs))) +
+  scale_y_continuous(breaks = seq(-0.75, 0.75, 0.25), lim = c(-0.85, 0.85)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  
+  facet_wrap(~ Model, ncol = 3) + 
+  coord_fixed() +
+  theme_light() +
+  theme(strip.text = element_text(color = "black", face = "bold", size = 9),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        axis.text = element_text(size = 7.5, color = "black"))
+```
+
+![](01-Complete-script_files/figure-markdown_github/Plots%20of%20observed%20values%20and%20residuals-1.png)
 
 ### 04.2 Variable importance
