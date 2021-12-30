@@ -435,8 +435,8 @@ can be trained.
 
 ``` r
 #### Final random forest model ####
-newr_grid <- expand.grid(mtry = best_tune$mtry,
-                          min.node.size = best_tune$min_node.size,
+newr_grid <- expand.grid(mtry = best_tune_2$mtry,
+                          min.node.size = best_tune_2$min_node.size,
                           splitrule = "variance"
 )
 
@@ -454,4 +454,43 @@ RF_weight <- train(frmla,
                    importance = "impurity_corrected")
 ```
 
+ 
+
 ### 03.3 Artificial Neuronal Network (ANN)
+
+Artificial Neuronal Networks (ANN) model the relationship between input
+data and the output signal through a series of hidden layers each
+composed by a number of nodes (Lantz, 2015). The present work uses the R
+package “neuralnet” (Günther and Fritsch, 2010) to train ANN with
+backpropagation (Rumelhart et al., 1986). For the present work ANN
+topology is limited to having only one or two hidden layers. Number of
+nodes of hidden layer 1 ranges between 1 and 4 while number of nodes of
+hidden layer 2 ranges from 0 (no second hidden layer) to 4. All possible
+combination are tested.
+
+``` r
+#### Look for best ANN architecture ####
+ set.seed(123)
+ train.control <- trainControl(method = "repeatedcv", 
+                               number = 10, repeats = 50,
+                               verboseIter = TRUE)
+
+  tune.grid.neuralnet <- expand.grid(
+   .layer1 = c(1:4),
+   .layer2 = c(0:4),
+   .layer3 = 0
+ )
+
+ nnet_model <- train(
+   Log_Weight ~ MeanThick + Log_Max_Thick + EPA + Log_Plat + Log_Plat_De + Cortex + No_Scars,
+   Reg_Data,
+   method = 'neuralnet',
+   trControl = train.control,
+   tuneGrid = tune.grid.neuralnet,
+   preProcess = c("center", "scale"),
+   learningrate = 0.01,  
+   threshold = 0.01,
+   stepmax = (10^100),
+   linear.output = TRUE
+ )
+```
