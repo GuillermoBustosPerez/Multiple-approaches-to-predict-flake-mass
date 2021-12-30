@@ -494,3 +494,31 @@ combination are tested.
    linear.output = TRUE
  )
 ```
+
+ 
+
+Cartesian grid search of ANN topology indicates that increasing the
+number of nodes in the first hidden layer decreases linear correlation
+with the outcome. On general Cartesian grid search of ANN topology
+indicates that increasing the number of layers and nodes results in
+lower values of *r*<sup>2</sup>. Thus, the most simple ANN architecture
+(one hidden layer with one node) provides the highest correlation
+coefficient (r2 = 0.78). The second best topology (two hidden layers
+with one node at each layer) provides a marginally lower value (0.0005
+lower).
+
+``` r
+data.frame(nnet_model$results) %>% 
+  ggplot(aes(layer1, layer2, fill = Rsquared)) + 
+  geom_tile(alpha = 0.75) +
+  geom_text(aes(label = round(Rsquared, 4)), size = 3) +
+  ggsci::scale_fill_gsea(reverse = TRUE) +
+  xlab("Number of nodes in layer 1") +
+  ylab("Number of nodes in layer 2") +
+  theme_classic() +
+  coord_fixed() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black", size = 8))
+```
+
+![](01-Complete-script_files/figure-markdown_github/Plot%20of%20ANN%20performance%20for%20diferent%20topologies-1.png)
