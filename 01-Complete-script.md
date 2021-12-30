@@ -745,4 +745,71 @@ summary(lm(Residual ~ Obs, RF_results))
     ## Multiple R-squared:  0.4994, Adjusted R-squared:  0.4984 
     ## F-statistic: 496.8 on 1 and 498 DF,  p-value: < 2.2e-16
 
+ 
+
+Descriptive statistics of residuals and density plots allow to evaluate
+dispersion range of residuals. All models present average and median
+residual values close to 0 with density curves peaking near this value
+which is indicative of a good model performance. 50% of residual values
+from ANN model fall between values of -0.133 and 0.143 making for a
+distance of 0.276. 50% of residual values from multiple linear
+regression model fall between values of -0.137 and 0.134 making for a
+distance of 0.271. 50% of residual values from multiple Random Forest
+model fall between values of -0.138 and 0.177 making for a distance of
+0.315. This indicates that multiple linear regression model concentrates
+50% of residuals values in a slightly shorter range. This range is 0.005
+shorter than the one from ANN model. The Random forest presents the
+highest dispersion range for 50% of residual values.
+
+``` r
+# Density plot of residuals
+Temp %>% ggplot(aes(Residual, color = Model)) +
+  geom_density(size = 1) +
+  ggsci::scale_color_aaas() +
+  scale_x_continuous(breaks = seq(-1, 1, 0.25), lim = c(-1,1)) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_hline(yintercept = 0) +
+  ylab("Density") +
+  theme_light() +
+  theme(legend.position = "bottom",
+        legend.title = element_text(face = "bold"),
+        axis.text = element_text(color = "black", size = 9),
+        axis.title = element_text(color = "black", size = 10))
+```
+
+![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals-1.png)
+
+90% of residual values from ANN model fall between values of -0.379 and
+0.33 making for a distance of 0.709. 90% of residual values from
+multiple linear regression model fall between values of -0.371 and 0.333
+making for a distance of 0.704. 90% of residual values from Random
+Forest model fall between values of -0.412 and 0.355 making for a
+distance of 0.767. Again, multiple linear regression concentrates 90% of
+residuals in the shortest range. ANN presents a slightly wider range
+(difference of 0.005) and Random Forest presents the widest range of the
+three models.
+
+``` r
+kable(
+  Temp %>% group_by(Model) %>% 
+  summarise(
+    Min = min(Residual),
+    `5 Percentil` = quantile(Residual, 0.05),
+    `1Quantile` = quantile(Residual, 0.25),
+    Mean = mean(Residual),
+    Median = quantile(Residual, 0.5),
+    `3Quantile` = quantile(Residual, 0.75),
+    `95 Percentil` = quantile(Residual, 0.95),
+    Max = max(Residual)
+  )
+
+)
+```
+
+| Model                      |        Min | 5 Percentil |  1Quantile |       Mean |    Median | 3Quantile | 95 Percentil |       Max |
+|:---------------------------|-----------:|------------:|-----------:|-----------:|----------:|----------:|-------------:|----------:|
+| ANN                        | -0.6952028 |  -0.3790468 | -0.1331217 |  0.0000595 | 0.0240733 | 0.1428723 |    0.3295823 | 0.4993439 |
+| Multiple linear regression | -0.7046012 |  -0.3711780 | -0.1368752 | -0.0001095 | 0.0204098 | 0.1341937 |    0.3332873 | 0.4823185 |
+| Random Forest              | -0.8456258 |  -0.4117285 | -0.1383524 |  0.0037893 | 0.0133008 | 0.1773731 |    0.3550391 | 0.6154902 |
+
 ### 04.2 Variable importance
