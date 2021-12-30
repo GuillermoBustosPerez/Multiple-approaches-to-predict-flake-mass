@@ -377,4 +377,20 @@ for (x in my_seq){
 The previous code is computationally expensive, but it ensures finding
 the best combination of hyperparameters.
 
+``` r
+kable(best_tune)
+```
+
+| mtry | min_node.size | Num_Trees | r_squared |
+|-----:|--------------:|----------:|----------:|
+|    2 |             5 |       500 | 0.7312673 |
+|    2 |             5 |       525 | 0.7271587 |
+|    2 |             5 |       550 | 0.7256057 |
+|    2 |             5 |       575 | 0.7305429 |
+|    2 |             4 |       600 | 0.7281003 |
+|    2 |             4 |       625 | 0.7312961 |
+|    2 |             5 |       650 | 0.7277806 |
+|    2 |             5 |       675 | 0.7279673 |
+|    2 |             4 |       700 | 0.7296423 |
+
 ### 03.3 Artificial Neuronal Network (ANN)
