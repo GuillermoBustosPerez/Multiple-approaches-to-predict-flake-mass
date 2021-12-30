@@ -801,9 +801,7 @@ kable(
     `3Quantile` = quantile(Residual, 0.75),
     `95 Percentil` = quantile(Residual, 0.95),
     Max = max(Residual)
-  )
-
-)
+  ))
 ```
 
 | Model                      |        Min | 5 Percentil |  1Quantile |       Mean |    Median | 3Quantile | 95 Percentil |       Max |
