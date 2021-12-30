@@ -522,3 +522,35 @@ data.frame(nnet_model$results) %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Plot%20of%20ANN%20performance%20for%20diferent%20topologies-1.png)
+
+ 
+
+## 04 Model evaluation
+
+### 04.1 Model evaluation metrics
+
+The following table presents the precision metrics for each model. On
+general ANN and multiple linear regression perform similarly with
+similar values of r2 (0.78), RMSE (0.21) and MAE (0.17), although ANN
+performs slightly better. On the other hand Random Forest regression
+performs slightly worst with a lower value of r2 (0.72) and higher
+values of RMSE (0.24) and MAE (0.19).
+
+``` r
+Temp <- data.frame(rbind(
+  MLR_model$results[2:4],
+  nnet_model_f$results[4:6],
+  RF_model$results[4:6]))
+
+Temp <- cbind(data.frame(model = c("MLR", "ANN", "RF")), Temp)
+
+kable(Temp)
+```
+
+| model |      RMSE |  Rsquared |       MAE |
+|:------|----------:|----------:|----------:|
+| MLR   | 0.2088634 | 0.7761463 | 0.1661431 |
+| ANN   | 0.2086654 | 0.7766675 | 0.1656524 |
+| RF    | 0.2392614 | 0.7212704 | 0.1924296 |
+
+### 04.2 Variable importance
