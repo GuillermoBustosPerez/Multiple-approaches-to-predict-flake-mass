@@ -18,10 +18,11 @@ Autónoma de Madrid, Madrid, Spain
     -   03.1 Multiple Linear Regression  
     -   03.2 Random Forest Regression  
     -   03.3 Artificial Neuronal Network (ANN)  
--   04 Model evaluation
+-   04 Results
     -   04.1 Model evaluation metrics and plots  
     -   04.2 Residuals analysis and distribution  
-    -   04.3 Variable importance
+    -   04.3 Variable importance  
+    -   04.4 Linear transformation of predictions
 
 ## 01 Installing packages
 
@@ -526,7 +527,7 @@ data.frame(nnet_model$results) %>%
 
  
 
-## 04 Model evaluation
+## 04 Results
 
 ### 04.1 Model evaluation metrics
 
@@ -891,6 +892,46 @@ Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
         strip.text = element_text(color = "black", face = "bold", size = 8),
         strip.background = element_rect(fill = "white", colour = "black", size=1),
         axis.title.y = element_text(color = "black", size = 8))
+```
+
+![](01-Complete-script_files/figure-markdown_github/extract%20variable%20importance%20and%20plot-1.png)
+
+ 
+
+### 04.4 Linear transformation of predictions
+
+The following table presents the performance metrics of each model after
+transforming true and predicted values back to the linear scale. ANN and
+multiple linear regression reinforce their correlation while Random
+Forest decreases it’s *r*<sup>2</sup> value. Multiple linear regression
+provides the highest *r*<sup>2</sup> value (*r*<sup>2</sup> = 0.813)
+followed by ANN (*r*<sup>2</sup> = 0.801), indicating that multiple
+linear regression generalizes better to the linear scale. All models
+present lower RMSE values than the standard deviation value of weight of
+the experimental assemblage (24.83) which is indicative of a good
+general performance.
+
+``` r
+Temp <- Temp %>% 
+  mutate(Observed = 10^Obs,
+         Predicted = 10^Pred,
+         Line_Res = Observed - Predicted)
+
+
+#### Regression plot ####
+Temp %>% ggplot(aes(Predicted, Observed)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Predicted), size = 1, col = "blue") +
+  
+  scale_x_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
+  scale_y_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
+  
+  facet_wrap(~ Model) +
+  coord_fixed() +
+  theme_light() +
+  theme(strip.text = element_text(color = "black", face = "bold", size = 9),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        axis.text = element_text(size = 7.5, color = "black"))
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
