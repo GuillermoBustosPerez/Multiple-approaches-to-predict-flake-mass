@@ -799,6 +799,56 @@ kable(
 
  
 
+``` r
+Terminations <- Reg_Data %>% select(Termination_type)
+Terminations <- rbind(Terminations, Terminations, Terminations)
+Terminations <- cbind(Temp, Terminations)
+
+Terminations <- Terminations %>% mutate(
+  New_Term =
+  case_when(
+    Termination_type == "Feather" ~ "Feather",
+    Termination_type != "Feather" ~ "Other"
+  ))
+
+head(Terminations)
+```
+
+    ##   rowIndex      Pred       Obs     Residual                      Model
+    ## 1        1 1.2498149 1.2511513  0.001336475 Multiple linear regression
+    ## 2        2 1.0396420 1.1248301  0.085188168 Multiple linear regression
+    ## 3        3 1.3980741 1.3081374 -0.089936720 Multiple linear regression
+    ## 4        4 0.7863826 0.5998831 -0.186499551 Multiple linear regression
+    ## 5        5 1.2961923 1.3459615  0.049769205 Multiple linear regression
+    ## 6        6 0.5658101 0.9014583  0.335648212 Multiple linear regression
+    ##   Termination_type New_Term
+    ## 1          Feather  Feather
+    ## 2          Feather  Feather
+    ## 3          Feather  Feather
+    ## 4          Feather  Feather
+    ## 5          Feather  Feather
+    ## 6            Hinge    Other
+
+``` r
+Terminations %>% 
+  ggplot(aes(New_Term, Residual, fill = New_Term)) +
+  facet_wrap(~ Model, ncol = 3) +
+  geom_violin(alpha = 0.6) +
+  geom_boxplot(alpha = 0.8, outlier.size = 0) +
+  geom_jitter(width = 0.15, alpha = 1, size = 0.9, shape = 23, aes(fill = New_Term)) +
+  ggsci::scale_fill_aaas() +
+  xlab(NULL) +
+  theme_light() +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(color = "black", face = "bold", size = 9),
+    strip.background = element_rect(fill = "white", colour = "black", size = 1),
+    axis.text = element_text(color = "black", size = 8.5),
+    axis.title = element_text(color = "black", size = 9))
+```
+
+![](01-Complete-script_files/figure-markdown_github/residuals%20according%20to%20termination-1.png)
+
  
 
 Exploratory data analysis of residuals according to termination type
@@ -987,7 +1037,7 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-11-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
