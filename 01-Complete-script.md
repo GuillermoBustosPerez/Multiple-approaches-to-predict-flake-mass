@@ -800,34 +800,19 @@ kable(
  
 
 ``` r
+# Order of flakes is kept the same for all models
 Terminations <- Reg_Data %>% select(Termination_type)
 Terminations <- rbind(Terminations, Terminations, Terminations)
 Terminations <- cbind(Temp, Terminations)
 
+# Mutate to new categories: feather termination and other types of terminations
 Terminations <- Terminations %>% mutate(
   New_Term =
   case_when(
     Termination_type == "Feather" ~ "Feather",
     Termination_type != "Feather" ~ "Other"
   ))
-
-head(Terminations)
 ```
-
-    ##   rowIndex      Pred       Obs     Residual                      Model
-    ## 1        1 1.2498149 1.2511513  0.001336475 Multiple linear regression
-    ## 2        2 1.0396420 1.1248301  0.085188168 Multiple linear regression
-    ## 3        3 1.3980741 1.3081374 -0.089936720 Multiple linear regression
-    ## 4        4 0.7863826 0.5998831 -0.186499551 Multiple linear regression
-    ## 5        5 1.2961923 1.3459615  0.049769205 Multiple linear regression
-    ## 6        6 0.5658101 0.9014583  0.335648212 Multiple linear regression
-    ##   Termination_type New_Term
-    ## 1          Feather  Feather
-    ## 2          Feather  Feather
-    ## 3          Feather  Feather
-    ## 4          Feather  Feather
-    ## 5          Feather  Feather
-    ## 6            Hinge    Other
 
 ``` r
 Terminations %>% 
@@ -1037,7 +1022,7 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
