@@ -810,8 +810,7 @@ Terminations <- Terminations %>% mutate(
   New_Term =
   case_when(
     Termination_type == "Feather" ~ "Feather",
-    Termination_type != "Feather" ~ "Other"
-  ))
+    Termination_type != "Feather" ~ "Other"))
 ```
 
 ``` r
@@ -849,6 +848,57 @@ in the case of Random Forest). Flakes with other termination than
 feather tend to have a slightly higher mean of residuals values (0.07 in
 the case of ANN; 0.07 in the case of multiple linear regression; 0.06 in
 the case of random Forest).
+
+``` r
+# t-test residuals and terminations for ANN
+t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "ANN",])
+```
+
+    ## 
+    ##  Welch Two Sample t-test
+    ## 
+    ## data:  Residual by New_Term
+    ## t = -2.4964, df = 63.439, p-value = 0.01516
+    ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.13238703 -0.01467883
+    ## sample estimates:
+    ## mean in group Feather   mean in group Other 
+    ##           -0.00744086            0.06609207
+
+``` r
+# t-test residuals and terminations for Multiple linear regression
+t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Multiple linear regression",])
+```
+
+    ## 
+    ##  Welch Two Sample t-test
+    ## 
+    ## data:  Residual by New_Term
+    ## t = -2.5239, df = 62.665, p-value = 0.01416
+    ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.13631906 -0.01583418
+    ## sample estimates:
+    ## mean in group Feather   mean in group Other 
+    ##          -0.007869329           0.068207291
+
+``` r
+# t-test residuals and terminations for Random Forest
+t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Random Forest",])
+```
+
+    ## 
+    ##  Welch Two Sample t-test
+    ## 
+    ## data:  Residual by New_Term
+    ## t = -1.8155, df = 65.4, p-value = 0.07403
+    ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -0.121451961  0.005779731
+    ## sample estimates:
+    ## mean in group Feather   mean in group Other 
+    ##          -0.002109984           0.055726131
 
 ### 04.2 Variable importance
 
