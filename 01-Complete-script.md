@@ -252,7 +252,7 @@ Reg_Data %>% ggplot(aes(Weight)) +
 ### 03.1 Multiple Linear regression
 
 Multiple linear regression extends the simple linear regression to
-accomodate multiple predictors
+accommodate multiple predictors
 
 ``` r
 ### Set Train control ####
@@ -323,13 +323,6 @@ with the results).
 
 ``` r
 #### Hyperparameter tuning for random forest ####
-
-# Train control
-fitControl <- trainControl(method = "repeatedcv",
-                           number = 10,
-                           repeats = 50,
-                           verboseIter = TRUE)
-
 # range of hyperparameters
 mtry <- seq(1, 5, 1)
 min.node.size <- seq(1, 5, 1)
@@ -356,7 +349,7 @@ for (x in my_seq){
   RF_weight <- train(frmla, 
                        Reg_Data,
                        method = "ranger",
-                       trControl = fitControl,
+                       trControl = train.control,
                        num.trees = x,
                        tuneGrid = hyper_grid 
   )
@@ -442,15 +435,10 @@ newr_grid <- expand.grid(mtry = best_tune_2$mtry,
                           splitrule = "variance"
 )
 
-# Train control
-fitControl <- trainControl(method = "repeatedcv",
-                           number = 10,
-                           repeats = 50)
-
 RF_weight <- train(frmla, 
                    Reg_Data,
                    method = "ranger",
-                   trControl = fitControl,
+                   trControl = train.control,
                    tuneGrid = newr_grid, 
                    num.trees = best_tune$Num_Trees,
                    importance = "impurity_corrected")
