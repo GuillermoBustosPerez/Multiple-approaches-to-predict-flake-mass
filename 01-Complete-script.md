@@ -797,6 +797,24 @@ kable(
 | Multiple linear regression | -0.7046012 |  -0.3711780 | -0.1368752 | -0.0001095 | 0.0204098 | 0.1341937 |    0.3332873 | 0.4823185 |
 | Random Forest              | -0.8456258 |  -0.4117285 | -0.1383524 |  0.0037893 | 0.0133008 | 0.1773731 |    0.3550391 | 0.6154902 |
 
+ 
+
+ 
+
+Exploratory data analysis of residuals according to termination type
+through box and violin plots shows possible differences in the
+distribution for the three models. Comparison of residuals means
+according to termination type and for each model through t-test shows
+significant differences for the ANN model (t = -2.5; p = 0.02), the
+multiple linear regression (t = -2.52; p = 0.01), but not for the random
+forest regression (t = -1.82, p = 0.07). In all models residuals mean of
+flakes with feather terminations fall near the cero value (-0.007 in the
+case of ANN; -0.008 in the case of multiple linear regression and -0.002
+in the case of Random Forest). Flakes with other termination than
+feather tend to have a slightly higher mean of residuals values (0.07 in
+the case of ANN; 0.07 in the case of multiple linear regression; 0.06 in
+the case of random Forest).
+
 ### 04.2 Variable importance
 
 The following presents variable relative importance scaled from 0 to 100
