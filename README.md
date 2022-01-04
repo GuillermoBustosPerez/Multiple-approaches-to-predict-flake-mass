@@ -1,5 +1,11 @@
 ## README
 
+Author: Guillermo Bustos-Pérez <sup>1, 2</sup>
+
+<sup>1</sup> Departamento de Prehistoria y Arqueología, Universidad
+Autónoma de Madrid, Madrid, Spain  
+<sup>2</sup> Corresponding author at: <guillermo.willbustos@gmail.com>
+
 The data and code present in this repository are part of the article
 “Multiple approaches to predict flake mass” and intended for reviewers.
 Data and code have been processed in compliance with reproducibility
