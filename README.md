@@ -29,7 +29,7 @@ This repository contains the following folders and files:
     flake mass (Multiple Linear Regression, ANN and Random Forest). ANN
     and Random Forest have been trained with the optimal combination of
     hyperparamters.  
--   Complete Script.md: markdown version of the present research.
-    Contains code and output generated in the present research. All
+-   Complete Script.md: markdown version of the present research which
+    contains all code and output generated in the present research. All
     summary statistics, tables, graphs and models can be generated with
     code and data present in the markdown.
