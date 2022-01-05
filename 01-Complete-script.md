@@ -996,16 +996,6 @@ Var_Imp <- rbind(mr_imp, ANN_imp, RF_imp)
 rm(mr_imp, ANN_imp, RF_imp)
 
 # reset variable labels
-table(Var_Imp$Variable)
-```
-
-    ## 
-    ##        Cortex           EPA Log_Max_Thick      Log_Plat   Log_Plat_De 
-    ##             3             3             3             3             3 
-    ##     MeanThick      No_Scars 
-    ##             3             3
-
-``` r
 Var_Imp$Variable <- factor(Var_Imp$Variable,
                            levels = c("MeanThick", "Log_Max_Thick",
                                       "Log_Plat", "Log_Plat_De",
