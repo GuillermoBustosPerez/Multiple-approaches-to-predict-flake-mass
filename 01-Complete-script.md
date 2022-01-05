@@ -45,10 +45,12 @@ if(length(new.packages)) install.packages(new.packages)
 
 After this we can load the packages to perform model training and
 analysis. Additionally in this markdown we are going to use package
-knitr to show a nice output of tables.
+knitr to show a nice output of tables. The present study makes extensive
+use of tidyverse (Wickham et al., 2019) and caret (Kuhn, 2008) for the
+treatment of data and training of models.
 
 ``` r
-list.of.packages <- c("tidyverse", "caret",  "ranger", "knitr", "knitr")
+list.of.packages <- c("tidyverse", "lattice", "caret",  "ranger", "knitr", "neuralnet")
 
 lapply(list.of.packages, library, character.only = TRUE)
 ```
@@ -59,27 +61,32 @@ lapply(list.of.packages, library, character.only = TRUE)
     ## [13] "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[2]]
+    ##  [1] "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"     "readr"    
+    ##  [7] "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [13] "grDevices" "utils"     "datasets"  "methods"   "base"     
+    ## 
+    ## [[3]]
     ##  [1] "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"    
     ##  [7] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"    
     ## [13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
-    ## [[3]]
+    ## [[4]]
     ##  [1] "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
     ##  [7] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"
     ## [13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
     ## [19] "base"     
     ## 
-    ## [[4]]
+    ## [[5]]
     ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"  
     ##  [7] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"  
     ## [13] "tidyverse" "stats"     "graphics"  "grDevices" "utils"     "datasets" 
     ## [19] "methods"   "base"     
     ## 
-    ## [[5]]
-    ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"  
-    ##  [7] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"  
-    ## [13] "tidyverse" "stats"     "graphics"  "grDevices" "utils"     "datasets" 
-    ## [19] "methods"   "base"
+    ## [[6]]
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
+    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
+    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
+    ## [19] "datasets"  "methods"   "base"
 
  
 
@@ -494,9 +501,9 @@ with the outcome. On general Cartesian grid search of ANN topology
 indicates that increasing the number of layers and nodes results in
 lower values of *r*<sup>2</sup>. Thus, the most simple ANN architecture
 (one hidden layer with one node) provides the highest correlation
-coefficient (r2 = 0.78). The second best topology (two hidden layers
-with one node at each layer) provides a marginally lower value (0.0005
-lower).
+coefficient (*r*<sup>2</sup> = 0.78). The second best topology (two
+hidden layers with one node at each layer) provides a marginally lower
+value (0.0005 lower).
 
 ``` r
 data.frame(nnet_model$results) %>% 
@@ -901,6 +908,8 @@ t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Random Fo
     ## mean in group Feather   mean in group Other 
     ##          -0.002109984           0.055726131
 
+ 
+
 ### 04.2 Variable importance
 
 The following presents variable relative importance scaled from 0 to 100
@@ -1073,12 +1082,13 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
 plot shows that despite peaking on the 0 value it presents a long tale
 of positive residuals as a result of underestimations of predictions.
+
 ANN generalizes better to the linear scale with a higher range of
 predictions which reach a maximum value of 123 g. Density plot of
 residuals from the ANN present a concentrated peak on the 0 value with a
@@ -1142,3 +1152,35 @@ kable(Temp %>% group_by(Model) %>%
 | Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
 
 ## 05 References
+
+Bagolini, B., 1968. Ricerche sulle dimensioni dei manufatti litici
+preistorici non ritoccati. Annali dell’Università di Ferrara : nuova
+serie, Sezione XV. Paleontologia Umana e Paletnologia 1, 195–219.
+
+Breiman, L., 2001. Random Forests. Machine Learning 45, 5–32.
+<https://doi.org/10.1023/A:1010933404324>
+
+Bustos-Pérez, G., Baena, J., 2021. Predicting Flake Mass: A View from
+Machine Learning. Lithic Technology 46, 130–142.
+<https://doi.org/10.1080/01977261.2021.1881267>
+
+Günther, F., Fritsch, S., 2010. Neuralnet: training of neural networks.
+The R Journal 2, 30–38.
+
+Heil, B.J., Hoffman, M.M., Markowetz, F., Lee, S.-I., Greene, C.S.,
+Hicks, S.C., 2021. Reproducibility standards for machine learning in the
+life sciences. Nature Methods 18, 1132–1135.
+
+Kuhn, M., 2008. Building Predictive Models in R using the caret Package.
+Journal of Statistical Software 28.
+<https://doi.org/10.18637/jss.v028.i05>
+
+Rumelhart, D.E., Hinton, G.E., Williams, R.J., 1986. Learning
+representations by back-propagating errors. Nature 323, 533–536.
+
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L., François,
+R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen,
+T., Miller, E., Bache, S., Müller, K., Ooms, J., Robinson, D., Seidel,
+D., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., Yutani,
+H., 2019. Welcome to the Tidyverse. JOSS 4, 1686.
+<https://doi.org/10.21105/joss.01686>
