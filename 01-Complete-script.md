@@ -164,15 +164,15 @@ kable(data.frame(table(Reg_Data$Termination_type)))
 
  
 
-A fast to explore lithic assemblage composition is through a Bagolini
-scatter plot (Bagolini, 1968). Comparison of the experimental dataset
-with the one of the previous study (Bustos-Pérez and Baena, 2021) shows
-an increase on the size and average mass of experimentally knapped
-flakes. While in the previous study 50% of the flakes had mass values
-between 4.15g and 14.02g (Bustos-Pérez and Baena, 2021), in the present
-study 50% of the flakes weight between 5.87g and 26.96g. This indicates
-that the expansion of the dataset has been done by the inclusion of
-heavier and bigger flakes.
+A fast way to explore lithic assemblage composition is through a
+Bagolini scatter plot (Bagolini, 1968). Comparison of the experimental
+dataset with the one from the previous study (Bustos-Pérez and Baena,
+2021) shows an increase on the size and average mass of experimentally
+knapped flakes. While in the previous study 50% of the flakes had mass
+values between 4.15g and 14.02g (Bustos-Pérez and Baena, 2021), in the
+present study 50% of the flakes weight between 5.87g and 26.96g. This
+indicates that the expansion of the dataset has been done by the
+inclusion of heavier and bigger flakes.
 
 ``` r
 Reg_Data %>% 
@@ -256,6 +256,34 @@ Reg_Data %>% ggplot(aes(Weight)) +
 ![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
  
 
+Collinearity between predictors has previously been reported for
+platform surface and platform depth, and mean thickness and log10 of
+maximum thickness (Bustos-Pérez and Baena, 2021). For the present
+dataset there is an important collinearity between log10 of maximum
+thickness and mean thickness (*r*<sup>2</sup> = 0.879); and an expected
+moderate/strong collinearity between platform depth and platform surface
+(*r*<sup>2</sup> = 0.614). Been aware of these collinearities is
+important since collinearity affects variable importance (hard to
+separate the individual effect of a variable on the response), it
+reduces the accuracy of the estimates on a Multiple Linear Regression,
+and it can result in counterintuitive estimates (James et al., 2013).
+However, collinearity does not affect predictions and the inferential
+power of the model (Alin, 2010; Paul, 2006).
+
+``` r
+# Collinearity between measures of thickness
+R2(Reg_Data$MeanThick, Reg_Data$Log_Max_Thick)
+```
+
+    ## [1] 0.8791263
+
+``` r
+# Collinearity between measures of platform
+R2(Reg_Data$Platfom_Depth, Reg_Data$Surface.Plat)
+```
+
+    ## [1] 0.6140689
+
 ## 03 Model training and hyperparameter tunning
 
 ### 03.1 Multiple Linear regression
@@ -264,9 +292,15 @@ Multiple linear regression extends the simple linear regression to
 accommodate multiple predictors:
 
 *Y* = *β*<sub>0</sub> + *β*<sub>1</sub>*X*<sub>1</sub> + *β*<sub>2</sub>*X*<sub>2</sub> +  ·  ·  · *β*<sub>*p*</sub>*X*<sub>*p*</sub> + *ϵ*
+ 
+
+Althought Multiple Linear Regression is less prone to overfit the data
+it is still a good practice to performe multiple k-fold cross
+validation. As a standard the present research uses a 10 fold cross
+validation with 50 cycles.
 
 ``` r
-### Set Train control ####
+# Set Train control
 train.control <- trainControl(method = "repeatedcv", 
                               number = 10, repeats = 50,
                               savePredictions = TRUE)
@@ -1085,7 +1119,7 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
@@ -1156,6 +1190,9 @@ kable(Temp %>% group_by(Model) %>%
 
 ## 05 References
 
+Alin, A., 2010. Multicollinearity. Wiley Interdisciplinary Reviews:
+Computational Statistics 2, 370–374.
+
 Bagolini, B., 1968. Ricerche sulle dimensioni dei manufatti litici
 preistorici non ritoccati. Annali dell’Università di Ferrara : nuova
 serie, Sezione XV. Paleontologia Umana e Paletnologia 1, 195–219.
@@ -1174,9 +1211,16 @@ Heil, B.J., Hoffman, M.M., Markowetz, F., Lee, S.-I., Greene, C.S.,
 Hicks, S.C., 2021. Reproducibility standards for machine learning in the
 life sciences. Nature Methods 18, 1132–1135.
 
+James, G., Witten, D., Hastie, T., Tibshirani, R., 2013. An Introduction
+to Statistical Learning with Applications in R, Second Edition.
+ed. Springer.
+
 Kuhn, M., 2008. Building Predictive Models in R using the caret Package.
 Journal of Statistical Software 28.
 <https://doi.org/10.18637/jss.v028.i05>
+
+Paul, R.K., 2006. Multicollinearity: Causes, effects and remedies.
+IASRI, New Delhi 1, 58–65.
 
 Rumelhart, D.E., Hinton, G.E., Williams, R.J., 1986. Learning
 representations by back-propagating errors. Nature 323, 533–536.
