@@ -267,8 +267,11 @@ important since collinearity affects variable importance (hard to
 separate the individual effect of a variable on the response), it
 reduces the accuracy of the estimates on a Multiple Linear Regression,
 and it can result in counterintuitive estimates (James et al., 2013).
-However, collinearity does not affect predictions and the inferential
-power of the model (Alin, 2010; Paul, 2006).
+Despite the challenges collinearity poses it is important to consider
+that collinearity does not affect predictions and the inferential power
+of the model (Alin, 2010; Paul, 2006). The maine focus of the present is
+the predictive accuracy of the models and not in the relations between
+predictors and dependent variable.
 
 ``` r
 # Collinearity between measures of thickness
