@@ -33,7 +33,7 @@ is set to meet reproducibility standards for machine learning (Heil et
 al., 2021).
 
 ``` r
-list.of.packages <- c("tidyverse", "lattice", "caret", "neuralnet", "ranger")
+list.of.packages <- c("tidyverse", "lattice", "caret", "neuralnet", "ranger", "NeuralNetTools")
 
 new.packages <- list.of.packages[!(list.of.packages %in% 
                                      installed.packages()[,"Package"])]
