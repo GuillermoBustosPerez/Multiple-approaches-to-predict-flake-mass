@@ -261,7 +261,9 @@ Reg_Data %>% ggplot(aes(Weight)) +
 ### 03.1 Multiple Linear regression
 
 Multiple linear regression extends the simple linear regression to
-accommodate multiple predictors
+accommodate multiple predictors:
+
+*Y* = *β*<sub>0</sub> + *β*<sub>1</sub>*X*<sub>1</sub> + *β*<sub>2</sub>*X*<sub>2</sub> +  ·  ·  · *β*<sub>*p*</sub>*X*<sub>*p*</sub> + *ϵ*
 
 ``` r
 ### Set Train control ####
