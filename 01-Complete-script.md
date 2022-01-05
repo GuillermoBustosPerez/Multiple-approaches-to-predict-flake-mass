@@ -10,8 +10,7 @@ Autónoma de Madrid, Madrid, Spain
 
 ## Table of contents
 
--   [01 Installing packages](#installing-packages) (#01 Installing
-    packages)  
+-   [01 Installing packages](#01_Installing_packages)  
 -   02 Loading and describing the data
     -   02.1 Loading and describing the data  
     -   02.2 Variable selection  
