@@ -93,13 +93,14 @@ lapply(list.of.packages, library, character.only = TRUE)
 ## 02 Loading and describing the data
 
 Sample for analysis is composed of 500 experimentally knapped flakes
-using hard hammer. Flakes belong to 30 knapping sequences where a wide
-variety of knapping methods were employed —hierarchical (Levallois and
-Hierarchical Discoid), bifacial (Discoid), and unipolar— to generate the
-experimental sample, ensuring a wide range of morphologies. This is an
-expansion of a previous dataset employed for similar purposes
-(Bustos-Pérez and Baena, 2021) which allows to expand the range of
-dimensions and mass of the assemblage.
+using a variety of hard hammerd (quartzite, quartz, sandstone). Flakes
+belong to 30 knapping sequences where a wide variety of knapping methods
+were employed —hierarchical (Levallois and Hierarchical Discoid),
+bifacial (Discoid), and unipolar— to generate the experimental sample,
+ensuring a wide range of morphologies. This is an expansion of a
+previous dataset employed for similar purposes (Bustos-Pérez and Baena,
+2021) which allows to expand the range of dimensions and mass of the
+assemblage.
 
 ``` r
 # Load the data
