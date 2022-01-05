@@ -566,10 +566,10 @@ data.frame(nnet_model$results) %>%
 
 The following table presents the precision metrics for each model. On
 general ANN and multiple linear regression perform similarly with
-similar values of r2 (0.78), RMSE (0.21) and MAE (0.17), although ANN
-performs slightly better. On the other hand Random Forest regression
-performs slightly worst with a lower value of *r*<sup>2</sup> (0.72) and
-higher values of RMSE (0.24) and MAE (0.19).
+similar values of *r*<sup>2</sup> (0.78), RMSE (0.21) and MAE (0.17),
+although ANN performs slightly better. On the other hand Random Forest
+regression performs slightly worst with a lower value of *r*<sup>2</sup>
+(0.72) and higher values of RMSE (0.24) and MAE (0.19).
 
 ``` r
 Temp <- data.frame(rbind(
