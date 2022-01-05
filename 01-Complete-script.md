@@ -22,7 +22,8 @@ Autónoma de Madrid, Madrid, Spain
     -   04.1 Model evaluation metrics and plots  
     -   04.2 Residuals analysis and distribution  
     -   04.3 Variable importance  
-    -   04.4 Linear transformation of predictions
+    -   04.4 Linear transformation of predictions  
+-   05 References
 
 ## 01 Installing packages
 
