@@ -10,7 +10,7 @@ Autónoma de Madrid, Madrid, Spain
 
 ## Table of contents
 
--   \[01 Installing packages\]\[Installing.packages\]  
+-   01 Installing packages  
 -   02 Loading and describing the data
     -   02.1 Loading and describing the data  
     -   02.2 Variable selection  
@@ -25,7 +25,7 @@ Autónoma de Madrid, Madrid, Spain
     -   04.4 Linear transformation of predictions  
 -   05 References
 
-## \[01 Installing packages\]\[Installing.packages\]
+## 01 Installing packages
 
 The following code provides the list of packages employed in the
 analysis, checks if they are missing and installs the missing ones. This
