@@ -33,7 +33,7 @@ is set to meet reproducibility standards for machine learning (Heil et
 al., 2021).
 
 ``` r
-list.of.packages <- c("tidyverse", "caret", "neuralnet", "lattice", "ranger")
+list.of.packages <- c("tidyverse", "lattice", "caret", "neuralnet", "ranger")
 
 new.packages <- list.of.packages[!(list.of.packages %in% 
                                      installed.packages()[,"Package"])]
@@ -50,7 +50,7 @@ use of tidyverse (Wickham et al., 2019) and caret (Kuhn, 2008) for the
 treatment of data and training of models.
 
 ``` r
-list.of.packages <- c("tidyverse", "lattice", "caret",  "ranger", "knitr", "neuralnet")
+list.of.packages <- c("tidyverse", "lattice", "caret", "neuralnet", "ranger", "knitr")
 
 lapply(list.of.packages, library, character.only = TRUE)
 ```
@@ -71,19 +71,19 @@ lapply(list.of.packages, library, character.only = TRUE)
     ## [13] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[4]]
-    ##  [1] "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [1] "neuralnet" "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
     ##  [7] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"
     ## [13] "stats"     "graphics"  "grDevices" "utils"     "datasets"  "methods"  
     ## [19] "base"     
     ## 
     ## [[5]]
-    ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"  
+    ##  [1] "ranger"    "neuralnet" "caret"     "lattice"   "forcats"   "stringr"  
     ##  [7] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"  
     ## [13] "tidyverse" "stats"     "graphics"  "grDevices" "utils"     "datasets" 
     ## [19] "methods"   "base"     
     ## 
     ## [[6]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
+    ##  [1] "knitr"     "ranger"    "neuralnet" "caret"     "lattice"   "forcats"  
     ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
     ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
     ## [19] "datasets"  "methods"   "base"
