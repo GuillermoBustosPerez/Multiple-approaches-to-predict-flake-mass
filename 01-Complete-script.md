@@ -1,4 +1,4 @@
-# 1 Multiple approaches to predict flake mass
+# Multiple approaches to predict flake mass
 
 -   Guillermo Bustos-Pérez <sup>(1,2)</sup>  
 -   Javier Baena Preysler <sup>(1)</sup>
@@ -8,9 +8,9 @@ Autónoma de Madrid, Madrid, Spain
 <sup>2</sup> Corresponding author at:
 <guillermo.bustos@estudiante.uam.es> \| <guillermo.willbustos@gmail.com>
 
-## 1.1 Table of contents
+## Table of contents
 
--   01 Installing packages  
+-   \[01 Installing packages\]\[Installing.packages\]  
 -   02 Loading and describing the data
     -   02.1 Loading and describing the data  
     -   02.2 Variable selection  
@@ -25,7 +25,7 @@ Autónoma de Madrid, Madrid, Spain
     -   04.4 Linear transformation of predictions  
 -   05 References
 
-## 1.2 01 Installing packages
+## \[01 Installing packages\]\[Installing.packages\]
 
 The following code provides the list of packages employed in the
 analysis, checks if they are missing and installs the missing ones. This
@@ -83,7 +83,7 @@ lapply(list.of.packages, library, character.only = TRUE)
 
  
 
-## 1.3 02 Loading and describing the data
+## 02 Loading and describing the data
 
 Sample for analysis is composed of 500 experimentally knapped flakes
 using hard hammer. Flakes belong to 30 knapping sequences where a wide
@@ -248,9 +248,9 @@ Reg_Data %>% ggplot(aes(Weight)) +
 ![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
  
 
-## 1.4 03 Model training
+## 03 Model training and hyperparameter tunning
 
-### 1.4.1 03.1 Multiple Linear regression
+### 03.1 Multiple Linear regression
 
 Multiple linear regression extends the simple linear regression to
 accommodate multiple predictors
@@ -302,7 +302,7 @@ summary(lm.model)
 
  
 
-### 1.4.2 03.2 Random Forest Regression
+### 03.2 Random Forest Regression
 
 Random Forests build multiple decision trees from the training data
 (Breiman, 2001). Using different data adds diversity to the models.
@@ -447,7 +447,7 @@ RF_weight <- train(frmla,
 
  
 
-### 1.4.3 03.3 Artificial Neuronal Network (ANN)
+### 03.3 Artificial Neuronal Network (ANN)
 
 Artificial Neuronal Networks (ANN) model the relationship between input
 data and the output signal through a series of hidden layers each
@@ -516,9 +516,9 @@ data.frame(nnet_model$results) %>%
 
  
 
-## 1.5 04 Results
+## 04 Results
 
-### 1.5.1 04.1 Model evaluation metrics
+### 04.1 Model evaluation metrics
 
 The following table presents the precision metrics for each model. On
 general ANN and multiple linear regression perform similarly with
@@ -611,7 +611,7 @@ Temp %>%
 ![](01-Complete-script_files/figure-markdown_github/Regression%20plots%20of%20all%20models-1.png)
  
 
-### 1.5.2 04.2 Residuals analysis and distribution
+### 04.2 Residuals analysis and distribution
 
 Visual analysis of the scatter plot for observed and residual values
 allows to observe model performance for different ranges of log10 of
@@ -901,7 +901,7 @@ t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Random Fo
     ## mean in group Feather   mean in group Other 
     ##          -0.002109984           0.055726131
 
-### 1.5.3 04.2 Variable importance
+### 04.2 Variable importance
 
 The following presents variable relative importance scaled from 0 to 100
 for each model. ANN considers of key importance variables of thickness
@@ -990,7 +990,7 @@ Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
 
  
 
-### 1.5.4 04.4 Linear transformation of predictions
+### 04.4 Linear transformation of predictions
 
 The following table presents the performance metrics of each model after
 transforming true and predicted values back to the linear scale. ANN and
@@ -1140,3 +1140,5 @@ kable(Temp %>% group_by(Model) %>%
 | ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
 | Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
 | Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
+
+## 05 References
