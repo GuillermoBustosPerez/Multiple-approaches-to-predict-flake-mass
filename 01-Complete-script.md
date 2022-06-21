@@ -47,7 +47,7 @@ tool transport, utilization in a wide range of tasks, anticipated
 production, hafting and recycling (after original tool had been
 discarded) into the behavioral adaptive strategies that defined a
 curation. [Shott](#ref-shott_exegesis_1996)
-([1996](#ref-shott_exegesis_1996))
+([1996](#ref-shott_exegesis_1996), [1989](#ref-shott_tool-class_1989))
 
 ## 01 Installing packages
 
@@ -1286,6 +1286,14 @@ Archaeological Method and Theory 57–100.
 
 Shott, M.J., 1996. An exegesis of the curation concept. Journal of
 Anthropological Research 52, 259–280.
+
+</div>
+
+<div id="ref-shott_tool-class_1989" class="csl-entry">
+
+Shott, M.J., 1989. On tool-class use lives and the formation of
+archaeological assemblages. American Antiquity 54, 9–30.
+<https://doi.org/10.2307/281329>
 
 </div>
 
