@@ -394,6 +394,16 @@ Reg_Data %>% ggplot(aes(Weight)) +
 
 ### 2.2 Variable selection
 
+Previous work ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) employed best subset selection
+([Furnival and Wilson, 2000](#ref-furnival_regressions_2000); [Hocking
+and Leslie, 1967](#ref-hocking_selection_1967)) to obtain the best model
+with the best explanatory variables. The present work maintains the
+previously selected variables and uses an expanded version of the
+dataset. Variables employed to predict flake mass are: average
+thickness, log10 of maximum thickness, number of scars, amount of
+cortex, EPA, log10 of platform size and log10 of platform depth.
+
 Collinearity between predictors has previously been reported for
 platform surface and platform depth, and mean thickness and log10 of
 maximum thickness (Bustos-Pérez and Baena, 2021). For the present
@@ -1507,6 +1517,13 @@ tools. Journal of Archaeological Science 32, 1190–1201.
 
 </div>
 
+<div id="ref-furnival_regressions_2000" class="csl-entry">
+
+Furnival, G.M., Wilson, R.W., 2000. Regressions by leaps and bounds.
+Technometrics 42, 69–79.
+
+</div>
+
 <div id="ref-gould_living_1968" class="csl-entry">
 
 Gould, R.A., 1968. Living archaeology: The ngatatjaraof western
@@ -1528,6 +1545,13 @@ Archaeological Science 32, 1015–1022.
 Hiscock, P., Tabrett, A., 2010. Generalization, inference and the
 quantification of lithic reduction. World Archaeology 42, 545–561.
 <https://doi.org/10.1080/00438243.2010.517669>
+
+</div>
+
+<div id="ref-hocking_selection_1967" class="csl-entry">
+
+Hocking, R.R., Leslie, R.N., 1967. Selection of the best subset in
+regression analysis. Technometrics 9, 531–540.
 
 </div>
 
