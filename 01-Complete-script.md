@@ -404,6 +404,72 @@ dataset. Variables employed to predict flake mass are: average
 thickness, log10 of maximum thickness, number of scars, amount of
 cortex, EPA, log10 of platform size and log10 of platform depth.
 
+-   **Average thickness:** mean flake thickness measured at 0.25, 0.50
+    and 0.75 of flake length ([Eren and Lycett,
+    2012](#ref-eren_why_2012)).  
+-   **Log10 of maximum thickness:** log10 transformation of the highest
+    of the three values of average thickness.  
+-   **Number of scars:** number of scars bigger than 5 mm ([Scerri et
+    al., 2016](#ref-scerri_can_2016)).  
+-   **Amount of cortex:** measured in an ordinal scale. A slightly
+    modified version of the triple cortex typology ([Andrefsky,
+    2005](#ref-barker_lithics_2005)), with categories being: cortical
+    (1), more than 50% covered by cortex (2), less than 50% covered by
+    cortex (3), residual presence of cortex (4), and no cortex (5).  
+-   **External Platform Angle (EPA):** relation in degrees between the
+    platform and the dorsal surface of the flake. Measured with a manual
+    goniometer.  
+-   **Log10 of platform size:**log10 transformation of platform size
+    measured following [Muller and Clarkson](#ref-muller_new_2016)
+    ([2016](#ref-muller_new_2016)).  
+-   **Log10 of platform depth:** log10 transformation of platform depth.
+    Platform depth belongs to the corresponding measure present at
+    [Muller and Clarkson](#ref-muller_new_2016)
+    ([2016](#ref-muller_new_2016)).
+
+Flake mass (in grams) was recorded using a Sytech SY-BS502 scale with
+0.01 precision. All dimensional measures are performed using digital
+calipers to 0.1 mm. Two different opinions exist on how EPA should be
+measured ([Davis and Shea, 1998](#ref-davis_quantifying_1998); [Dibble
+and Pelcin, 1995](#ref-dibble_effect_1995)), and the difficulty of
+obtaining accurate measurements when the platform or surface is curved
+is acknowledged. Previous studies have shown that it is easier to
+predict log10 of flake weight using log10 of flake platform. Two methods
+for recording flake platform exists. The first method ([Andrefsky,
+2005](#ref-barker_lithics_2005)) uses the product of platform width and
+depth. The second method ([Muller and Clarkson,
+2016](#ref-muller_new_2016)) ascribes the general platform morphology to
+a geometric figure (rectangle, triangle, rhombus, trapezoid, or
+ellipse). The area of the geometric figures in combination with the
+corresponding measurements is employed to calculate platform area. The
+second system has been shown to better approximate platform size when
+compared with measurements from scanning techniques and to not
+overestimate platform size ([Muller and Clarkson,
+2016](#ref-muller_new_2016)). Additionally, previous studies have shown
+a clear preference for the second method as a variable for predicting
+flake weight ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)). Thus only measures of
+platform surface belonging to the second method ([Muller and Clarkson,
+2016](#ref-muller_new_2016)) are employed.
+
+Previous works shown that it is easier to predict log10 of flake weight
+using log10 of platform size ([Braun et al.,
+2008](#ref-braun_landscape-scale_2008); [Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021); [Clarkson and Hiscock,
+2011](#ref-clarkson_estimating_2011); [Shott et al.,
+2000](#ref-shott_flake_2000)). Log transformations of variables are
+common, since they avoid negative results (necessary in the case of
+predicting flake weight), reduce skewed distributions, and can
+approximate parametric distributions (which favors the inferential power
+of models). In the present study, all logarithmic transformations refer
+to the common logarithm (base 10), and the target variable was the
+logarithmic transformation of flake weight.
+
+![“Example of features employed in the present study: measurements of
+thickness, EPA, number of scars, relatve amount of cortex, and platform
+surface following [Muller and Clarkson](#ref-muller_new_2016)
+([2016](#ref-muller_new_2016))”](Figures/Flake%20measures.jpg)
+
 Collinearity between predictors has previously been reported for
 platform surface and platform depth, and mean thickness and log10 of
 maximum thickness (Bustos-Pérez and Baena, 2021). For the present
@@ -1383,6 +1449,14 @@ and maintenance. Journal of Archaeological Research 17, 65–103.
 
 </div>
 
+<div id="ref-barker_lithics_2005" class="csl-entry">
+
+Andrefsky, W., 2005. Lithics macroscopic approaches to analysis, Second.
+ed, Cambridge manuals in archaeology. Cambridge University Press,
+Cambridge.
+
+</div>
+
 <div id="ref-binford_organization_1979" class="csl-entry">
 
 Binford, L.R., 1979. Organization and formation processes: Looking at
@@ -1413,6 +1487,15 @@ Prehistory Press, Madison, Wisconsin, pp. 41–68.
 Boëda, E., 1995b. Caractéristiques techniques des chaînes opératoires
 lithiques des niveaux micoquiens de Külna (Tchécoslovaquie). pal 1,
 57–72. <https://doi.org/10.3406/pal.1995.1380>
+
+</div>
+
+<div id="ref-braun_landscape-scale_2008" class="csl-entry">
+
+Braun, D.R., Rogers, M.J., Harris, J.W.K., Walker, S.J., 2008.
+Landscape-scale variation in hominin tool use: Evidence from the
+developed oldowan. Journal of Human Evolution 55, 1053–1063.
+<https://doi.org/10.1016/j.jhevol.2008.05.020>
 
 </div>
 
@@ -1517,6 +1600,14 @@ tools. Journal of Archaeological Science 32, 1190–1201.
 
 </div>
 
+<div id="ref-eren_why_2012" class="csl-entry">
+
+Eren, M.I., Lycett, S.J., 2012. Why levallois? A morphometric comparison
+of experimental ‘preferential’ levallois flakes versus debitage flakes.
+PLoS ONE 7, e29273. <https://doi.org/10.1371/journal.pone.0029273>
+
+</div>
+
 <div id="ref-furnival_regressions_2000" class="csl-entry">
 
 Furnival, G.M., Wilson, R.W., 2000. Regressions by leaps and bounds.
@@ -1571,6 +1662,15 @@ Archaeological Method and Theory 22, 543–558.
 
 </div>
 
+<div id="ref-muller_new_2016" class="csl-entry">
+
+Muller, A., Clarkson, C., 2016. A new method for accurately and
+precisely measuring flake platform area. Journal of Archaeological
+Science: Reports 8, 178–186.
+<https://doi.org/10.1016/j.jasrep.2016.06.015>
+
+</div>
+
 <div id="ref-nelson_study_1991" class="csl-entry">
 
 Nelson, M.C., 1991. The study of technological organization.
@@ -1591,6 +1691,15 @@ hunter-gatherers in southern patagonia and tierra del fuego. Antiquity
 
 Rolland, N., Dibble, H.L., 1990. A new synthesis of middle paleolithic
 variability. American Antiquity 55, 480–499.
+
+</div>
+
+<div id="ref-scerri_can_2016" class="csl-entry">
+
+Scerri, E.M.L., Gravina, B., Blinkhorn, J., Delagnes, A., 2016. Can
+lithic attribute analyses identify discrete reduction trajectories? A
+quantitative study using refitted lithic sets. J Archaeol Method Theory
+23, 669–691. <https://doi.org/10.1007/s10816-015-9255-x>
 
 </div>
 
