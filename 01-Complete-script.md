@@ -46,7 +46,8 @@ strategies ([Binford, 1979](#ref-binford_organization_1979),
 tool transport, utilization in a wide range of tasks, anticipated
 production, hafting and recycling (after original tool had been
 discarded) into the behavioral adaptive strategies that defined a
-curation.
+curation. [Shott](#ref-shott_exegesis_1996)
+([1996](#ref-shott_exegesis_1996))
 
 ## 01 Installing packages
 
@@ -1278,6 +1279,13 @@ Culture Change. Models in Prehistory. Duckworth, Gloucester, pp.
 
 Nelson, M.C., 1991. The study of technological organization.
 Archaeological Method and Theory 57–100.
+
+</div>
+
+<div id="ref-shott_exegesis_1996" class="csl-entry">
+
+Shott, M.J., 1996. An exegesis of the curation concept. Journal of
+Anthropological Research 52, 259–280.
 
 </div>
 
