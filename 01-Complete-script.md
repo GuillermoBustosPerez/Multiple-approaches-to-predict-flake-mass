@@ -33,7 +33,7 @@ threshold.
 **Key words:** lithic technology; experimental archaeology; flake
 weight; Machine Learning; Deep Learning
 
-## Introduction
+## 1. Introduction
 
 “Curated” is a key concept for the analysis of lithic technological
 organization ([Andrefsky, 2009](#ref-andrefsky_analysis_2009); [Binford,
@@ -148,12 +148,10 @@ uses and evaluates three common Machine Learning regression models
 Forest) for the estimation of flake mass. Additionally each model
 provides insights into variable importance.
 
-## 01 Installing packages
+### 1.2 Loading the data
 
 The following code provides the list of packages employed in the
-analysis, checks if they are missing and installs the missing ones. This
-is set to meet reproducibility standards for machine learning (Heil et
-al., 2021).
+analysis, checks if they are missing and installs the missing ones.
 
 ``` r
 list.of.packages <- c("tidyverse", "lattice", "caret", "neuralnet", "ranger", "NeuralNetTools")
@@ -163,8 +161,6 @@ new.packages <- list.of.packages[!(list.of.packages %in%
 
 if(length(new.packages)) install.packages(new.packages)
 ```
-
- 
 
 After this we can load the packages to perform model training and
 analysis. Additionally in this markdown we are going to use package
@@ -211,19 +207,8 @@ lapply(list.of.packages, library, character.only = TRUE)
     ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
     ## [19] "datasets"  "methods"   "base"
 
- 
-
-## 02 Loading and describing the data
-
-Sample for analysis is composed of 500 experimentally knapped flakes
-using a variety of hard hammerd (quartzite, quartz, sandstone). Flakes
-belong to 30 knapping sequences where a wide variety of knapping methods
-were employed —hierarchical (Levallois and Hierarchical Discoid),
-bifacial (Discoid), and unipolar— to generate the experimental sample,
-ensuring a wide range of morphologies. This is an expansion of a
-previous dataset employed for similar purposes (Bustos-Pérez and Baena,
-2021) which allows to expand the range of dimensions and mass of the
-assemblage.
+The following code load the dataset from a .csv file and allows to see a
+preview of the data.
 
 ``` r
 # Load the data
@@ -246,6 +231,63 @@ kable(Reg_Data[1:10,])
 |   86.8 |  70.8 | 16.066667 |      19.2 |  96.20 |      210.625 |          12.5 |      5 |        3 | Step             |  66 |  1.9831751 |     1.2833012 | 2.323510 |   1.0969100 |
 |   39.2 |  54.7 | 16.700000 |      27.3 |  31.70 |       17.460 |           3.6 |      5 |        2 | Feather          |  30 |  1.5010593 |     1.4361626 | 1.242044 |   0.5563025 |
 |   49.2 |  60.6 | 11.233333 |      14.0 |  40.16 |      158.080 |          12.8 |      5 |        2 | Hinge            |  68 |  1.6037937 |     1.1461280 | 2.198877 |   1.1072100 |
+
+## 2. Methods
+
+### 2.1 Experimental assemblage
+
+Sample for analysis is composed of 500 experimentally knapped flakes
+using hard hammer. Flakes belong to 30 knapping sequences where a wide
+variety of knapping methods were employed —hierarchical (Levallois and
+Hierarchical Discoid), bifacial (Discoid), and unipolar— to generate the
+experimental sample, ensuring a wide range of morphologies
+\[[Boëda](#ref-dibble_levallois:_1995)
+([1995a](#ref-dibble_levallois:_1995));
+[Boëda](#ref-boeda_caracteristiques_1995)
+([1995b](#ref-boeda_caracteristiques_1995)); boeda_debitage_1993;
+[Casanova i Martí et al.](#ref-casanova_i_marti_strategies_2009)
+([2009](#ref-casanova_i_marti_strategies_2009));
+[Terradas](#ref-terradas_discoid_2003)
+([2003](#ref-terradas_discoid_2003))\]. This is an expansion of a
+previous dataset employed for similar purposes ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) which allows to expand the
+range of dimensions and mass of the assemblage. Although termination
+type influences flake mass, its influence on predicting original flake
+mass is considered residual or non-significant ([Clarkson and Hiscock,
+2011](#ref-clarkson_estimating_2011); [Shott et al.,
+2000](#ref-shott_flake_2000)). The experimental assemblage is dominated
+by flakes with feather terminations (89.8%) although other type of
+terminations are present. All selected flakes were complete.
+
+``` r
+kable(data.frame(table(Reg_Data$Termination_type)))
+```
+
+| Var1     | Freq |
+|:---------|-----:|
+| Feather  |  449 |
+| Hinge    |   42 |
+| Inflexed |    2 |
+| Plunging |    2 |
+| Step     |    5 |
+
+A key aspect of experimentations directed to estimate flake mass is that
+they are independent of external factors. Due to this the flakes were
+knapped with a wide variety of hammerstones. Raw material of
+hammerstones varied widely (quartz, quartzite, sandstone and limestone)
+which allowed for a diverse range of morphologies and potential active
+percussion areas.  
+Comparison of the experimental dataset with the one from the previous
+study ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) shows an increase on the size
+and average mass of experimentally knapped flakes. While in the previous
+study 50% of the flakes had mass values between 4.15g and 14.02g
+([Bustos-Pérez and Baena, 2021](#ref-bustos-perez_predicting_2021)), in
+the present study 50% of the flakes weight between 5.87g and 26.96g.
+This indicates that the expansion of the dataset has been done by the
+inclusion of heavier and bigger flakes. Additionally, exploratory visual
+analysis of flake mass shows a highly skewed distribution with flakes
+weighting between 10 g and 20 g the most frequent.
 
 ``` r
 #  Summary statistics of the experimental assemblage
@@ -272,30 +314,6 @@ kable(Summary_Assem)
 | Mean Thickness   |  1.800000 |  6.058333 |  8.516667 |  9.249567 |  11.28333 |  26.50 |
 | Platform Surface |  2.591814 | 31.350000 | 62.933736 | 93.254685 | 116.11875 | 620.00 |
 | Weight           |  1.140000 |  5.870000 | 12.965000 | 21.390400 |  26.95750 | 200.73 |
-
-``` r
-kable(data.frame(table(Reg_Data$Termination_type)))
-```
-
-| Var1     | Freq |
-|:---------|-----:|
-| Feather  |  449 |
-| Hinge    |   42 |
-| Inflexed |    2 |
-| Plunging |    2 |
-| Step     |    5 |
-
- 
-
-A fast way to explore lithic assemblage composition is through a
-Bagolini scatter plot (Bagolini, 1968). Comparison of the experimental
-dataset with the one from the previous study (Bustos-Pérez and Baena,
-2021) shows an increase on the size and average mass of experimentally
-knapped flakes. While in the previous study 50% of the flakes had mass
-values between 4.15g and 14.02g (Bustos-Pérez and Baena, 2021), in the
-present study 50% of the flakes weight between 5.87g and 26.96g. This
-indicates that the expansion of the dataset has been done by the
-inclusion of heavier and bigger flakes.
 
 ``` r
 Reg_Data %>% 
@@ -356,11 +374,6 @@ Reg_Data %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Baggolini%20scatter%20plot-1.png)
- 
-
-Additionally, exploratory visual analysis of flake mass through
-histogram shows a highly skewed distribution with flakes weighting
-between 10 g and 20 g the most frequent.
 
 ``` r
 # Histogram of flake weight
@@ -378,6 +391,8 @@ Reg_Data %>% ggplot(aes(Weight)) +
 
 ![](01-Complete-script_files/figure-markdown_github/Histogramm%20of%20flake%20weight-1.png)
  
+
+### 2.2 Variable selection
 
 Collinearity between predictors has previously been reported for
 platform surface and platform depth, and mean thickness and log10 of
@@ -1374,6 +1389,23 @@ Culture Change. Models in Prehistory. Duckworth, Gloucester, pp.
 
 </div>
 
+<div id="ref-dibble_levallois:_1995" class="csl-entry">
+
+Boëda, E., 1995a. Levallois: A volumetric construction, methods, a
+technique, in: Dibble, H.L., Bar-Yosef, O. (Eds.), The Definition and
+Interpretation of Levallois Technology, Monographs in World Archaeology.
+Prehistory Press, Madison, Wisconsin, pp. 41–68.
+
+</div>
+
+<div id="ref-boeda_caracteristiques_1995" class="csl-entry">
+
+Boëda, E., 1995b. Caractéristiques techniques des chaînes opératoires
+lithiques des niveaux micoquiens de Külna (Tchécoslovaquie). pal 1,
+57–72. <https://doi.org/10.3406/pal.1995.1380>
+
+</div>
+
 <div id="ref-bustos-perez_predicting_2021" class="csl-entry">
 
 Bustos-Pérez, G., Baena, J., 2021. Predicting flake mass: A view from
@@ -1396,6 +1428,23 @@ of Archaeological Science: Reports 27, 101922.
 Casamiquela, R.M., 1978. Temas patagónicos de interes arqueológico. La
 talla del vidrio. Relaciones de la Sociedad Argentina de Antropología
 12, 213–223.
+
+</div>
+
+<div id="ref-casanova_i_marti_strategies_2009" class="csl-entry">
+
+Casanova i Martí, J., Martínez Moreno, J., Mora Torcal, R., Torre, I. de
+la, 2009. Stratégies techniques dans le paléolithique moyen du sud-est
+des pyrénées. L’Anthropologie 113, 313–340.
+<https://doi.org/10.1016/j.anthro.2009.04.004>
+
+</div>
+
+<div id="ref-clarkson_estimating_2011" class="csl-entry">
+
+Clarkson, C., Hiscock, P., 2011. Estimating original flake mass from 3D
+scans of platform area. Journal of Archaeological Science 38, 1062–1068.
+<https://doi.org/10.1016/j.jas.2010.12.001>
 
 </div>
 
@@ -1598,6 +1647,15 @@ computing. R Foundation for Statistical Computing, Vienna, Austria.
 
 Team, Rs., 2019. RStudio: Integrated development for r. RStudio, Inc.,
 Boston, MA.
+
+</div>
+
+<div id="ref-terradas_discoid_2003" class="csl-entry">
+
+Terradas, X., 2003. Discoid flaking method: Conception and technological
+variability, in: Peresani, M. (Ed.), Discoid Lithic Technology. Advances
+and Implications, BAR International Series. Archaeopress, Oxford, pp.
+19–32.
 
 </div>
 
