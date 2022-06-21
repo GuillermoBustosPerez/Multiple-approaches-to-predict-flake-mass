@@ -8,22 +8,45 @@ Autónoma de Madrid, Madrid, Spain
 <sup>2</sup> Corresponding author at:
 <guillermo.bustos@estudiante.uam.es> \| <guillermo.willbustos@gmail.com>
 
-## Table of contents
+## Abstract
 
--   01 Installing packages  
--   02 Loading and describing the data
-    -   02.1 Loading and describing the data  
-    -   02.2 Variable selection  
--   03 Model training and hyperparameter tunning:
-    -   03.1 Multiple Linear Regression  
-    -   03.2 Random Forest Regression  
-    -   03.3 Artificial Neuronal Network (ANN)  
--   04 Results
-    -   04.1 Model evaluation metrics and plots  
-    -   04.2 Residuals analysis and distribution  
-    -   04.3 Variable importance  
-    -   04.4 Linear transformation of predictions  
--   05 References
+Predicting original flake mass is a major goal of lithic analysis.
+Predicting original flake mass allows to make estimations of remaining
+mass, lost mass, etc. All these measures relate to the organization of
+lithic technology by past societies. The present work tests three
+different models to predict log of flake mass: Multiple Linear
+Regression, Random Forest regression and Artificial Neuronal Network
+(ANN). Estimations of flake mass are performed using remaining features
+of flakes from an experimental assemblage. This assemblage has been
+obtained by the expansion of a previous dataset by the inclusion of
+bigger flakes, allowing to account for the effects of sample size and
+value distribution. Correlation results show a large/strong relation
+between predictions and real outcome (r2 = 0.78 in the best case).
+Comparison of models allows to gain insights into variable importance
+for predicting flake mass. Results also show that (for the present
+dataset) multiple linear regression still stands as the best method for
+predicting log of flake weight. Additionally, transformation of
+predicted values from the multiple linear regression and true values to
+the linear scale reinforces the linear correlation above the 0.8
+threshold.
+
+**Key words:** lithic technology; experimental archaeology; flake
+weight; Machine Learning; Deep Learning
+
+## Introduction
+
+“Curated” is a key concept for the analysis of lithic technological
+organization ([Andrefsky, 2009](#ref-andrefsky_analysis_2009); [Binford,
+1979](#ref-binford_organization_1979); [Nelson,
+1991](#ref-nelson_study_1991); [Spry and Stern,
+2016](#ref-spry_technological_2016)). Initially “curated” was defined to
+encompass a series of behavioral patterns related to provisioning
+strategies ([Binford, 1979](#ref-binford_organization_1979),
+[1973](#ref-renfrew_interassemblage_1973)). Further authors included
+tool transport, utilization in a wide range of tasks, anticipated
+production, hafting and recycling (after original tool had been
+discarded) into the behavioral adaptive strategies that defined a
+curation.
 
 ## 01 Installing packages
 
@@ -1224,3 +1247,46 @@ T., Miller, E., Bache, S., Müller, K., Ooms, J., Robinson, D., Seidel,
 D., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., Yutani,
 H., 2019. Welcome to the Tidyverse. JOSS 4, 1686.
 <https://doi.org/10.21105/joss.01686>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-andrefsky_analysis_2009" class="csl-entry">
+
+Andrefsky, W., 2009. The analysis of stone tool procurement, production,
+and maintenance. Journal of Archaeological Research 17, 65–103.
+<https://doi.org/10.1007/s10814-008-9026-2>
+
+</div>
+
+<div id="ref-binford_organization_1979" class="csl-entry">
+
+Binford, L.R., 1979. Organization and formation processes: Looking at
+curated technologies. Journal of Anthropological Research 35, 255–273.
+
+</div>
+
+<div id="ref-renfrew_interassemblage_1973" class="csl-entry">
+
+Binford, L.R., 1973. Interassemblage variability - the mousterian and
+the ’functional ’ argument, in: Renfrew, C. (Ed.), The Explanation of
+Culture Change. Models in Prehistory. Duckworth, Gloucester, pp.
+227–254.
+
+</div>
+
+<div id="ref-nelson_study_1991" class="csl-entry">
+
+Nelson, M.C., 1991. The study of technological organization.
+Archaeological Method and Theory 57–100.
+
+</div>
+
+<div id="ref-spry_technological_2016" class="csl-entry">
+
+Spry, C., Stern, N., 2016. Technological organization, in: Jackson, J.L.
+(Ed.), Oxford Bibliographies in “Anthropology.” Oxford University Press,
+New York.
+
+</div>
+
+</div>
