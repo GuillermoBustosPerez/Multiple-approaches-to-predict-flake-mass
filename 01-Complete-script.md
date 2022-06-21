@@ -48,6 +48,105 @@ production, hafting and recycling (after original tool had been
 discarded) into the behavioral adaptive strategies that defined a
 curation. [Shott](#ref-shott_exegesis_1996)
 ([1996](#ref-shott_exegesis_1996), [1989](#ref-shott_tool-class_1989))
+proposed an alternative interpretation of the term “curation” as the
+“ratio of realized to potential utility.” This shift in the definition
+of the “curation” has deep implications for lithic analysis and the
+study of lithic technological organization since it transforms
+“curation” into a continuous variable ([Shott,
+1996](#ref-shott_exegesis_1996)). This shift of “curation” into a
+continuous variable usually implies the degree of reduction or
+maintenance undergone by a tool ([Shott, 2007](#ref-shott_role_2007),
+[1996](#ref-shott_exegesis_1996), [1989](#ref-shott_tool-class_1989)).
+Additionally, the understanding of curation as a continuum also relates
+to the reduction approach ([Dibble,
+1987](#ref-dibble_interpretation_1987),
+[1987](#ref-dibble_interpretation_1987); [Rolland and Dibble,
+1990](#ref-rolland_new_1990)) which considers processes of resharpening
+as a major factor driving the presence and frequency of tool types.
+Ethnographic studies also emphasize the role of retouch on resharpening
+dulled edges, changes in morphology, or variations in artifact use as
+morphology changes throughout reduction ([Casamiquela,
+1978](#ref-casamiquela_temas_1978); [Gould,
+1968](#ref-gould_living_1968); [Nuevo Delaunay et al.,
+2017](#ref-nuevo_delaunay_glass_2017); [Shott and Weedman,
+2007](#ref-shott_measuring_2007); [White,
+1967](#ref-white_ethno-archaeology_1967)).  
+Usually two approaches are employed to estimate the reduction and
+curation undergone by a retouched artifact. The first branch of approach
+focuses on estimations made through measurements directly made on
+retouch. This has led to the proposal of several indexes which use
+different measurements such as height of retouch, length of retouched
+edge, or projection of original angle ([Bustos-Pérez and Baena,
+2019](#ref-bustos-perez_exploring_2019); [Eren et al.,
+2005](#ref-eren_defining_2005); [Hiscock and Clarkson,
+2005](#ref-hiscock_experimental_2005); [Kuhn,
+1990](#ref-kuhn_geometric_1990); [Morales et al.,
+2015](#ref-morales_measuring_2015)). Although proposed indexes from this
+broad approach usually present high correlation values, they are
+conditioned by flake morphology, direction of retouch or tool type
+(laterally retouched scrapers, endscrapers, bifacial products, etc.).
+[Dibble](#ref-dibble_middle_1995) ([1995](#ref-dibble_middle_1995))
+noted the “flat flake problem” when applying
+[Kuhn](#ref-kuhn_geometric_1990) ([1990](#ref-kuhn_geometric_1990))
+general index of unifacial reduction (GIUR). The “flat flake problem”
+states that a flake with trapezoidal cross section (where the dorsal
+face is mainly flat) will promptly reach maximum values of GIUR although
+reduction continues. The effects of the “flat flake problem” don’t seem
+to be so severe on the GIUR ([Hiscock and Clarkson,
+2005](#ref-hiscock_experimental_2005)) but they exemplify the possible
+limitations that these indexes may undergone as a result of flake
+morphology. [Shott](#ref-shott_reduction_2005)
+([2005](#ref-shott_reduction_2005)) extensive review of methods outlines
+the strengths and limitations derived from geometry, flake morphology
+and assemblage suitability faced by each of the indexes.  
+The second branch of approach aims to estimate original flake mass based
+on remaining features. This branch of approach has the advantage of not
+being conditioned by tool type, direction of retouch, or flake
+morphology. Estimating original mass and comparing it with remaining
+mass can provide highly useful measures such as percentage of mass
+remaining, amount of mass lost, etc. All these measures relate to the
+curation concept as a continuous and the reduction approach. Initial
+controlled experiments showed highly promising results on the ability to
+predict flake mass from remaining features ([Dibble and Pelcin,
+1995](#ref-dibble_effect_1995)). However following experiments based on
+the replication of knapping methods failed to obtain such high levels of
+correlation ([Davis and Shea, 1998](#ref-davis_quantifying_1998); [Shott
+et al., 2000](#ref-shott_flake_2000)) Additionally in some occasions
+estimated original mass was lower than mass of flake after retouch
+([Davis and Shea, 1998](#ref-davis_quantifying_1998)). This posed an
+important drawback since as [Dibble](#ref-dibble_comment_1998)
+([1998](#ref-dibble_comment_1998)) states and [Shott et
+al.](#ref-shott_flake_2000) ([2000](#ref-shott_flake_2000)) reiterates:
+controlled experiments are useful only if results and variable
+relationships are extendible to the archaeological record. Further
+research has explored the estimation of flake mass using the combination
+of several variables ([Dogandžić et al.,
+2015](#ref-dogandzic_edge_2015); [Shott and Seeman,
+2017](#ref-shott_use_2017)) and the determination of best variables to
+perform estimations ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)). [Hiscock and
+Tabrett](#ref-hiscock_generalization_2010)
+([2010](#ref-hiscock_generalization_2010)) state the logical and
+analytical characteristics desirable for an index: inferential power;
+directionality; comprehensiveness; sensitivity; versatility, blank
+diversity and scale independence. Following these characteristics it can
+be stated that the first branch of approach is strong in inferential
+power, directionality, comprehensiveness and sensitivity. On the other
+hand present estimations of flake mass are strong in inferential power,
+comprehensiveness, sensitivity, versatility, blank diversity and scale
+independence.
+
+Most analysis focus on the use linear regression (usually through
+platform surface as a proxy of flake mass) or the combination of several
+variables in multiple linear regression. The generalization of
+statistical programming software ([R. C. Team,
+2019](#ref-r_core_team_r_2019); [Rs. Team,
+2019](#ref-rstudio_team_rstudio_2019)) allows for the implementation of
+regression models beyond the simple linear regression. The present study
+uses and evaluates three common Machine Learning regression models
+(Artificial Neural Networks; Multiple Linear Regression and Random
+Forest) for the estimation of flake mass. Additionally each model
+provides insights into variable importance.
 
 ## 01 Installing packages
 
@@ -1275,10 +1374,166 @@ Culture Change. Models in Prehistory. Duckworth, Gloucester, pp.
 
 </div>
 
+<div id="ref-bustos-perez_predicting_2021" class="csl-entry">
+
+Bustos-Pérez, G., Baena, J., 2021. Predicting flake mass: A view from
+machine learning. Lithic Technology 46, 130–142.
+<https://doi.org/10.1080/01977261.2021.1881267>
+
+</div>
+
+<div id="ref-bustos-perez_exploring_2019" class="csl-entry">
+
+Bustos-Pérez, G., Baena, J., 2019. Exploring volume lost in retouched
+artifacts using height of retouch and length of retouched edge. Journal
+of Archaeological Science: Reports 27, 101922.
+<https://doi.org/10.1016/j.jasrep.2019.101922>
+
+</div>
+
+<div id="ref-casamiquela_temas_1978" class="csl-entry">
+
+Casamiquela, R.M., 1978. Temas patagónicos de interes arqueológico. La
+talla del vidrio. Relaciones de la Sociedad Argentina de Antropología
+12, 213–223.
+
+</div>
+
+<div id="ref-davis_quantifying_1998" class="csl-entry">
+
+Davis, Z.J., Shea, J.J., 1998. Quantifying lithic curation: An
+experimental test of dibble and pelcin’s original flake-tool mass
+predictor. Journal of Archaeological Science 25, 603–610.
+
+</div>
+
+<div id="ref-dibble_comment_1998" class="csl-entry">
+
+Dibble, H.L., 1998. Comment on “quantifying lithic curation: An
+experimental test of dibble and pelcin’s original flake-tool mass
+predictor,” by zachary j. Davis and john j. shea. Journal of
+Archaeological Science 25, 611–613.
+<https://doi.org/10.1006/jasc.1997.0254>
+
+</div>
+
+<div id="ref-dibble_middle_1995" class="csl-entry">
+
+Dibble, H.L., 1995. Middle paleolithic scraper reduction: Background,
+clarification, and review of the evidence to date. Journal of
+Archaeological Method and Theory 2, 300–368.
+
+</div>
+
+<div id="ref-dibble_interpretation_1987" class="csl-entry">
+
+Dibble, H.L., 1987. The interpretation of middle paleolithic scraper
+morphology. American Antiquity 52, 109–117.
+
+</div>
+
+<div id="ref-dibble_effect_1995" class="csl-entry">
+
+Dibble, H.L., Pelcin, A., 1995. The effect of hammer mass and velocity
+on flake mass. Journal of Archaeological Science 22, 429–439.
+<https://doi.org/10.1006/jasc.1995.0042>
+
+</div>
+
+<div id="ref-dogandzic_edge_2015" class="csl-entry">
+
+Dogandžić, T., Braun, D.R., McPherron, S.P., 2015. Edge length and
+surface area of a blank: Experimental assessment of measures, size
+predictions and utility. PLoS ONE 10, e0133984.
+<https://doi.org/10.1371/journal.pone.0133984>
+
+</div>
+
+<div id="ref-eren_defining_2005" class="csl-entry">
+
+Eren, M.I., Domínguez-Rodrigo, M., Kuhn, S.L., Adler, D.S., Le, I.,
+Bar-Yosef, O., 2005. Defining and measuring reduction in unifacial stone
+tools. Journal of Archaeological Science 32, 1190–1201.
+<https://doi.org/10.1016/j.jas.2005.03.003>
+
+</div>
+
+<div id="ref-gould_living_1968" class="csl-entry">
+
+Gould, R.A., 1968. Living archaeology: The ngatatjaraof western
+australia. Southwestern Journal of Anthropology 24, 101–122.
+
+</div>
+
+<div id="ref-hiscock_experimental_2005" class="csl-entry">
+
+Hiscock, P., Clarkson, C., 2005. Experimental evaluation of kuhn’s
+geometric index of reduction and the flat-flake problem. Journal of
+Archaeological Science 32, 1015–1022.
+<https://doi.org/10.1016/j.jas.2005.02.002>
+
+</div>
+
+<div id="ref-hiscock_generalization_2010" class="csl-entry">
+
+Hiscock, P., Tabrett, A., 2010. Generalization, inference and the
+quantification of lithic reduction. World Archaeology 42, 545–561.
+<https://doi.org/10.1080/00438243.2010.517669>
+
+</div>
+
+<div id="ref-kuhn_geometric_1990" class="csl-entry">
+
+Kuhn, S.L., 1990. A geometric index of reduction for unifacial stone
+tools. Journal of Archaeological Science 17, 583–593.
+
+</div>
+
+<div id="ref-morales_measuring_2015" class="csl-entry">
+
+Morales, J.I., Lorenzo, C., Vergès, J.M., 2015. Measuring retouch
+intensity in lithic tools: A new proposal using 3D scan data. Journal of
+Archaeological Method and Theory 22, 543–558.
+<https://doi.org/10.1007/s10816-013-9189-0>
+
+</div>
+
 <div id="ref-nelson_study_1991" class="csl-entry">
 
 Nelson, M.C., 1991. The study of technological organization.
 Archaeological Method and Theory 57–100.
+
+</div>
+
+<div id="ref-nuevo_delaunay_glass_2017" class="csl-entry">
+
+Nuevo Delaunay, A., Belardi, J.B., Carballo Marina, F., Saletta, M.J.,
+De Angelis, H., 2017. Glass and stoneware knapped tools among
+hunter-gatherers in southern patagonia and tierra del fuego. Antiquity
+91, 1330–1343. <https://doi.org/10.15184/aqy.2017.125>
+
+</div>
+
+<div id="ref-rolland_new_1990" class="csl-entry">
+
+Rolland, N., Dibble, H.L., 1990. A new synthesis of middle paleolithic
+variability. American Antiquity 55, 480–499.
+
+</div>
+
+<div id="ref-shott_role_2007" class="csl-entry">
+
+Shott, M.J., 2007. The role of reduction analysis in lithic studies.
+Lithic Technology 32, 131–141.
+
+</div>
+
+<div id="ref-shott_reduction_2005" class="csl-entry">
+
+Shott, M.J., 2005. The reduction thesis and its discontents: Overview of
+the volume, in: Clarkson, C., Lamb, L. (Eds.), Lithics “down Under”:
+Australian Perspectives on Lithic Reduction, Use and Classification, BAR
+International Series. BAR Publishing, pp. 109–125.
 
 </div>
 
@@ -1297,11 +1552,59 @@ archaeological assemblages. American Antiquity 54, 9–30.
 
 </div>
 
+<div id="ref-shott_flake_2000" class="csl-entry">
+
+Shott, M.J., Bradbury, A.P., Carr, P.J., Odell, G.H., 2000. Flake size
+from platform attributes: Predictive and empirical approaches. Journal
+of Archaeological Science 27, 877–894.
+<https://doi.org/10.1006/jasc.1999.0499>
+
+</div>
+
+<div id="ref-shott_use_2017" class="csl-entry">
+
+Shott, M.J., Seeman, M.F., 2017. Use and multifactorial reconciliation
+of uniface reduction measures: A pilot study at the nobles pond
+paleoindian site. American Antiquity 82, 723–741.
+<https://doi.org/10.1017/aaq.2017.40>
+
+</div>
+
+<div id="ref-shott_measuring_2007" class="csl-entry">
+
+Shott, M.J., Weedman, K.J., 2007. Measuring reduction in stone tools: An
+ethnoarchaeological study of gamo hidescrapers from ethiopia. Journal of
+Archaeological Science 34, 1016–1035.
+<https://doi.org/10.1016/j.jas.2006.09.009>
+
+</div>
+
 <div id="ref-spry_technological_2016" class="csl-entry">
 
 Spry, C., Stern, N., 2016. Technological organization, in: Jackson, J.L.
 (Ed.), Oxford Bibliographies in “Anthropology.” Oxford University Press,
 New York.
+
+</div>
+
+<div id="ref-r_core_team_r_2019" class="csl-entry">
+
+Team, R.C., 2019. R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria.
+
+</div>
+
+<div id="ref-rstudio_team_rstudio_2019" class="csl-entry">
+
+Team, Rs., 2019. RStudio: Integrated development for r. RStudio, Inc.,
+Boston, MA.
+
+</div>
+
+<div id="ref-white_ethno-archaeology_1967" class="csl-entry">
+
+White, J.P., 1967. Ethno-archaeology in new guinea: Two examples.
+Mankind 6, 409–414.
 
 </div>
 
