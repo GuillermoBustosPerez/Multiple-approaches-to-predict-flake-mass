@@ -469,23 +469,64 @@ logarithmic transformation of flake weight.
 thickness, EPA, number of scars, relatve amount of cortex, and platform
 surface following [Muller and Clarkson](#ref-muller_new_2016)
 ([2016](#ref-muller_new_2016))”](Figures/Flake%20measures.jpg)
+![“Examples of experimental flakes with different amounts of cortex: 1)
+100% cortical; 2) \>50% cortical; 3) \<50% cortical; 4) Residual cortex;
+5) no cortex”](Figures/Fig%20amount%20of%20cortex.jpg)
 
 Collinearity between predictors has previously been reported for
 platform surface and platform depth, and mean thickness and log10 of
-maximum thickness (Bustos-Pérez and Baena, 2021). For the present
-dataset there is an important collinearity between log10 of maximum
-thickness and mean thickness (*r*<sup>2</sup> = 0.879); and an expected
-moderate/strong collinearity between platform depth and platform surface
-(*r*<sup>2</sup> = 0.614). Been aware of these collinearities is
-important since collinearity affects variable importance (hard to
+maximum thickness ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)). For the present dataset there
+is an important collinearity between log10 of maximum thickness and mean
+thickness (*r*<sup>2</sup> = 0.879); and an expected moderate/strong
+collinearity between platform depth and platform surface
+(*r*<sup>2</sup> = 0.614). Awareness of these collinearities is
+important since collinearity affects variable importance (making hard to
 separate the individual effect of a variable on the response), it
 reduces the accuracy of the estimates on a Multiple Linear Regression,
-and it can result in counterintuitive estimates (James et al., 2013).
-Despite the challenges collinearity poses it is important to consider
-that collinearity does not affect predictions and the inferential power
-of the model (Alin, 2010; Paul, 2006). The maine focus of the present is
-the predictive accuracy of the models and not in the relations between
-predictors and dependent variable.
+and it can result in counterintuitive estimates ([James et al.,
+2013](#ref-james_introduction_2013)) Collinearity of the mentioned pairs
+of predictors is addressed by retrieving combinations of variables and
+selecting the best model based on performance metrics. While retrieving
+pairs of collinear variables allows to determine variable importance, it
+is important to consider that collinearity between predictors does not
+affect predictions and the inferential power of a model ([Alin,
+2010](#ref-alin_multicollinearity_2010); [Paul,
+2006](#ref-paul_multicollinearity_2006)).
+
+### 2.3 Regression methods
+
+Three methods are employed to estimate log10 of flake mass: Multiple
+Linear Regression, Artificial Neuronal Networks (ANN) and Random Forest
+Regression. The Multiple Linear Regression extends the simple linear
+regression in such a way that it can directly accommodate multiple
+predictors ([James et al., 2013](#ref-james_introduction_2013)).  
+Artificial Neuronal Networks (ANN) are constituted by layers which are
+made on nodes. Each ANN has an input layer made of input nodes
+(unprocessed features from the dataset), and an output layer made of
+output nodes. The output layer represents the target variable and can
+have one (in the case of regression when the target is to predict
+numerical outputs) or several nodes (in the case of classification
+problems). Nodes between layers are connected with parameter values
+estimated when the ANN is fitted to the data. An ANN were nodes from the
+input layer are directly connected to the output layer (no hidden
+layers) is directly similar to the multiple linear regression. To model
+more complex relationships, ANN use hidden layers (each composed by a
+series of nodes) between the input and output layers which process
+signals from the input data and their interactions ([Lantz,
+2019](#ref-lantz_machine_2019)). The structure of the ANN according to
+the number of hidden layers and number of nodes in each layer is
+referred as topology. The present work uses the R package “neuralnet”
+([Günther and Fritsch, 2010](#ref-gunther_neuralnet_2010)) to train ANN
+with backpropagation ([Rumelhart et al.,
+1986](#ref-rumelhart_learning_1986)). For the present work ANN topology
+is limited to having only one or two hidden layers. Number of nodes of
+hidden layer 1 ranges between 1 and 4 while number of nodes of hidden
+layer 2 ranges from 0 (no second hidden layer) to 4. All possible
+combinations are tested.
+
+\|[“Schematic representation of an ANN and its
+components”](Figures/ANN.png)
 
 ``` r
 # Collinearity between measures of thickness
@@ -1441,6 +1482,13 @@ H., 2019. Welcome to the Tidyverse. JOSS 4, 1686.
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
+<div id="ref-alin_multicollinearity_2010" class="csl-entry">
+
+Alin, A., 2010. Multicollinearity. Wiley Interdisciplinary Reviews:
+Computational Statistics 2, 370–374.
+
+</div>
+
 <div id="ref-andrefsky_analysis_2009" class="csl-entry">
 
 Andrefsky, W., 2009. The analysis of stone tool procurement, production,
@@ -1622,6 +1670,13 @@ australia. Southwestern Journal of Anthropology 24, 101–122.
 
 </div>
 
+<div id="ref-gunther_neuralnet_2010" class="csl-entry">
+
+Günther, F., Fritsch, S., 2010. Neuralnet: Training of neural networks.
+The R Journal 2, 30–38.
+
+</div>
+
 <div id="ref-hiscock_experimental_2005" class="csl-entry">
 
 Hiscock, P., Clarkson, C., 2005. Experimental evaluation of kuhn’s
@@ -1646,10 +1701,25 @@ regression analysis. Technometrics 9, 531–540.
 
 </div>
 
+<div id="ref-james_introduction_2013" class="csl-entry">
+
+James, G., Witten, D., Hastie, T., Tibshirani, R., 2013. An introduction
+to statistical learning with applications in r, Second Edition. ed.
+Springer.
+
+</div>
+
 <div id="ref-kuhn_geometric_1990" class="csl-entry">
 
 Kuhn, S.L., 1990. A geometric index of reduction for unifacial stone
 tools. Journal of Archaeological Science 17, 583–593.
+
+</div>
+
+<div id="ref-lantz_machine_2019" class="csl-entry">
+
+Lantz, B., 2019. Machine learning with r: Expert techniques for
+predictive modeling. Packt publishing ltd.
 
 </div>
 
@@ -1687,10 +1757,24 @@ hunter-gatherers in southern patagonia and tierra del fuego. Antiquity
 
 </div>
 
+<div id="ref-paul_multicollinearity_2006" class="csl-entry">
+
+Paul, R.K., 2006. Multicollinearity: Causes, effects and remedies.
+IASRI, New Delhi 1, 58–65.
+
+</div>
+
 <div id="ref-rolland_new_1990" class="csl-entry">
 
 Rolland, N., Dibble, H.L., 1990. A new synthesis of middle paleolithic
 variability. American Antiquity 55, 480–499.
+
+</div>
+
+<div id="ref-rumelhart_learning_1986" class="csl-entry">
+
+Rumelhart, D.E., Hinton, G.E., Williams, R.J., 1986. Learning
+representations by back-propagating errors. Nature 323, 533–536.
 
 </div>
 
