@@ -1214,7 +1214,161 @@ t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Random Fo
     ## mean in group Feather   mean in group Other 
     ##          -0.002109984           0.055726131
 
-### 
+### 4.3 Linear transformation of predictions
+
+The following table presents the performance metrics of each model after
+transforming true and predicted values back to the linear scale. ANN and
+multiple linear regression reinforce their correlation while Random
+Forest decreases its *r*<sup>2</sup> value. Multiple linear regression
+provides the highest *r*<sup>2</sup> value (*r*<sup>2</sup> = 0.813)
+followed by ANN (*r*<sup>2</sup> = 0.801), indicating that multiple
+linear regression generalizes better to the linear scale. All models
+present lower RMSE values than the standard deviation value of weight of
+the experimental assemblage (24.83) which is indicative of a good
+general performance.
+
+``` r
+# Transform into linear scale
+Temp <- Temp %>% 
+  mutate(Observed = 10^Obs,
+         Predicted = 10^Pred,
+         Line_Res = Observed - Predicted)
+```
+
+``` r
+ANN <- Temp %>% filter(Model == "ANN")
+MLR <- Temp %>% filter(Model == "Multiple linear regression")
+RF <- Temp %>% filter(Model == "Random Forest")
+
+# Performance metrics
+kable(data.frame(
+  "Metric" = 
+    c("r2", "RMSE", "MAE"),
+  
+  "ANN" = 
+    c(round(R2(ANN$Observed, ANN$Predicted),3),
+  round(RMSE(ANN$Observed, ANN$Predicted),3),
+  round(MAE(ANN$Observed, ANN$Predicted), 3)),
+  
+  "Mult. Linear Reg." = 
+    c(round(R2(MLR$Observed, MLR$Predicted),3),
+    round(RMSE(MLR$Observed, MLR$Predicted),3),
+    round(MAE(MLR$Observed, MLR$Predicted), 3)),
+  
+  "Random Forest" = 
+    c(round(R2(RF$Observed, RF$Predicted),3),
+    round(RMSE(RF$Observed, RF$Predicted),3),
+    round(MAE(RF$Observed, RF$Predicted), 3))
+))
+```
+
+| Metric |    ANN | Mult..Linear.Reg. | Random.Forest |
+|:-------|-------:|------------------:|--------------:|
+| r2     |  0.801 |             0.814 |         0.660 |
+| RMSE   | 11.344 |            10.853 |        16.996 |
+| MAE    |  6.942 |             6.793 |         8.700 |
+
+``` r
+## Regression plot on linear scale
+Temp %>% ggplot(aes(Predicted, Observed)) +
+  geom_point(alpha = 0.5, size = 1.5) +
+  geom_line(aes(y = Predicted), size = 1, col = "blue") +
+  
+  scale_x_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
+  scale_y_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
+  
+  facet_wrap(~ Model) +
+  coord_fixed() +
+  theme_light() +
+  theme(strip.text = element_text(color = "black", face = "bold", size = 9),
+        strip.background = element_rect(fill = "white", colour = "black", size = 1),
+        axis.text = element_text(size = 7.5, color = "black"))
+```
+
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+Visualization of regression plots also supports the better
+generalization of multiple linear regression to the linear scale. Random
+Forest limits its maximum prediction to 57.2 g resulting in a poor
+generalization to the linear scale. Due to this, residuals from the
+Random Forest indicate important underestimations of flake weight with
+an average underestimation of 4.6 g. 50% of the residuals of the Random
+Forest range between overestimations of 2.64 g and underestimations of
+7.06 g. 90% of the residuals from the random forest range between
+overestimations of 10.35 g and underestimations of 29.74 g. Visual
+representation of residuals of the Random Forest through density plot
+shows that despite peaking on the 0 value it presents a long tale of
+positive residuals as a result of underestimations of predictions.  
+ANN generalizes better to the linear scale with a higher range of
+predictions which reach a maximum value of 123 g. Density plot of
+residuals from the ANN present a concentrated peak on the 0 value with a
+mean value of 1.82 g. Despite this ANN residuals still present a
+slightly long tale of positive values for residuals as a result of some
+underestimations. 50% of residuals from ANN range between
+overestimations of 2.52 g and underestimations of 5.55 g. 90% of the
+residuals from ANN range between overestimations of 13.18 g and
+underestimations of 18.79 g.  
+As previously mentioned Multiple Linear Regression generalizes better to
+the linear scale with a maximum predicted value of 170 g. Residuals
+present an average 1.4 g value, with the density plot peaking near the 0
+value and similar tales to the positive and negative values. 50% of
+residuals from Multiple Linear Regression range between overestimations
+of 2.42 g and underestimations of 5.73 g. 90% of residuals from Multiple
+Linear Regression range between overestimations of 13.18 g and
+underestimations of 18.79 g. Thus, Multiple Linear regression presents
+the concentration of 90% of residuals in the shortest range.
+
+``` r
+#  Density plot of residuals in the linear scale
+Temp %>% ggplot(aes(Line_Res, color = Model)) +
+  geom_density(size = 0.75) +
+  ggsci::scale_color_aaas() +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_hline(yintercept = 0) +
+  ylab("Density") +
+  xlab("Residuals (g)") +
+  theme_light() +
+  theme(legend.position = "bottom",
+        legend.title = element_text(face = "bold",size = 9),
+        axis.text = element_text(color = "black", size = 9),
+        axis.title = element_text(color = "black", size = 10),
+        legend.text = element_text(size = 9))
+```
+
+![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals%20in%20the%20linear%20scale-1.png)
+
+As previously mentioned Multiple Linear Regression generalizes better to
+the linear scale with a maximum predicted value of 170 g. Residuals
+present an average 1.4 g value, with the density plot peaking near the 0
+value and similar tales to the positive and negative values (Figure 12).
+50% of residuals from Multiple Linear Regression range between
+overestimations of 2.42 g and underestimations of 5.73 g. 90% of
+residuals from Multiple Linear Regression range between overestimations
+of 13.18 g and underestimations of 18.79 g. Thus, Multiple Linear
+regression presents the concentration of 90% of residuals in the
+shortest range.
+
+``` r
+# Descriptive statistics of residuals in the linear scale
+
+kable(Temp %>% group_by(Model) %>% 
+  summarise(
+    Min = min(Line_Res),
+    `5 Percentil` = quantile(Line_Res, 0.05),
+    `1Quantile` = quantile(Line_Res, 0.25),
+    Mean = mean(Line_Res),
+    Median = quantile(Line_Res, 0.5),
+    `3Quantile` = quantile(Line_Res, 0.75),
+    `95 Percentil` = quantile(Line_Res, 0.95),
+    Max = max(Line_Res)
+  ))
+```
+
+| Model                      |       Min | 5 Percentil | 1Quantile |     Mean |    Median | 3Quantile | 95 Percentil |       Max |
+|:---------------------------|----------:|------------:|----------:|---------:|----------:|----------:|-------------:|----------:|
+| ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
+| Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
+| Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
 
 ### 04.2 Variable importance
 
@@ -1308,47 +1462,6 @@ present lower RMSE values than the standard deviation value of weight of
 the experimental assemblage (24.83) which is indicative of a good
 general performance.
 
-``` r
-# Transform into linear scale
-Temp <- Temp %>% 
-  mutate(Observed = 10^Obs,
-         Predicted = 10^Pred,
-         Line_Res = Observed - Predicted)
-```
-
-``` r
-ANN <- Temp %>% filter(Model == "ANN")
-MLR <- Temp %>% filter(Model == "Multiple linear regression")
-RF <- Temp %>% filter(Model == "Random Forest")
-
-# Performance metrics
-kable(data.frame(
-  "Metric" = 
-    c("r2", "RMSE", "MAE"),
-  
-  "ANN" = 
-    c(round(R2(ANN$Observed, ANN$Predicted),3),
-  round(RMSE(ANN$Observed, ANN$Predicted),3),
-  round(MAE(ANN$Observed, ANN$Predicted), 3)),
-  
-  "Mult. Linear Reg." = 
-    c(round(R2(MLR$Observed, MLR$Predicted),3),
-    round(RMSE(MLR$Observed, MLR$Predicted),3),
-    round(MAE(MLR$Observed, MLR$Predicted), 3)),
-  
-  "Random Forest" = 
-    c(round(R2(RF$Observed, RF$Predicted),3),
-    round(RMSE(RF$Observed, RF$Predicted),3),
-    round(MAE(RF$Observed, RF$Predicted), 3))
-))
-```
-
-| Metric |    ANN | Mult..Linear.Reg. | Random.Forest |
-|:-------|-------:|------------------:|--------------:|
-| r2     |  0.801 |             0.814 |         0.660 |
-| RMSE   | 11.344 |            10.853 |        16.996 |
-| MAE    |  6.942 |             6.793 |         8.700 |
-
  
 
 Visualization of regression plots also supports the better
@@ -1361,24 +1474,6 @@ Forest range between overestimations of 2.64 g and underestimations of
 7.06 g. 90% of the residuals from the random forest range between
 overestimations of 10.35 g and underestimations of 29.74 g.
 
-``` r
-## Regression plot on linear scale
-Temp %>% ggplot(aes(Predicted, Observed)) +
-  geom_point(alpha = 0.5, size = 1.5) +
-  geom_line(aes(y = Predicted), size = 1, col = "blue") +
-  
-  scale_x_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
-  scale_y_continuous(breaks = seq(0, 205, 20), lim = c(0, 205)) +
-  
-  facet_wrap(~ Model) +
-  coord_fixed() +
-  theme_light() +
-  theme(strip.text = element_text(color = "black", face = "bold", size = 9),
-        strip.background = element_rect(fill = "white", colour = "black", size = 1),
-        axis.text = element_text(size = 7.5, color = "black"))
-```
-
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
@@ -1395,101 +1490,7 @@ overestimations of 2.52 g and underestimations of 5.55 g. 90% of the
 residuals from ANN range between overestimations of 13.18 g and
 underestimations of 18.79 g.
 
-``` r
-#  Density plot of residuals in the linear scale
-Temp %>% ggplot(aes(Line_Res, color = Model)) +
-  geom_density(size = 0.75) +
-  ggsci::scale_color_aaas() +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_hline(yintercept = 0) +
-  ylab("Density") +
-  xlab("Residuals (g)") +
-  theme_light() +
-  theme(legend.position = "bottom",
-        legend.title = element_text(face = "bold",size = 9),
-        axis.text = element_text(color = "black", size = 9),
-        axis.title = element_text(color = "black", size = 10),
-        legend.text = element_text(size = 9))
-```
-
-![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals%20in%20the%20linear%20scale-1.png)
-
-As previously mentioned Multiple Linear Regression generalizes better to
-the linear scale with a maximum predicted value of 170 g. Residuals
-present an average 1.4 g value, with the density plot peaking near the 0
-value and similar tales to the positive and negative values (Figure 12).
-50% of residuals from Multiple Linear Regression range between
-overestimations of 2.42 g and underestimations of 5.73 g. 90% of
-residuals from Multiple Linear Regression range between overestimations
-of 13.18 g and underestimations of 18.79 g. Thus, Multiple Linear
-regression presents the concentration of 90% of residuals in the
-shortest range.
-
-``` r
-# Descriptive statistics of residuals in the linear scale
-
-kable(Temp %>% group_by(Model) %>% 
-  summarise(
-    Min = min(Line_Res),
-    `5 Percentil` = quantile(Line_Res, 0.05),
-    `1Quantile` = quantile(Line_Res, 0.25),
-    Mean = mean(Line_Res),
-    Median = quantile(Line_Res, 0.5),
-    `3Quantile` = quantile(Line_Res, 0.75),
-    `95 Percentil` = quantile(Line_Res, 0.95),
-    Max = max(Line_Res)
-  ))
-```
-
-| Model                      |       Min | 5 Percentil | 1Quantile |     Mean |    Median | 3Quantile | 95 Percentil |       Max |
-|:---------------------------|----------:|------------:|----------:|---------:|----------:|----------:|-------------:|----------:|
-| ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
-| Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
-| Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
-
 ## 05 References
-
-Alin, A., 2010. Multicollinearity. Wiley Interdisciplinary Reviews:
-Computational Statistics 2, 370–374.
-
-Bagolini, B., 1968. Ricerche sulle dimensioni dei manufatti litici
-preistorici non ritoccati. Annali dell’Università di Ferrara : nuova
-serie, Sezione XV. Paleontologia Umana e Paletnologia 1, 195–219.
-
-Breiman, L., 2001. Random Forests. Machine Learning 45, 5–32.
-<https://doi.org/10.1023/A:1010933404324>
-
-Bustos-Pérez, G., Baena, J., 2021. Predicting Flake Mass: A View from
-Machine Learning. Lithic Technology 46, 130–142.
-<https://doi.org/10.1080/01977261.2021.1881267>
-
-Günther, F., Fritsch, S., 2010. Neuralnet: training of neural networks.
-The R Journal 2, 30–38.
-
-Heil, B.J., Hoffman, M.M., Markowetz, F., Lee, S.-I., Greene, C.S.,
-Hicks, S.C., 2021. Reproducibility standards for machine learning in the
-life sciences. Nature Methods 18, 1132–1135.
-
-James, G., Witten, D., Hastie, T., Tibshirani, R., 2013. An Introduction
-to Statistical Learning with Applications in R, Second Edition.
-ed. Springer.
-
-Kuhn, M., 2008. Building Predictive Models in R using the caret Package.
-Journal of Statistical Software 28.
-<https://doi.org/10.18637/jss.v028.i05>
-
-Paul, R.K., 2006. Multicollinearity: Causes, effects and remedies.
-IASRI, New Delhi 1, 58–65.
-
-Rumelhart, D.E., Hinton, G.E., Williams, R.J., 1986. Learning
-representations by back-propagating errors. Nature 323, 533–536.
-
-Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L., François,
-R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen,
-T., Miller, E., Bache, S., Müller, K., Ooms, J., Robinson, D., Seidel,
-D., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., Yutani,
-H., 2019. Welcome to the Tidyverse. JOSS 4, 1686.
-<https://doi.org/10.21105/joss.01686>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
