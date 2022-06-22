@@ -494,13 +494,30 @@ affect predictions and the inferential power of a model ([Alin,
 2010](#ref-alin_multicollinearity_2010); [Paul,
 2006](#ref-paul_multicollinearity_2006)).
 
+``` r
+# Collinearity between measures of thickness
+R2(Reg_Data$MeanThick, Reg_Data$Log_Max_Thick)
+```
+
+    ## [1] 0.8791263
+
+``` r
+# Collinearity between measures of platform
+R2(Reg_Data$Platfom_Depth, Reg_Data$Surface.Plat)
+```
+
+    ## [1] 0.6140689
+
 ### 2.3 Regression methods
 
 Three methods are employed to estimate log10 of flake mass: Multiple
 Linear Regression, Artificial Neuronal Networks (ANN) and Random Forest
 Regression. The Multiple Linear Regression extends the simple linear
 regression in such a way that it can directly accommodate multiple
-predictors ([James et al., 2013](#ref-james_introduction_2013)).  
+predictors ([James et al., 2013](#ref-james_introduction_2013)).
+
+*Y* = *β*<sub>0</sub> + *β*<sub>1</sub>*X*<sub>1</sub> + *β*<sub>2</sub>*X*<sub>2</sub> +  ·  ·  · *β*<sub>*p*</sub>*X*<sub>*p*</sub> + *ϵ*
+
 Artificial Neuronal Networks (ANN) are constituted by layers which are
 made on nodes. Each ANN has an input layer made of input nodes
 (unprocessed features from the dataset), and an output layer made of
@@ -525,8 +542,9 @@ hidden layer 1 ranges between 1 and 4 while number of nodes of hidden
 layer 2 ranges from 0 (no second hidden layer) to 4. All possible
 combinations are tested.
 
-![“Schematic representation of an ANN and its
-components”](Figures/ANN.png)
+<figure>
+<img src="Figures/ANN.png" height="200" alt="“Schematic representation of an ANN and its components”" /><figcaption aria-hidden="true">“Schematic representation of an ANN and its components”</figcaption>
+</figure>
 
 Random Forest Regressions select random samples of the data and build
 trees for prediction. As a result, each tree is built from different
@@ -599,36 +617,29 @@ among the 0 value.
 The complete workflow is developed using the R language (version 4.0.2)
 in the RStudio IDE (version 1.4.1103; ([R. C. Team,
 2019](#ref-r_core_team_r_2019); [Rs. Team,
-2019](#ref-rstudio_team_rstudio_2019))
+2019](#ref-rstudio_team_rstudio_2019)). Package *tidyverse* ([Wickham et
+al., 2019](#ref-wickham_welcome_2019)) is employed for data manipulation
+and representation. Packages *leaps* ([Lumley based on Fortran code by
+Alan Miller,
+2020](#ref-lumley_based_on_fortran_code_by_alan_miller_leaps_2020)) and
+*lattice* ([Sarkar, 2008](#ref-sarkar_lattice_2008)) are employed
+additionally to previously mentioned packages for model training.
+Package *caret* ([Kuhn, 2008](#ref-kuhn_building_2008)) is employed to
+set the validation methods and obtain evaluation metrics of each model.
 
-``` r
-# Collinearity between measures of thickness
-R2(Reg_Data$MeanThick, Reg_Data$Log_Max_Thick)
-```
+### 2.5 Training the models
 
-    ## [1] 0.8791263
+## 4. Results
 
-``` r
-# Collinearity between measures of platform
-R2(Reg_Data$Platfom_Depth, Reg_Data$Surface.Plat)
-```
+### 4.1 4.1 Hyperparameter grid search
 
-    ## [1] 0.6140689
-
-## 03 Model training and hyperparameter tunning
-
-### 03.1 Multiple Linear regression
-
-Multiple linear regression extends the simple linear regression to
-accommodate multiple predictors:
-
-*Y* = *β*<sub>0</sub> + *β*<sub>1</sub>*X*<sub>1</sub> + *β*<sub>2</sub>*X*<sub>2</sub> +  ·  ·  · *β*<sub>*p*</sub>*X*<sub>*p*</sub> + *ϵ*
- 
-
-Althought Multiple Linear Regression is less prone to overfit the data
-it is still a good practice to performe multiple k-fold cross
-validation. As a standard the present research uses a 10 fold cross
-validation with 50 cycles.
+Results of hyperparameter cartesian grid search for the Random Forest
+regression. In all cases the hyperparameter of number of variables to
+possibly split at each node was selected to have a value of 2. Linear
+correlation reaches its maximum for a minimum node size of 4 and 625
+trees grown for the model (r2 = 0.73). The second best hyperparameter
+combination (minimum node size of 5 and 500 trees grown for the model)
+presents a marginally lower value of linear correlation (0.00005).
 
 ``` r
 # Set Train control
@@ -1440,7 +1451,7 @@ Temp %>% ggplot(aes(Predicted, Observed)) +
         axis.text = element_text(size = 7.5, color = "black"))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-9-1.png)
  
 
 Visual representation of residuals of the Random Forest through density
@@ -1789,6 +1800,14 @@ Springer.
 
 </div>
 
+<div id="ref-kuhn_building_2008" class="csl-entry">
+
+Kuhn, M., 2008. Building predictive models in r using the caret package.
+Journal of Statistical Software 28.
+<https://doi.org/10.18637/jss.v028.i05>
+
+</div>
+
 <div id="ref-kuhn_geometric_1990" class="csl-entry">
 
 Kuhn, S.L., 1990. A geometric index of reduction for unifacial stone
@@ -1800,6 +1819,14 @@ tools. Journal of Archaeological Science 17, 583–593.
 
 Lantz, B., 2019. Machine learning with r: Expert techniques for
 predictive modeling. Packt publishing ltd.
+
+</div>
+
+<div id="ref-lumley_based_on_fortran_code_by_alan_miller_leaps_2020"
+class="csl-entry">
+
+Lumley based on Fortran code by Alan Miller, T., 2020. Leaps: Regression
+subset selection.
 
 </div>
 
@@ -1855,6 +1882,13 @@ variability. American Antiquity 55, 480–499.
 
 Rumelhart, D.E., Hinton, G.E., Williams, R.J., 1986. Learning
 representations by back-propagating errors. Nature 323, 533–536.
+
+</div>
+
+<div id="ref-sarkar_lattice_2008" class="csl-entry">
+
+Sarkar, D., 2008. Lattice: Multivariate data visualization with r, Use
+r! Springer New York, New York.
 
 </div>
 
@@ -1960,6 +1994,17 @@ and Implications, BAR International Series. Archaeopress, Oxford, pp.
 
 White, J.P., 1967. Ethno-archaeology in new guinea: Two examples.
 Mankind 6, 409–414.
+
+</div>
+
+<div id="ref-wickham_welcome_2019" class="csl-entry">
+
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L., François,
+R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen,
+T., Miller, E., Bache, S., Müller, K., Ooms, J., Robinson, D., Seidel,
+D., Spinu, V., Takahashi, K., Vaughan, D., Wilke, C., Woo, K., Yutani,
+H., 2019. Welcome to the tidyverse. Journal of Open Source Software 4,
+1686. <https://doi.org/10.21105/joss.01686>
 
 </div>
 
