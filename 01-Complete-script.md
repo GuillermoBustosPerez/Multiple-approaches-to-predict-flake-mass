@@ -1339,7 +1339,7 @@ Temp %>% ggplot(aes(Line_Res, color = Model)) +
 
 ``` r
 # Descriptive statistics of residuals
-Desc_Line_Res <- Temp %>% group_by(Model) %>% 
+Temp %>% group_by(Model) %>% 
   summarise(
     Min = min(Line_Res),
     `5 Percentil` = quantile(Line_Res, 0.05),
@@ -1351,6 +1351,14 @@ Desc_Line_Res <- Temp %>% group_by(Model) %>%
     Max = max(Line_Res)
   )
 ```
+
+    ## # A tibble: 3 x 9
+    ##   Model    Min `5 Percentil` `1Quantile`  Mean Median `3Quantile` `95 Percentil`
+    ##   <chr>  <dbl>         <dbl>       <dbl> <dbl>  <dbl>       <dbl>          <dbl>
+    ## 1 ANN    -47.1         -13.8       -2.52  1.82  0.476        5.55           19.8
+    ## 2 Multi~ -60.2         -13.2       -2.42  1.40  0.331        5.72           18.8
+    ## 3 Rando~ -20.1         -10.4       -2.64  4.61  0.334        7.06           29.7
+    ## # ... with 1 more variable: Max <dbl>
 
 ### 04.2 Variable importance
 
