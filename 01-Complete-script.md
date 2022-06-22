@@ -712,22 +712,6 @@ for (x in my_seq){
 }
 ```
 
-``` r
-#### Final random forest model ####
-newr_grid <- expand.grid(mtry = best_tune_2$mtry,
-                          min.node.size = best_tune_2$min_node.size,
-                          splitrule = "variance"
-)
-
-RF_weight <- train(frmla, 
-                   Reg_Data,
-                   method = "ranger",
-                   trControl = train.control,
-                   tuneGrid = newr_grid, 
-                   num.trees = best_tune$Num_Trees,
-                   importance = "impurity_corrected")
-```
-
 The following code returns the best combination of hyperparameters.
 
 ``` r
@@ -753,6 +737,25 @@ kable(best_tune)
 |    2 |             5 |       650 | 0.7277806 |
 |    2 |             5 |       675 | 0.7279673 |
 |    2 |             4 |       700 | 0.7296423 |
+
+Finally, the Random forest with optimal combination of hyperparameters
+can be trained.
+
+``` r
+#### Final random forest model ####
+newr_grid <- expand.grid(mtry = best_tune_2$mtry,
+                          min.node.size = best_tune_2$min_node.size,
+                          splitrule = "variance"
+)
+
+RF_weight <- train(frmla, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = best_tune$Num_Trees,
+                   importance = "impurity_corrected")
+```
 
 The following code trains the ANN performing cartesian grid search for
 the optimal topology.
@@ -786,7 +789,7 @@ the optimal topology.
 
 ## 4. Results
 
-### 4.1 4.1 Hyperparameter grid search
+### 4.1 Hyperparameter grid search
 
 Results of hyperparameter cartesian grid search for the Random Forest
 regression. In all cases the hyperparameter of number of variables to
@@ -824,55 +827,6 @@ layer with one node) provides the highest correlation coefficient
 with one node at each layer) provides a marginally lower value (0.0005
 lower).
 
- 
-
-### 03.2 Random Forest Regression
-
-Random Forests build multiple decision trees from the training data
-(Breiman, 2001). Using different data adds diversity to the models.
-Predictiobs are obtained through the average of examples that reach a
-leaf. Finally, the results are averaged along all the grown trees.
-
- 
-
-The previous code is computationally expensive, but it ensures finding
-the best combination of hyperparameters. The following table presents
-the results of hyperparameter grid search.
-
-On the table we can see that **mtry** is constant at a value of 2 for
-all combinations of number of trees and minimum node size. Additionally
-values of minimum node size range either from 4 or 5. This simplifies
-the visualization of hyperparameters.
-
- 
-
-Finally, the Random forest with optimal combination of hyperparameters
-can be trained.
-
-### 03.3 Artificial Neuronal Network (ANN)
-
-Artificial Neuronal Networks (ANN) model the relationship between input
-data and the output signal through a series of hidden layers each
-composed by a number of nodes (Lantz, 2015). The present work uses the R
-package “neuralnet” (Günther and Fritsch, 2010) to train ANN with
-backpropagation (Rumelhart et al., 1986). For the present work ANN
-topology is limited to having only one or two hidden layers. Number of
-nodes of hidden layer 1 ranges between 1 and 4 while number of nodes of
-hidden layer 2 ranges from 0 (no second hidden layer) to 4. All possible
-combination are tested.
-
- 
-
-Cartesian grid search of ANN topology indicates that increasing the
-number of nodes in the first hidden layer decreases linear correlation
-with the outcome. On general Cartesian grid search of ANN topology
-indicates that increasing the number of layers and nodes results in
-lower values of *r*<sup>2</sup>. Thus, the most simple ANN architecture
-(one hidden layer with one node) provides the highest correlation
-coefficient (*r*<sup>2</sup> = 0.78). The second best topology (two
-hidden layers with one node at each layer) provides a marginally lower
-value (0.0005 lower).
-
 ``` r
 data.frame(nnet_model$results) %>% 
   ggplot(aes(layer1, layer2, fill = Rsquared)) + 
@@ -889,18 +843,14 @@ data.frame(nnet_model$results) %>%
 
 ![](01-Complete-script_files/figure-markdown_github/Plot%20of%20ANN%20performance%20for%20diferent%20topologies-1.png)
 
- 
+### 4.2 Model evaluation
 
-## 04 Results
-
-### 04.1 Model evaluation metrics
-
-The following table presents the precision metrics for each model. On
-general ANN and multiple linear regression perform similarly with
-similar values of *r*<sup>2</sup> (0.78), RMSE (0.21) and MAE (0.17),
-although ANN performs slightly better. On the other hand Random Forest
-regression performs slightly worst with a lower value of *r*<sup>2</sup>
-(0.72) and higher values of RMSE (0.24) and MAE (0.19).
+The following table presents the precision metrics for each model. ANN
+and multiple linear regression perform similarly with similar values of
+*r*<sup>2</sup> (0.78), RMSE (0.21) and MAE (0.17), although ANN
+performs slightly better. On the other hand Random Forest regression
+performs slightly worst with a lower value of r2 (0.72) and higher
+values of RMSE (0.24) and MAE (0.19).
 
 ``` r
 Temp <- data.frame(rbind(
@@ -918,6 +868,22 @@ kable(Temp)
 | MLR   | 0.21 |     0.78 | 0.17 |
 | ANN   | 0.21 |     0.78 | 0.17 |
 | RF    | 0.24 |     0.72 | 0.19 |
+
+Visualization of regression plots for each model provides additional
+information of the performance of each model. The poor performance of
+Random Forest (lowest value of *r*<sup>2</sup>) is reflected in a
+limited range of prediction. The prediction range of the Random Forest
+is limited between a minimum value of 0.55 and a maximum value of 1.76
+for log10 of flake mass. As a result of this, data is not evenly
+distributed among the regression line. In the lowest values of
+prediction most points fall below the regression line while most data
+points falling above for the highest values of the regression line. ANN
+and multiple linear regression plots present similar patterns of
+distribution with data evenly distributed among the regression line.
+Flakes with a log10 value of flake mass above 2 are more evenly
+distributed for the multiple linear regression than for the ANN.
+
+ 
 
  
 
