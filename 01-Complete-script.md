@@ -465,13 +465,13 @@ of models). In the present study, all logarithmic transformations refer
 to the common logarithm (base 10), and the target variable was the
 logarithmic transformation of flake weight.
 
-![“Example of features employed in the present study: measurements of
+![Example of features employed in the present study: measurements of
 thickness, EPA, number of scars, relatve amount of cortex, and platform
 surface following [Muller and Clarkson](#ref-muller_new_2016)
-([2016](#ref-muller_new_2016))”](Figures/Flake%20measures.jpg)
-![“Examples of experimental flakes with different amounts of cortex: 1)
-100% cortical; 2) \>50% cortical; 3) \<50% cortical; 4) Residual cortex;
-5) no cortex”](Figures/Fig%20amount%20of%20cortex.jpg)
+([2016](#ref-muller_new_2016))](Figures/Flake%20measures.jpg) ![Examples
+of experimental flakes with different amounts of cortex: 1) 100%
+cortical; 2) \>50% cortical; 3) \<50% cortical; 4) Residual cortex; 5)
+no cortex](Figures/Fig%20amount%20of%20cortex.jpg)
 
 Collinearity between predictors has previously been reported for
 platform surface and platform depth, and mean thickness and log10 of
@@ -543,7 +543,7 @@ layer 2 ranges from 0 (no second hidden layer) to 4. All possible
 combinations are tested.
 
 <figure>
-<img src="Figures/ANN.png" height="400" alt="“Schematic representation of an ANN and its components”" /><figcaption aria-hidden="true">“Schematic representation of an ANN and its components”</figcaption>
+<img src="Figures/ANN.png" height="400" alt="Schematic representation of an ANN and its components" /><figcaption aria-hidden="true">Schematic representation of an ANN and its components</figcaption>
 </figure>
 
 Random Forest Regressions select random samples of the data and build
@@ -629,24 +629,19 @@ set the validation methods and obtain evaluation metrics of each model.
 
 ### 2.5 Training the models
 
-## 4. Results
-
-### 4.1 4.1 Hyperparameter grid search
-
-Results of hyperparameter cartesian grid search for the Random Forest
-regression. In all cases the hyperparameter of number of variables to
-possibly split at each node was selected to have a value of 2. Linear
-correlation reaches its maximum for a minimum node size of 4 and 625
-trees grown for the model (r2 = 0.73). The second best hyperparameter
-combination (minimum node size of 5 and 500 trees grown for the model)
-presents a marginally lower value of linear correlation (0.00005).
+The following code sets the train control to perform the 50x10 k fold
+cross validation.
 
 ``` r
 # Set Train control
 train.control <- trainControl(method = "repeatedcv", 
                               number = 10, repeats = 50,
                               savePredictions = TRUE)
+```
 
+The following code trains the multiple linear regression.
+
+``` r
 # Train the model
 frmla <- Log_Weight ~ MeanThick + Cortex + No_Scars + EPA + Log_Max_Thick + Log_Plat + Log_Plat_De
 
@@ -657,48 +652,11 @@ lm.model <- train(frmla,
                trControl = train.control)
 ```
 
-``` r
-summary(lm.model)
-```
-
-    ## 
-    ## Call:
-    ## lm(formula = .outcome ~ ., data = dat)
-    ## 
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -0.69473 -0.13616  0.01939  0.13186  0.47859 
-    ## 
-    ## Coefficients:
-    ##                 Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)   -0.4427689  0.1301456  -3.402 0.000723 ***
-    ## MeanThick      0.0337557  0.0064369   5.244 2.34e-07 ***
-    ## Cortex        -0.0814959  0.0093836  -8.685  < 2e-16 ***
-    ## No_Scars       0.0731414  0.0101348   7.217 2.03e-12 ***
-    ## EPA            0.0017785  0.0009083   1.958 0.050805 .  
-    ## Log_Max_Thick  0.9273949  0.1430721   6.482 2.20e-10 ***
-    ## Log_Plat       0.3358338  0.0469619   7.151 3.13e-12 ***
-    ## Log_Plat_De   -0.3522401  0.0898045  -3.922 0.000100 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 0.2083 on 492 degrees of freedom
-    ## Multiple R-squared:  0.779,  Adjusted R-squared:  0.7759 
-    ## F-statistic: 247.8 on 7 and 492 DF,  p-value: < 2.2e-16
-
- 
-
-### 03.2 Random Forest Regression
-
-Random Forests build multiple decision trees from the training data
-(Breiman, 2001). Using different data adds diversity to the models.
-Predictiobs are obtained through the average of examples that reach a
-leaf. Finally, the results are averaged along all the grown trees.
-
-Cartesian grid search is performed on the following hyperparameters:
-number of trees to grow for each model (ranging from 500 to 700 by 25);
-number of variables to possibly split at each node (ranging from 1 to
-5); and minimal node size (ranging from 1 to 5).
+The following code performs hyperparameter grid search for Random
+Forest. Cartesian grid search is performed on the following
+hyperparameters: number of trees to grow for each model (ranging from
+500 to 700 by 25); number of variables to possibly split at each node
+(ranging from 1 to 5); and minimal node size (ranging from 1 to 5).
 
 Please note that while **mtry** (random number of variables to consider
 in each split) and **min.node.size** can be integrated into a cartesian
@@ -754,11 +712,31 @@ for (x in my_seq){
 }
 ```
 
- 
+``` r
+#### Final random forest model ####
+newr_grid <- expand.grid(mtry = best_tune_2$mtry,
+                          min.node.size = best_tune_2$min_node.size,
+                          splitrule = "variance"
+)
 
-The previous code is computationally expensive, but it ensures finding
-the best combination of hyperparameters. The following table presents
-the results of hyperparameter grid search.
+RF_weight <- train(frmla, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = best_tune$Num_Trees,
+                   importance = "impurity_corrected")
+```
+
+The following code returns the best combination of hyperparameters.
+
+``` r
+best_tune_2 <- best_tune[which.max(best_tune$r_squared),]
+best_tune_2
+```
+
+    ##   mtry min_node.size Num_Trees r_squared
+    ## 6    2             4       625 0.7312961
 
 ``` r
 kable(best_tune)
@@ -776,74 +754,8 @@ kable(best_tune)
 |    2 |             5 |       675 | 0.7279673 |
 |    2 |             4 |       700 | 0.7296423 |
 
-On the table we can see that **mtry** is constant at a value of 2 for
-all combinations of number of trees and minimum node size. Additionally
-values of minimum node size range either from 4 or 5. This simplifies
-the visualization of hyperparameters.
-
-``` r
-#### Hyperparameters of Random forest ####
-data.frame(best_tune) %>% 
-  ggplot(aes(factor(Num_Trees), min_node.size, fill = r_squared)) + 
-  geom_tile(alpha = 0.75) +
-  xlab("Number of trees") +
-  ylab("Min node size") +
-  scale_y_continuous(breaks = seq(4, 5, 1), lim = c(3.5, 5.5)) +
-  geom_text(aes(label = round(r_squared, 4)), size = 3) +
-  ggsci::scale_fill_gsea(reverse = TRUE) +
-  theme_classic() +
-  theme(legend.position = "none",
-        axis.text = element_text(color = "black", size = 8))
-```
-
-![](01-Complete-script_files/figure-markdown_github/graph%20of%20random%20forest%20hyperparamters-1.png)
-
- 
-
-The following code returns the best combination of hyperparameters.
-
-``` r
-best_tune_2 <- best_tune[which.max(best_tune$r_squared),]
-best_tune_2
-```
-
-    ##   mtry min_node.size Num_Trees r_squared
-    ## 6    2             4       625 0.7312961
-
- 
-
-Finally, the Random forest with optimal combination of hyperparameters
-can be trained.
-
-``` r
-#### Final random forest model ####
-newr_grid <- expand.grid(mtry = best_tune_2$mtry,
-                          min.node.size = best_tune_2$min_node.size,
-                          splitrule = "variance"
-)
-
-RF_weight <- train(frmla, 
-                   Reg_Data,
-                   method = "ranger",
-                   trControl = train.control,
-                   tuneGrid = newr_grid, 
-                   num.trees = best_tune$Num_Trees,
-                   importance = "impurity_corrected")
-```
-
- 
-
-### 03.3 Artificial Neuronal Network (ANN)
-
-Artificial Neuronal Networks (ANN) model the relationship between input
-data and the output signal through a series of hidden layers each
-composed by a number of nodes (Lantz, 2015). The present work uses the R
-package “neuralnet” (Günther and Fritsch, 2010) to train ANN with
-backpropagation (Rumelhart et al., 1986). For the present work ANN
-topology is limited to having only one or two hidden layers. Number of
-nodes of hidden layer 1 ranges between 1 and 4 while number of nodes of
-hidden layer 2 ranges from 0 (no second hidden layer) to 4. All possible
-combination are tested.
+The following code trains the ANN performing cartesian grid search for
+the optimal topology.
 
 ``` r
 #### Look for best ANN architecture ####
@@ -871,6 +783,83 @@ combination are tested.
    linear.output = TRUE
  )
 ```
+
+## 4. Results
+
+### 4.1 4.1 Hyperparameter grid search
+
+Results of hyperparameter cartesian grid search for the Random Forest
+regression. In all cases the hyperparameter of number of variables to
+possibly split at each node was selected to have a value of 2. Linear
+correlation reaches its maximum for a minimum node size of 4 and 625
+trees grown for the model (*r*<sup>2</sup> = 0.73). The second best
+hyperparameter combination (minimum node size of 5 and 500 trees grown
+for the model) presents a marginally lower value of linear correlation
+(0.00005).
+
+``` r
+#### Hyperparameters of Random forest ####
+data.frame(best_tune) %>% 
+  ggplot(aes(factor(Num_Trees), min_node.size, fill = r_squared)) + 
+  geom_tile(alpha = 0.75) +
+  xlab("Number of trees") +
+  ylab("Min node size") +
+  scale_y_continuous(breaks = seq(4, 5, 1), lim = c(3.5, 5.5)) +
+  geom_text(aes(label = round(r_squared, 4)), size = 3) +
+  ggsci::scale_fill_gsea(reverse = TRUE) +
+  theme_classic() +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black", size = 8))
+```
+
+![](01-Complete-script_files/figure-markdown_github/graph%20of%20random%20forest%20hyperparamters-1.png)
+
+Cartesian grid search of ANN topology indicates that increasing the
+number of nodes in the first hidden layer decreases linear correlation
+with the outcome. Cartesian grid search of ANN topology indicates that
+increasing the number of layers and nodes results in lower values of
+*r*<sup>2</sup>. Thus, the most simple ANN architecture (one hidden
+layer with one node) provides the highest correlation coefficient
+(*r*<sup>2</sup> = 0.78). The second best topology (two hidden layers
+with one node at each layer) provides a marginally lower value (0.0005
+lower).
+
+ 
+
+### 03.2 Random Forest Regression
+
+Random Forests build multiple decision trees from the training data
+(Breiman, 2001). Using different data adds diversity to the models.
+Predictiobs are obtained through the average of examples that reach a
+leaf. Finally, the results are averaged along all the grown trees.
+
+ 
+
+The previous code is computationally expensive, but it ensures finding
+the best combination of hyperparameters. The following table presents
+the results of hyperparameter grid search.
+
+On the table we can see that **mtry** is constant at a value of 2 for
+all combinations of number of trees and minimum node size. Additionally
+values of minimum node size range either from 4 or 5. This simplifies
+the visualization of hyperparameters.
+
+ 
+
+Finally, the Random forest with optimal combination of hyperparameters
+can be trained.
+
+### 03.3 Artificial Neuronal Network (ANN)
+
+Artificial Neuronal Networks (ANN) model the relationship between input
+data and the output signal through a series of hidden layers each
+composed by a number of nodes (Lantz, 2015). The present work uses the R
+package “neuralnet” (Günther and Fritsch, 2010) to train ANN with
+backpropagation (Rumelhart et al., 1986). For the present work ANN
+topology is limited to having only one or two hidden layers. Number of
+nodes of hidden layer 1 ranges between 1 and 4 while number of nodes of
+hidden layer 2 ranges from 0 (no second hidden layer) to 4. All possible
+combination are tested.
 
  
 
