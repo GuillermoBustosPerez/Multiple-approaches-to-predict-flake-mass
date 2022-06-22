@@ -525,7 +525,7 @@ hidden layer 1 ranges between 1 and 4 while number of nodes of hidden
 layer 2 ranges from 0 (no second hidden layer) to 4. All possible
 combinations are tested.
 
-\|[“Schematic representation of an ANN and its
+![“Schematic representation of an ANN and its
 components”](Figures/ANN.png)
 
 ``` r
