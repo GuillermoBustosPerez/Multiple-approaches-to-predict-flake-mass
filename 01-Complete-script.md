@@ -543,7 +543,7 @@ layer 2 ranges from 0 (no second hidden layer) to 4. All possible
 combinations are tested.
 
 <figure>
-<img src="Figures/ANN.png" height="200" alt="“Schematic representation of an ANN and its components”" /><figcaption aria-hidden="true">“Schematic representation of an ANN and its components”</figcaption>
+<img src="Figures/ANN.png" height="400" alt="“Schematic representation of an ANN and its components”" /><figcaption aria-hidden="true">“Schematic representation of an ANN and its components”</figcaption>
 </figure>
 
 Random Forest Regressions select random samples of the data and build
