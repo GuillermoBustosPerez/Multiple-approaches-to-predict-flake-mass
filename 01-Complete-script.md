@@ -1319,7 +1319,7 @@ underestimations of 18.79 g. Thus, Multiple Linear regression presents
 the concentration of 90% of residuals in the shortest range.
 
 ``` r
-#  Density plot of residuals in the linear scale
+# Density plot of residuals on the linear scale
 Temp %>% ggplot(aes(Line_Res, color = Model)) +
   geom_density(size = 0.75) +
   ggsci::scale_color_aaas() +
@@ -1335,23 +1335,11 @@ Temp %>% ggplot(aes(Line_Res, color = Model)) +
         legend.text = element_text(size = 9))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/Density%20plot%20of%20residuals%20in%20the%20linear%20scale-1.png)
-
-As previously mentioned Multiple Linear Regression generalizes better to
-the linear scale with a maximum predicted value of 170 g. Residuals
-present an average 1.4 g value, with the density plot peaking near the 0
-value and similar tales to the positive and negative values (Figure 12).
-50% of residuals from Multiple Linear Regression range between
-overestimations of 2.42 g and underestimations of 5.73 g. 90% of
-residuals from Multiple Linear Regression range between overestimations
-of 13.18 g and underestimations of 18.79 g. Thus, Multiple Linear
-regression presents the concentration of 90% of residuals in the
-shortest range.
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 ``` r
-# Descriptive statistics of residuals in the linear scale
-
-kable(Temp %>% group_by(Model) %>% 
+# Descriptive statistics of residuals
+Desc_Line_Res <- Temp %>% group_by(Model) %>% 
   summarise(
     Min = min(Line_Res),
     `5 Percentil` = quantile(Line_Res, 0.05),
@@ -1361,14 +1349,8 @@ kable(Temp %>% group_by(Model) %>%
     `3Quantile` = quantile(Line_Res, 0.75),
     `95 Percentil` = quantile(Line_Res, 0.95),
     Max = max(Line_Res)
-  ))
+  )
 ```
-
-| Model                      |       Min | 5 Percentil | 1Quantile |     Mean |    Median | 3Quantile | 95 Percentil |       Max |
-|:---------------------------|----------:|------------:|----------:|---------:|----------:|----------:|-------------:|----------:|
-| ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
-| Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
-| Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
 
 ### 04.2 Variable importance
 
@@ -1446,35 +1428,6 @@ Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/extract%20variable%20importance%20and%20plot-1.png)
-
- 
-
-### 04.4 Linear transformation of predictions
-
-The following table presents the performance metrics of each model after
-transforming true and predicted values back to the linear scale. ANN and
-multiple linear regression reinforce their correlation while Random
-Forest decreases it’s *r*<sup>2</sup> value. Multiple linear regression
-provides the highest *r*<sup>2</sup> value (*r*<sup>2</sup> = 0.813)
-followed by ANN (*r*<sup>2</sup> = 0.801), indicating that multiple
-linear regression generalizes better to the linear scale. All models
-present lower RMSE values than the standard deviation value of weight of
-the experimental assemblage (24.83) which is indicative of a good
-general performance.
-
- 
-
-Visualization of regression plots also supports the better
-generalization of multiple linear regression to the linear scale. Random
-Forest limits its maximum prediction to 57.2 g resulting in a poor
-generalization to the linear scale. Due to this, residuals from the
-Random Forest indicate important underestimations of flake weight with
-an average underestimation of 4.6 g. 50% of the residuals of the Random
-Forest range between overestimations of 2.64 g and underestimations of
-7.06 g. 90% of the residuals from the random forest range between
-overestimations of 10.35 g and underestimations of 29.74 g.
-
- 
 
 Visual representation of residuals of the Random Forest through density
 plot shows that despite peaking on the 0 value it presents a long tale
