@@ -883,24 +883,6 @@ distribution with data evenly distributed among the regression line.
 Flakes with a log10 value of flake mass above 2 are more evenly
 distributed for the multiple linear regression than for the ANN.
 
- 
-
- 
-
-Visualization of regression plots for each model provides additional
-information of the performance of each model. The poor performance of
-Random Forest (lowest value of *r*<sup>2</sup>) is reflected in a
-limited range of prediction. The prediction range of the Random Forest
-is limited between a minimum value of 0.55 and a maximum value of 1.76
-for log10 of flake mass. As a result of this, data is not evenly
-distributed among the regression line. In the lowest values of
-prediction most points fall below the regression line while most data
-points falling above for the highest values of the regression line. ANN
-and multiple linear regression plots present similar patterns of
-distribution with data evenly distributed among the regression line.
-Flakes with a log10 value of flake mass above 2 are lightly more evenly
-distributed for the multiple linear regression than for the ANN.
-
 ``` r
 #### Linear model ####
 MLR_results <- as.data.frame(MLR_model$pred) %>% 
@@ -950,9 +932,6 @@ Temp %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Regression%20plots%20of%20all%20models-1.png)
- 
-
-### 04.2 Residuals analysis and distribution
 
 Visual analysis of the scatter plot for observed and residual values
 allows to observe model performance for different ranges of log10 of
@@ -993,7 +972,6 @@ Temp %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/Plots%20of%20observed%20values%20and%20residuals-1.png)
- 
 
 Correlation between observed values and residuals allows to evaluate if
 residuals increase along with increasing values of log10 of weight. ANN
@@ -1074,8 +1052,6 @@ summary(lm(Residual ~ Obs, RF_results))
     ## Multiple R-squared:  0.4994, Adjusted R-squared:  0.4984 
     ## F-statistic: 496.8 on 1 and 498 DF,  p-value: < 2.2e-16
 
- 
-
 Descriptive statistics of residuals and density plots allow to evaluate
 dispersion range of residuals. All models present average and median
 residual values close to 0 with density curves peaking near this value
@@ -1139,8 +1115,6 @@ kable(
 | Multiple linear regression | -0.7046012 |  -0.3711780 | -0.1368752 | -0.0001095 | 0.0204098 | 0.1341937 |    0.3332873 | 0.4823185 |
 | Random Forest              | -0.8456258 |  -0.4117285 | -0.1383524 |  0.0037893 | 0.0133008 | 0.1773731 |    0.3550391 | 0.6154902 |
 
- 
-
 ``` r
 # Order of flakes is kept the same for all models
 Terminations <- Reg_Data %>% select(Termination_type)
@@ -1174,8 +1148,6 @@ Terminations %>%
 ```
 
 ![](01-Complete-script_files/figure-markdown_github/residuals%20according%20to%20termination-1.png)
-
- 
 
 Exploratory data analysis of residuals according to termination type
 through box and violin plots shows possible differences in the
@@ -1242,7 +1214,7 @@ t.test(Residual ~ New_Term, data = Terminations[Terminations$Model == "Random Fo
     ## mean in group Feather   mean in group Other 
     ##          -0.002109984           0.055726131
 
- 
+### 
 
 ### 04.2 Variable importance
 
