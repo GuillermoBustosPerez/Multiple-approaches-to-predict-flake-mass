@@ -528,6 +528,79 @@ combinations are tested.
 ![“Schematic representation of an ANN and its
 components”](Figures/ANN.png)
 
+Random Forest Regressions select random samples of the data and build
+trees for prediction. As a result, each tree is built from different
+data and the average is used as prediction. This adds diversity, reduces
+overfit and provides higher resolution predictions ([Lantz,
+2019](#ref-lantz_machine_2019)). Additional to the random selection of
+data, random forest can be further randomized by providing the number of
+trees to train, number of variables to possibly split at each node, and
+the minimal node size. These are hyperparamters which values need to be
+provided to the model before training. Cartesian grid search (to test
+for all possible combinations) is performed on the previously mentioned
+hyperparameters with number of trees to grow for each model ranging from
+500 to 700 by 25; number of variables to possibly split at each node
+ranging from 1 to 5; and minimal node size (ranging from 1 to 5). R
+package ranger ([Wright and Ziegler, 2017](#ref-wright_ranger_2017)) is
+employed to train Random Forests.
+
+### 2.4 Machine learning evaluation
+
+With the exception of Multiple Linear Regression, Machine Learning
+models and ANN are prone to overfit and require to be tested on data not
+previously seen by the models ([Hastie et al.,
+2001](#ref-hastie_elements_2001); [James et al.,
+2013](#ref-james_introduction_2013)). The present work employed a k-fold
+cross validation to estimate out-of-sample model performance. In k-fold
+cross validation, the dataset is randomly shuffled and divided into k
+folds. The first fold is employed as a test set, and the model is
+trained in the remaining folds. After this, the second fold is employed
+as a test set and the rest as a new training set. This process continues
+until all folds have served as a test set. Since the folds are shaped by
+the initial random shuffle, it is advisable to repeat this cycle a
+series of times. The present work employs a 10-fold cross validation
+(each fold having a sample of 50 elements) repeated 50 times.
+
+Machine Learning regression models are evaluated using proportion of
+variance explained (*r*<sup>2</sup> and *adjusted* *r*<sup>2</sup>),
+visualization of regression plots, visualization of residuals
+(difference between actual and predicted value) plot, density plots of
+residuals and descriptive statistics of residuals. Proportion of
+variance indicates how much of the observed variation is explained by
+the model ([James et al., 2013](#ref-james_introduction_2013)). The
+addition of predictors results in an increasing *r*<sup>2</sup>
+irrespective of predictor contribution to the model and making it
+impossible to compare models with a different number of predictors.
+*Adjusted* *r*<sup>2</sup> is analogous to the *r*<sup>2</sup> but
+adjusted to the number of explanatory variables, thus making model
+comparison possible. *Adjusted* *r*<sup>2</sup> is required for the
+multiple linear regression model in order to make comparisons while
+*r*<sup>2</sup> is required for the rest of the models.  
+*Adjusted* *r*<sup>2</sup> indicates how strongly are predictions
+related to the true value but it does not indicate how far predictions
+fall from the true value ([Lantz, 2019](#ref-lantz_machine_2019)). Mean
+Average Error (MAE) and Root Mean Squared Error (RMSE) provide values of
+how far predictions fall from the true value ([James et al.,
+2013](#ref-james_introduction_2013); [Lantz,
+2019](#ref-lantz_machine_2019)). MAE measures the average magnitude of
+errors regardless of signal. RMSE also provides a measure of distance
+between predicted and actual values although it punishes large errors. A
+perfect model will have MAE and RMSE values of 0. On general better
+models will have lower values of MAE and RMSE.  
+A regression plot provides a scatter plot of predicted and true values
+along with its regression line. In a good model the regression line will
+pass through the center of all points which will be evenly distributed
+above and below. The residuals plot provides a scatter plot of true
+values and residuals (difference between true value and predicted value)
+allowing to observe if there is systematic bias of the model. The
+residual plot of a good model will have the points evenly distributed
+among the 0 value.
+
+The complete workflow is developed using the R language (version 4.0.2)
+in the RStudio IDE (version 1.4.1103; ([R. C. Team,
+2019](#ref-r_core_team_r_2019); [Rs. Team,
+2019](#ref-rstudio_team_rstudio_2019))
+
 ``` r
 # Collinearity between measures of thickness
 R2(Reg_Data$MeanThick, Reg_Data$Log_Max_Thick)
@@ -1677,6 +1750,13 @@ The R Journal 2, 30–38.
 
 </div>
 
+<div id="ref-hastie_elements_2001" class="csl-entry">
+
+Hastie, T., Tibshirani, R., Friedman, J., 2001. The elements of
+statistical learning. Springer series in statistics New York.
+
+</div>
+
 <div id="ref-hiscock_experimental_2005" class="csl-entry">
 
 Hiscock, P., Clarkson, C., 2005. Experimental evaluation of kuhn’s
@@ -1880,6 +1960,14 @@ and Implications, BAR International Series. Archaeopress, Oxford, pp.
 
 White, J.P., 1967. Ethno-archaeology in new guinea: Two examples.
 Mankind 6, 409–414.
+
+</div>
+
+<div id="ref-wright_ranger_2017" class="csl-entry">
+
+Wright, M.N., Ziegler, A., 2017. Ranger: A fast implementation of random
+forests for high dimensional data in c++ and r. Journal of Statistical
+Software 77, 1–17. <https://doi.org/10.18637/jss.v077.i01>
 
 </div>
 
