@@ -1822,7 +1822,7 @@ Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
         axis.title.y = element_text(color = "black", size = 8))
 ```
 
-![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](01-Complete-script_files/figure-markdown_github/fig.he5-1.png)
 
 ## 5. Discussion
 
