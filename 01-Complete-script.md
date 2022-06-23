@@ -1750,6 +1750,80 @@ tibble(
     ## 2 ANN          0.777     12.0    7.22
     ## 3 RF           0.619     18.0    8.90
 
+Retrieving collinear variables allows to evaluate variable importance
+for each model. All models consider of maximum importance measures of
+thickness (mean thickness in the case of Random Forest, and log10 of
+maximum thickness in the case of Multiple Linear Regression and ANN).
+Both ANN and Multiple Linear Regression consider the importance of the
+rest of variables in the same order: relative amount of cortex is
+considered the second most important variable, followed by number of
+scars and log of platform size. Order of importance of variables does
+change in the Random Forest regression with log of platform size being
+the second most important variable, followed by relative amount of
+cortex and number of scars. EPA is considered the variable of least
+importance by all models. ANN does attribute some importance for the
+prediction of log10 of flake weight. A 0 value of importance for EPA is
+obtained in the Random Forest and Multiple Linear Regression models.
+However, coefficients estimate of the Multiple Linear Regression does
+consider EPA a significant predictor (p = 0.015).
+
+``` r
+# Make Data frame of importance of MLR
+mr_imp <- varImp(lm.model1, scale = TRUE)
+mr_imp <- as.data.frame(mr_imp$importance)
+mr_imp$Variable = rownames(mr_imp)
+mr_imp$Model = "Multiple Linear Regression"
+
+temp <- NeuralNetTools::garson(nnet_model)
+ANN_imp <- data.frame(temp$data) %>% mutate(
+  Overall = (rel_imp*100)/max(temp$data[,1])) %>% 
+  select(-c(rel_imp)) %>% 
+  rename(Variable = x_names) %>% 
+  mutate(Model = "ANN") %>% 
+  select(Overall, Variable, Model)
+
+# Make Data frame of RF importance
+RF_imp <- varImp(RF.model3, scale = TRUE)
+RF_imp <- as.data.frame(RF_imp$importance)
+RF_imp$Variable = rownames(RF_imp)
+RF_imp$Model = "Random Forest"
+
+#### Variable importance according to model 
+Var_Imp <- rbind(mr_imp, ANN_imp, RF_imp)
+rm(mr_imp, ANN_imp, RF_imp)
+
+Var_Imp$Variable <- factor(Var_Imp$Variable,
+                           levels = c("Log_Max_Thick",
+                                      "Log_Plat", 
+                                      "EPA", "Cortex", "No_Scars",
+                                      "MeanThick"),
+                           labels = c("Log of Max. Thick.\n(Mean Thick. for RF)",
+                                      "Log of Pla.",
+                                      "EPA", "Cortex",
+                                      "No Scars",
+                                      "Log of Max. Thick.\n(Mean Thick. for RF)"))
+```
+
+``` r
+# Variable importance of each model
+Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
+  geom_col() +
+  geom_text(data = Var_Imp[Var_Imp$Overall > 0,],
+            aes(label = round(Overall, 2)), vjust= "top", size = 2.5) +
+  ggsci::scale_fill_gsea(reverse = TRUE) +
+  theme_classic() +
+  facet_wrap(~ Model, ncol = 1) +
+  ylab("Relative importance") +
+  xlab(NULL) +
+  theme(legend.position = "none",
+        axis.text = element_text(color = "black", size = 7),
+        strip.text = element_text(color = "black", face = "bold", size = 8),
+        strip.background = element_rect(fill = "white", colour = "black", size=1),
+        axis.title.y = element_text(color = "black", size = 8))
+```
+
+![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-21-1.png)
+
 ## 05 References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
