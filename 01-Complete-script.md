@@ -1824,7 +1824,297 @@ Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
 
 ![](01-Complete-script_files/figure-markdown_github/unnamed-chunk-21-1.png)
 
-## 05 References
+## 5. Discussion
+
+The present study has expanded a previous dataset ([Bustos-Pérez and
+Baena, 2021](#ref-bustos-perez_predicting_2021)) with bigger and heavier
+flakes and applied three common Machine and Deep Learning regression
+algorithms (Multiple Linear Regression, ANN and Random Forest) to
+determine log10 of flake mass based on previously selected variables
+([Bustos-Pérez and Baena, 2021](#ref-bustos-perez_predicting_2021)).
+Additionally, predicted results and true values have been transformed
+back to the linear scale to explore further relations. ANN and Multiple
+Linear regression present similar r2 values (0.78 in both cases),
+performance metrics and residual distributions in the logarithmic scale.
+Comparatively, Random Forest performed poorly with a lower r2 (0.72),
+worst performance metrics and clearly biased distributions of residuals.
+Transformation of predicted and true values back to the linear scale
+slightly reinforced ANN and Multiple Linear Regression increasing their
+r2 values (0.8 and 0.81 respectively) while decreasing the Random Forest
+r2 (0.66). Results from residual analysis and distribution, performance
+metrics and regression plots indicate that Multiple Linear Regression is
+the model that best generalizes to the linear scale when collinear
+variables are included.
+
+Results from removing collinear variables allowed to evaluate predictor
+importance on model performance and reliability of predictions. Results
+indicate that no statistical difference exists between predictions which
+include collinear variables, and predictions without collinear
+variables. This indicates that predictions from models including
+collinear variables are as reliable as the ones which do not include
+collinear variables. However, when collinear variables are excluded from
+model training, ANN generalizes slightly better to the linear scale than
+Multiple Linear Regression.
+
+Removing collinear variables also allowed to better evaluate variable
+importance for each model. In all cases, measures of thickness (average
+thickness in the case of Random Forest and log10 of maximum thickness in
+the case of ANN and Multiple Linear regression) were considered of
+maximum importance to predict log10 of flake weight. After measures of
+thickness, the order of importance of the variables is the same for ANN
+and Multiple Linear Regression, although their relative values differ.
+These variables and their order are: relative amount of cortex, number
+of scars and log10 of platform size. However, for these variables,
+importance values are much lower in the case of Multiple Linear
+Regression, suggesting that ANN is diversifying the importance of
+predictors while Multiple Linear Regression relies more on log10 of
+maximum thickness. Random Forest (the model with worst performance
+metrics) considered mean thickness as the key feature for determining
+log10 of flake mass, followed by log10 of platform surface. Amount of
+cortex and number of scars were considered as variables of minor
+importance and EPA was given no importance at all by the Random Forest.
+ANN is the only model to give a value of relative importance to EPA
+(although being the less important variable for that model), while
+Multiple Linear Regression gives a 0 value of importance, but it is
+considered statistically significant in the model coefficients. These
+results indicate that although EPA might be a significant predictor, its
+importance on predicting log10 of flake mass is minimized when compared
+with other predictors.  
+Results from the present study show significant differences in residual
+distribution according to flake termination when determining flake
+weight. This suggest that flake termination plays a significant role
+when predicting original weight. Although not included as predictor in
+the present study, further research might benefit from coding
+termination type (as feather or other) to determine original flake
+weight.
+
+Several works have addressed the estimation of flake mass from remaining
+variables. The first element of comparison is with the previous version
+of this dataset ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)). The expansion of the dataset
+through the inclusion of bigger flakes has resulted in an increased
+linear correlation for Multiple Linear Regression and ANN. Additionally,
+the inclusion of bigger flakes and addressing collinearity has also
+resulted in changes of variable importance. The previous version of the
+dataset ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) considered cortex amount and
+number of scars as the third and fourth most significant variables of
+the model (behind log10 values of maximum thickness and platform size).
+In the present study, all three models emphasize even more the
+importance of thickness measures (especially log10 of maximum
+thickness). Cortex amount and number of scars are respectively
+considered the second and third most important variables (although with
+values of importance considerably lower than measures of thickness),
+while log10 of platform size is considered the fourth most important
+variable (second in the case of Random Forest regression). EPA is the
+variable most heavily affected by the increasing size of flakes since it
+goes from being a significant variable ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) to be considered almost
+irrelevant by most of the models. Possible sources for the lack of
+resolution when measuring this EPA. Previous studies have shown high
+variability when obtaining angle measurements from manual goniometers
+([Dibble and Bernard, 1980](#ref-dibble_comparative_1980); [Morales et
+al., 2015](#ref-morales_measuring_2015)) and this lack of resolution can
+also be applied to EPA measurements. Previous studies have acknowledged
+the difficulty in measuring EPA with manual goniometers or different
+interpretation of the flake exterior surface ([Davis and Shea,
+1998](#ref-davis_quantifying_1998); [Dibble and Pelcin,
+1995](#ref-dibble_effect_1995); [Shott et al.,
+2000](#ref-shott_flake_2000)). This can be a possible explication of the
+low importance attributed to EPA by the models of the present study.
+Four variables (average thickness, log10 of maximum thickness, number of
+scars and relative amount of cortex) employed in the present study can
+be altered by extensive processes of retouch. Therefore, caution and an
+overall estimation of the integrity of the predictors is highly
+advisable before applying the model.  
+A possible interpretation for the increased value of *r*<sup>2</sup> is
+that as flake mass increases, the importance of variables shifts, and
+more variance is captured by the model. Thus, it can be inferred that
+smaller flakes with relative low values of mass have a higher
+variability of the selected variables, resulting in a lower
+*r*<sup>2</sup>. Research on the previous version of this dataset
+([Bustos-Pérez and Baena, 2021](#ref-bustos-perez_predicting_2021)) also
+provided lower, but very similar values of RMSE (0.217 vs 0.209) and MAE
+(0.178 vs 0.166). This might indicate that a limit in the ability to
+predict original flake mass is being reached with the present set of
+variables. A portion of variance remains unexplained and might be
+related to variables which hardly survive or are hard to determine in
+the archaeological record (hammerstone speed, morphology and density).
+
+Most previous works employ a single linear regression to estimate flake
+mass in the log10 scale or the linear scale. [Shott et
+al.](#ref-shott_flake_2000) ([2000](#ref-shott_flake_2000)) estimate
+log10 value of flake mass based on log10 values of platform area
+measured with digital calipers obtaining an *r*<sup>2</sup> of 0.67.
+[Braun et al.](#ref-braun_landscape-scale_2008)
+([2008](#ref-braun_landscape-scale_2008)) obtain a similar linear
+correlation value of log10 of flake mass (*r*<sup>2</sup> = 0.66) for
+their sample of flakes using digital calipers to measure platform area
+and using log10 of platform area. This value increases drastically when
+they measure platform area of the same flakes with digital photographs
+(*r*<sup>2</sup> = 0.865). However this highly promising result was
+nuanced by [Clarkson and Hiscock](#ref-clarkson_estimating_2011)
+([2011](#ref-clarkson_estimating_2011)) estimations of flake mass using
+3D measures of platform surface. [Clarkson and
+Hiscock](#ref-clarkson_estimating_2011)
+([2011](#ref-clarkson_estimating_2011)) report an *r*<sup>2</sup> of
+0.49 for their total experimental sample and indicate that diverse flake
+assemblages reduce the capability of estimating flake mass based on
+platform area. [Maloney](#ref-maloney_experimental_2020)
+([2020](#ref-maloney_experimental_2020)) estimates flake mass (g) based
+on 3D measures of platform surface and obtains an *r*<sup>2</sup> value
+of 0.411 for the complete sample. [Orellana Figueroa et
+al.](#ref-orellana_figueroa_proof_2021)
+([2021](#ref-orellana_figueroa_proof_2021)) use virtual knapping and
+neuronal networks to predict flake shape (width and length) along with
+flake volume, reporting an *r*<sup>2</sup> = 0.771 and a RMSE = 0.763.
+[Dogandžić et al.](#ref-dogandzic_edge_2015)
+([2015](#ref-dogandzic_edge_2015)) approach the estimation of flake mass
+using a multiple linear regression which uses platform width and depth,
+EPA and blank thickness obtaining an *r*<sup>2</sup> value of 0.75 for
+the cubic root of weigh. Although this is a high value of correlation
+they express concerns about the model accuracy ([Dogandžić et al.,
+2015](#ref-dogandzic_edge_2015)). [Shott and
+Seeman](#ref-shott_use_2017) ([2017](#ref-shott_use_2017)) follow the
+steps of [Dogandžić et al.](#ref-dogandzic_edge_2015)
+([2015](#ref-dogandzic_edge_2015)) and use a multiple linear regression
+with platform surface (as product of platform width and depth), flake
+thickness and EPA as variables resulting in an *r*<sup>2</sup> value of
+0.73 ([Shott and Seeman, 2017](#ref-shott_use_2017)). [Archer et
+al.](#ref-archer_geometric_2018) ([2018](#ref-archer_geometric_2018))
+and [Morales et al.](#ref-morales_measuring_2015)
+([2015](#ref-morales_measuring_2015)) ) employ 3D scanning techniques to
+estimate original flake mass (using geometric morphometrics or
+geometrical relationships) obtaining respective *r*<sup>2</sup> values
+of 0.879 and 0.891. However, these resources are not as widespread among
+archaeologists and are hard to apply to numerous collections, making
+desirable the estimation of flake mass by the use of non–laser scanning
+techniques.
+
+In the present study the transformation back to linear scale of log10
+values of observed and predicted mass resulted in changes of
+coefficients of determination for the three models. ANN and Multiple
+Linear Regression reinforced their correlation values above the 0.8
+threshold while Random Forest suffered a decrease. It should not be
+surprising that ANN and Multiple Linear Regression behave similarly
+since an ANN with one node in only one hidden layer is considered to be
+a distant cousin of Multiple Linear Regression ([Lantz,
+2019](#ref-lantz_machine_2019)) Ideally predictions of flake weight
+would be done in the linear scale since they are easier to interpret.
+Changes in correlation coefficient when shifting from logarithmic to
+linear scale can be considered a result of the distribution of
+residuals, original data, and the nature of the logarithmic scale. Here,
+a possible explanation resides in the skewed distribution of flake mass
+of the present dataset which directly relates with predictions of the
+model. As higher the value of log10 of flake mass, more accurate must be
+the prediction. This can be illustrated with the following example: a
+flake with a log10 value of mass of 1 (10 g) and a log10 predicted value
+of 1.1 (12.59) will result in a residual of 2.59 in the linear scale. A
+flake with a log10 value of mass of 2 (100 g) and a predicted log10
+value of 2.1 (125.89 g) will result in a residual of 25.89. Thus,
+although in the logarithmic scale the residuals have the same value, in
+the linear scale they result in a difference 10 times bigger. Despite
+this drawback the Multiple Linear Regression model generalizes
+relatively well to the linear scale but requires further evaluation.
+
+Reproducibility is a key issue for archaeology (and all sciences) and
+the existence of independent researches reaching similar results on
+correlations and variable importance is key for the validation of a
+method ([Marwick, 2017](#ref-marwick_computational_2017)). The present
+differs slightly in variable importance with previous studies which use
+multiple linear regression and measures from flakes ([Dogandžić et al.,
+2015](#ref-dogandzic_edge_2015); [Shott and Seeman,
+2017](#ref-shott_use_2017)). Log10 values of platform surface have also
+been acknowledge as an important predictor of flake mass ([Braun et al.,
+2008](#ref-braun_landscape-scale_2008); [Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021); [Clarkson and Hiscock,
+2011](#ref-clarkson_estimating_2011); [Davis and Shea,
+1998](#ref-davis_quantifying_1998); [Shott et al.,
+2000](#ref-shott_flake_2000)).
+
+[Hiscock and Tabrett](#ref-hiscock_generalization_2010)
+([2010](#ref-hiscock_generalization_2010)) advocate for the use of
+indexes presenting logical and analytical qualities. These are:
+inferential power (advocating for those indexes with an *r*<sup>2</sup>
+above 0.8); directionality (increasing values as reduction proceeds),
+comprehensiveness (capability to operate at all levels of reduction);
+sensitivity; versatility (applicable to different types and positions of
+retouch); blank diversity; and scale independence.  
+Estimating original flake mass would be an ideal index to fulfill these
+logical and analytical qualities since it would allow to compare
+remaining mass with original mass (being able to estimate derived
+measures such as amount of mass lost, percentage of mass remaining,
+etc.) and it could be applied to different types of blanks. In the
+present study the estimation of original flake mass using Multiple
+Linear Regression in linear scale provided an *r*<sup>2</sup> above the
+0.8 threshold although as previously mentioned caution is required.
+Theoretically this would fulfill the seven logical and analytical
+requirements stated by [Hiscock and
+Tabrett](#ref-hiscock_generalization_2010)
+([2010](#ref-hiscock_generalization_2010)). However, [Davis and
+Shea](#ref-davis_quantifying_1998) ([1998](#ref-davis_quantifying_1998))
+showed how estimations of flake mass might result in lower values than
+those of the flake after undergoing retouch. This drawback violates the
+logical and analytical principle of directionality of indexes and
+requires further evaluation before applying the present model. A
+possible solution for this drawback would be the development of new
+models with the inclusion of remaining flake mass as predictive variable
+in hopes of increasing the inferential power and directionality of
+predictions. Other indexes such as GIUR ([Hiscock and Clarkson,
+2005](#ref-hiscock_experimental_2005); [Kuhn,
+1990](#ref-kuhn_geometric_1990)), ERP ([Eren et al.,
+2005](#ref-eren_defining_2005)), 3DERP ([Morales et al.,
+2015](#ref-morales_measuring_2015)) or AvtL ([Bustos-Pérez and Baena,
+2019](#ref-bustos-perez_exploring_2019)) guarantee directionality and
+sensitivity and are reported to have higher inferential power in most
+cases. Further research might attempt to increase accuracy of
+estimations of original flake mass by the inclusion of additional
+variables such as scar density, which showed high inferential power,
+([Bradbury and Carr, 1999](#ref-bradbury_examining_1999)) remaining
+flake mass or height of the retouch.
+
+## 6. Conclusions
+
+The present research deals with the estimation of flake mass using the
+remaining features of a flake. Estimating original flake mass is key for
+the estimation of curation and for making inferences on the organization
+of lithic technology of past societies. The experimental sample employed
+to estimate flake mass was obtained after expanding a previously
+existing dataset ([Bustos-Pérez and Baena,
+2021](#ref-bustos-perez_predicting_2021)) by the inclusion of bigger
+flakes. The inclusion of bigger flakes resulted in a higher correlation
+value, although measures of distance between prediction and true value
+(RMSE and MAE) did not vary substantially regarding the previous version
+of the dataset. Addressing collinearity allowed to ensure the quality of
+predictions and variable importance. Predictions from models which
+include collinear variables do not statistically differ and are as
+reliable as predictions from models without collinear variables. Log10
+of maximum thickness stands out as the most important variable for
+predicting flake mass. Multiple Linear regression and the simplest ANN
+have shown to be the best models for estimating log10 of flake mass in
+the present dataset. Multiple Linear regression and the simplest ANN
+have shown to be the best models for estimating log10 of flake mass in
+the present dataset.
+
+## Acknowledgments
+
+The authors wish to thank the co-editor and the three anonymous
+reviewers for their comments and suggestions. This article is the result
+of the research projects “Como, Quien Y Donde?: Variabilidad De
+Comportamientos En La Captación Y Transformación De Los Recursos Liticos
+Dentro De Grupos Neandertales 2” (HAR2016-76760-C3-2-P) financed by
+Agencia Estatal de Investigación (AEI), Fondo Europeo de Desarrollo
+Regional (FEDER); and “En Los Limites De La Diversidad: Comportamiento
+Neandertal En El Centro Y Sur De La Penisula Iberica”
+(ID2019-103987GB-C33) financed by the Programa Estatal de Generación de
+Conocimiento y Fortalecimiento Científico y Tecnológico del Sistema de I
++ D+i y de I + D+i Orientada a los Retos de la Sociedad, del Plan
+Estatal de Investigación Científica y Técnica y de Innovación
+(2017–2020). Development of the experimentation and analysis of the
+materials were undertaken at the Laboratory of Experimental Archaeology
+(Universidad Autónoma de Madrid).
+
+## 06 References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
@@ -1848,6 +2138,16 @@ and maintenance. Journal of Archaeological Research 17, 65–103.
 Andrefsky, W., 2005. Lithics macroscopic approaches to analysis, Second.
 ed, Cambridge manuals in archaeology. Cambridge University Press,
 Cambridge.
+
+</div>
+
+<div id="ref-archer_geometric_2018" class="csl-entry">
+
+Archer, W., Pop, C.M., Rezek, Z., Schlager, S., Lin, S.C., Weiss, M.,
+Dogandžić, T., Desta, D., McPherron, S.P., 2018. A geometric
+morphometric relationship predicts stone flake shape and size
+variability. Archaeological and Anthropological Sciences 10, 1991–2003.
+<https://doi.org/10.1007/s12520-017-0517-2>
 
 </div>
 
@@ -1881,6 +2181,15 @@ Prehistory Press, Madison, Wisconsin, pp. 41–68.
 Boëda, E., 1995b. Caractéristiques techniques des chaînes opératoires
 lithiques des niveaux micoquiens de Külna (Tchécoslovaquie). pal 1,
 57–72. <https://doi.org/10.3406/pal.1995.1380>
+
+</div>
+
+<div id="ref-bradbury_examining_1999" class="csl-entry">
+
+Bradbury, A.P., Carr, P.J., 1999. Examining stage and continuum models
+of flake debris analysis: An experimental approach. Journal of
+Archaeological Science 26, 105–116.
+<https://doi.org/10.1006/jasc.1998.0309>
 
 </div>
 
@@ -1965,6 +2274,13 @@ Archaeological Method and Theory 2, 300–368.
 
 Dibble, H.L., 1987. The interpretation of middle paleolithic scraper
 morphology. American Antiquity 52, 109–117.
+
+</div>
+
+<div id="ref-dibble_comparative_1980" class="csl-entry">
+
+Dibble, H.L., Bernard, M.C., 1980. A comparative study of basic edge
+angle measurement techniques. American Antiquity 45, 857–865.
 
 </div>
 
@@ -2092,6 +2408,24 @@ subset selection.
 
 </div>
 
+<div id="ref-maloney_experimental_2020" class="csl-entry">
+
+Maloney, T.R., 2020. Experimental and archaeological testing with 3D
+laser scanning reveals the limits of i/TMC as a reduction index for
+global scraper and point studies. Journal of Archaeological Science:
+Reports 29, 102068.
+
+</div>
+
+<div id="ref-marwick_computational_2017" class="csl-entry">
+
+Marwick, B., 2017. Computational reproducibility in archaeological
+research: Basic principles and a case study of their implementation. J
+Archaeol Method Theory 24, 424–450.
+<https://doi.org/10.1007/s10816-015-9272-9>
+
+</div>
+
 <div id="ref-morales_measuring_2015" class="csl-entry">
 
 Morales, J.I., Lorenzo, C., Vergès, J.M., 2015. Measuring retouch
@@ -2123,6 +2457,15 @@ Nuevo Delaunay, A., Belardi, J.B., Carballo Marina, F., Saletta, M.J.,
 De Angelis, H., 2017. Glass and stoneware knapped tools among
 hunter-gatherers in southern patagonia and tierra del fuego. Antiquity
 91, 1330–1343. <https://doi.org/10.15184/aqy.2017.125>
+
+</div>
+
+<div id="ref-orellana_figueroa_proof_2021" class="csl-entry">
+
+Orellana Figueroa, J.D., Reeves, J.S., McPherron, S.P., Tennie, C.,
+2021. A proof of concept for machine learning-based virtual knapping
+using neural networks. Sci Rep 11, 19966.
+<https://doi.org/10.1038/s41598-021-98755-6>
 
 </div>
 
