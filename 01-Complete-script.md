@@ -1339,117 +1339,394 @@ Temp %>% ggplot(aes(Line_Res, color = Model)) +
 
 ``` r
 # Descriptive statistics of residuals
-Temp %>% group_by(Model) %>% 
-  summarise(
-    Min = min(Line_Res),
-    `5 Percentil` = quantile(Line_Res, 0.05),
-    `1Quantile` = quantile(Line_Res, 0.25),
-    Mean = mean(Line_Res),
-    Median = quantile(Line_Res, 0.5),
-    `3Quantile` = quantile(Line_Res, 0.75),
-    `95 Percentil` = quantile(Line_Res, 0.95),
-    Max = max(Line_Res)
-  )
+kable(
+  Temp %>% group_by(Model) %>% 
+    summarise(
+      Min = min(Line_Res),
+      `5 Percentil` = quantile(Line_Res, 0.05),
+      `1Quantile` = quantile(Line_Res, 0.25),
+      Mean = mean(Line_Res),
+      Median = quantile(Line_Res, 0.5),
+      `3Quantile` = quantile(Line_Res, 0.75),
+      `95 Percentil` = quantile(Line_Res, 0.95),
+      Max = max(Line_Res)
+  ))
 ```
 
-    ## # A tibble: 3 x 9
-    ##   Model    Min `5 Percentil` `1Quantile`  Mean Median `3Quantile` `95 Percentil`
-    ##   <chr>  <dbl>         <dbl>       <dbl> <dbl>  <dbl>       <dbl>          <dbl>
-    ## 1 ANN    -47.1         -13.8       -2.52  1.82  0.476        5.55           19.8
-    ## 2 Multi~ -60.2         -13.2       -2.42  1.40  0.331        5.72           18.8
-    ## 3 Rando~ -20.1         -10.4       -2.64  4.61  0.334        7.06           29.7
-    ## # ... with 1 more variable: Max <dbl>
+| Model                      |       Min | 5 Percentil | 1Quantile |     Mean |    Median | 3Quantile | 95 Percentil |       Max |
+|:---------------------------|----------:|------------:|----------:|---------:|----------:|----------:|-------------:|----------:|
+| ANN                        | -47.08316 |   -13.79028 | -2.516174 | 1.816030 | 0.4762883 |  5.552758 |     19.80933 |  84.98876 |
+| Multiple linear regression | -60.22261 |   -13.18240 | -2.422225 | 1.400462 | 0.3307878 |  5.724842 |     18.79086 |  55.58517 |
+| Random Forest              | -20.06615 |   -10.35089 | -2.641137 | 4.611775 | 0.3338027 |  7.059517 |     29.74203 | 152.07560 |
 
-### 04.2 Variable importance
+### 4.4 Collinearity and variable importance
 
-The following presents variable relative importance scaled from 0 to 100
-for each model. ANN considers of key importance variables of thickness
-(mean thickness of the flake and log10 of flake thickness) along with
-log10 of platform size. Relative amount of cortex is also considered to
-have relative importance. Multiple linear regression considers relative
-amount of cortex, number of scars and log10 of platform size as the most
-important variables. Log10 of maximum thickness is also considered as an
-important variable. Random Forest only considers mean thickness and
-log10 of maximum thickness as important variables.
-
-Only ANN model provides an importance value above 0 for EPA, although it
-is considered as the least important variable for that model. On general
-log10 of platform size is considered as an important variable being the
-third most important variable for multiple linear regression and Random
-Forest; and the second most important variable for ANN. Log10 of
-platform depth is usually considered a minor important variable by all
-models with scores of importance below the 50 value threshold.
+Previous to test non-collinear combination of variables it is necessary
+to set the formulas with the different possible combinations. The
+following code provides four additional formulas for training the models
+without pairs of collinear variables.
 
 ``` r
-#### Variable importance ####
-# Make Data frame of importance of MLR
-mr_imp <- varImp(MLR_model, scale = TRUE)
-mr_imp <- as.data.frame(mr_imp$importance)
-mr_imp$Variable = rownames(mr_imp)
-mr_imp$Model = "Multiple Linear Regression"
-
-# Make Data frame of importance of ANN
-temp <- NeuralNetTools::garson(nnet_model_f)
-
-ANN_imp <- data.frame(temp$data) %>% mutate(
-  Overall = (rel_imp*100)/0.24145208) %>% 
-  select(-c(rel_imp)) %>% 
-  rename(Variable = x_names) %>% 
-  mutate(Model = "ANN") %>% 
-  select(Overall, Variable, Model)
-
-# Make Data frame of RF importance
-RF_imp <- varImp(RF_model, scale = TRUE)
-RF_imp <- as.data.frame(RF_imp$importance)
-RF_imp$Variable = rownames(RF_imp)
-RF_imp$Model = "Random Forest"
-
-#### Variable importance according to model 
-Var_Imp <- rbind(mr_imp, ANN_imp, RF_imp)
-rm(mr_imp, ANN_imp, RF_imp)
-
-# reset variable labels
-Var_Imp$Variable <- factor(Var_Imp$Variable,
-                           levels = c("MeanThick", "Log_Max_Thick",
-                                      "Log_Plat", "Log_Plat_De",
-                                      "EPA", "Cortex", "No_Scars"),
-                           labels = c("Mean\nThickness", "Log of\nMax. Thick.",
-                                      "Log of Pla.", "Log of\nPlat. Depth",
-                                    "EPA", "Cortex",
-                                    "No Scars"))
-
-# and plot
-Var_Imp %>% ggplot(aes(Variable, Overall, fill = Overall)) +
-  geom_col() +
-  geom_text(data = Var_Imp[Var_Imp$Overall > 0,],
-            aes(label = round(Overall, 2)), vjust= "top", size = 2.5) +
-  ggsci::scale_fill_gsea(reverse = TRUE) +
-  theme_classic() +
-  facet_wrap(~ Model, ncol = 1) +
-  ylab("Relative importance") +
-  xlab(NULL) +
-  theme(legend.position = "none",
-        axis.text = element_text(color = "black", size = 7),
-        strip.text = element_text(color = "black", face = "bold", size = 8),
-        strip.background = element_rect(fill = "white", colour = "black", size=1),
-        axis.title.y = element_text(color = "black", size = 8))
+# Models formula without collinear variables
+frmla1 <- as.formula("Log_Weight ~ Log_Max_Thick + EPA + Log_Plat + Cortex + No_Scars")
+frmla2 <- as.formula("Log_Weight ~ Log_Max_Thick + EPA + Log_Plat_De + Cortex + No_Scars")
+frmla3 <- as.formula("Log_Weight ~ MeanThick + EPA + Log_Plat + Cortex + No_Scars")
+frmla4 <- as.formula("Log_Weight ~ MeanThick + EPA + Log_Plat_De + Cortex + No_Scars")
 ```
 
-![](01-Complete-script_files/figure-markdown_github/extract%20variable%20importance%20and%20plot-1.png)
+Following the preparation of the formulas each variation of the model
+can be trained. Note that this implies training four variation for each
+model (a total of 12 additional models). Hyperparamter tuning is kept
+the same as for models trained including all variables.
 
-Visual representation of residuals of the Random Forest through density
-plot shows that despite peaking on the 0 value it presents a long tale
-of positive residuals as a result of underestimations of predictions.
+``` r
+# Train MLR models
+set.seed(123)
+lm.model1 <- train(frmla1, 
+                   data = Reg_Data, 
+                   method = "lm",
+                   trControl = train.control)
 
-ANN generalizes better to the linear scale with a higher range of
-predictions which reach a maximum value of 123 g. Density plot of
-residuals from the ANN present a concentrated peak on the 0 value with a
-mean value of 1.82 g. Despite this ANN residuals still present a
-slightly long tale of positive values for residuals as a result of some
-underestimations. 50% of residuals from ANN range between
-overestimations of 2.52 g and underestimations of 5.55 g. 90% of the
-residuals from ANN range between overestimations of 13.18 g and
-underestimations of 18.79 g.
+set.seed(123)
+lm.model2 <- train(frmla2, 
+                   data = Reg_Data, 
+                   method = "lm",
+                   trControl = train.control)
+
+set.seed(123)
+lm.model3 <- train(frmla3, 
+                   data = Reg_Data, 
+                   method = "lm",
+                   trControl = train.control)
+
+set.seed(123)
+lm.model4 <- train(frmla4,
+                   data = Reg_Data, 
+                   method = "lm",
+                   trControl = train.control)
+
+# Train ANN  
+set.seed(123)
+nnet_model1 <- train(
+  frmla1,
+  Reg_Data,
+  method = 'neuralnet',
+  trControl = train.control,
+  tuneGrid = tune.grid.neuralnet,
+  preProcess = c("center", "scale"),
+  learningrate = 0.01,  
+  threshold = 0.01,
+  stepmax = (10^100),
+  linear.output = TRUE
+)
+
+set.seed(123)
+nnet_model2 <- train(
+  frmla2,
+  Reg_Data,
+  method = 'neuralnet',
+  trControl = train.control,
+  tuneGrid = tune.grid.neuralnet,
+  preProcess = c("center", "scale"),
+  learningrate = 0.01,  
+  threshold = 0.01,
+  stepmax = (10^100),
+  linear.output = TRUE
+)
+
+set.seed(123)
+nnet_model3 <- train(
+  frmla3,
+  Reg_Data,
+  method = 'neuralnet',
+  trControl = train.control,
+  tuneGrid = tune.grid.neuralnet,
+  preProcess = c("center", "scale"),
+  learningrate = 0.01,  
+  threshold = 0.01,
+  stepmax = (10^100),
+  linear.output = TRUE
+)
+
+set.seed(123)
+nnet_model4 <- train(
+  frmla4,
+  Reg_Data,
+  method = 'neuralnet',
+  trControl = train.control,
+  tuneGrid = tune.grid.neuralnet,
+  preProcess = c("center", "scale"),
+  learningrate = 0.01,  
+  threshold = 0.01,
+  stepmax = (10^100),
+  linear.output = TRUE
+)
+
+
+# Train Random Forest
+set.seed(123)
+RF.model1 <- train(frmla1, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = 625,
+                   importance = "impurity_corrected")
+
+set.seed(123)
+RF.model2 <- train(frmla2, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = 625,
+                   importance = "impurity_corrected")
+
+set.seed(123)
+RF.model3 <- train(frmla3, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = 625,
+                   importance = "impurity_corrected")
+
+set.seed(123)
+RF.model4 <- train(frmla4, 
+                   Reg_Data,
+                   method = "ranger",
+                   trControl = train.control,
+                   tuneGrid = newr_grid, 
+                   num.trees = 625,
+                   importance = "impurity_corrected")
+```
+
+The following table presents model performance metrics of the three
+tested methods when collinear variables are retrieved. In all cases,
+models best performed when mean thickness and log10 of platform depth
+were excluded from model training (remaining log10 of maximum thickness
+and log10 of platform surface). For Multiple Linear Regression and ANN
+performance metrics had lowest values when average thickness and log10
+of platform depth were kept has predictive variables. In the case of
+Random Forest Regression, performance values were lowest when mean
+thickness and log10 of platform surface were excluded as predictive
+variables. However, these values are similar to the ones obtained when
+log10 of maximum thickness and log10 of platform surface are excluded
+when training the Random Forest Regression.
+
+``` r
+data.frame(
+  Model = c("MLR", "MLR", "MLR", "MLR",
+            "ANN", "ANN", "ANN", "ANN",
+            "Random Forest", "Random Forest", "Random Forest", "Random Forest"),
+  
+  `Variables excluded` = c(
+    "Mean Thickness & Log of Plat. Depth", 
+    "Mean Thickness & Log of Plat. Surf.",
+    "Log of Max. Thick & Log of Plat. Depth", 
+    "Log of Max. Thick & Log of Plat. Surf.",
+    
+    "Mean Thickness & Log of Plat. Depth", 
+    "Mean Thickness & Log of Plat. Surf.",
+    "Log of Max. Thick & Log of Plat. Depth", 
+    "Log of Max. Thick & Log of Plat. Surf.",
+
+    "Mean Thickness & Log of Plat. Depth", 
+    "Mean Thickness & Log of Plat. Surf.",
+    "Log of Max. Thick & Log of Plat. Depth", 
+    "Log of Max. Thick & Log of Plat. Surf."),
+  
+  Rsquared = rbind(
+    round(lm.model1$results$Rsquared,3),
+    round(lm.model2$results$Rsquared,3),
+    round(lm.model3$results$Rsquared,3),
+    round(lm.model4$results$Rsquared,3),
+    
+    round(nnet_model$results$Rsquared,3),
+    round(nnet_model2$results$Rsquared,3),
+    round(nnet_model3$results$Rsquared,3),
+    round(nnet_model4$results$Rsquared,3),
+    
+    round(RF.model1$results$Rsquared,3),
+    round(RF.model2$results$Rsquared,3),
+    round(RF.model3$results$Rsquared,3),
+    round(RF.model4$results$Rsquared,3)),
+
+  RMSE = rbind(
+    round(lm.model1$results$RMSE,3),
+    round(lm.model2$results$RMSE,3),
+    round(lm.model3$results$RMSE,3),
+    round(lm.model4$results$RMSE,3),
+    
+    round(nnet_model$results$RMSE,3),
+    round(nnet_model2$results$RMSE,3),
+    round(nnet_model3$results$RMSE,3),
+    round(nnet_model4$results$RMSE,3),
+    
+    round(RF.model1$results$RMSE,3),
+    round(RF.model2$results$RMSE,3),
+    round(RF.model3$results$RMSE,3),
+    round(RF.model4$results$RMSE,3)),
+  
+  MAE = rbind(
+    round(lm.model1$results$MAE,3),
+    round(lm.model2$results$MAE,3),
+    round(lm.model3$results$MAE,3),
+    round(lm.model4$results$MAE,3),
+    
+    round(nnet_model$results$MAE,3),
+    round(nnet_model2$results$MAE,3),
+    round(nnet_model3$results$MAE,3),
+    round(nnet_model4$results$MAE,3),
+    
+    round(RF.model1$results$MAE,3),
+    round(RF.model2$results$MAE,3),
+    round(RF.model3$results$MAE,3),
+    round(RF.model4$results$MAE,3)))
+```
+
+    ##            Model                     Variables.excluded Rsquared  RMSE   MAE
+    ## 1            MLR    Mean Thickness & Log of Plat. Depth    0.761 0.216 0.173
+    ## 2            MLR    Mean Thickness & Log of Plat. Surf.    0.744 0.224 0.178
+    ## 3            MLR Log of Max. Thick & Log of Plat. Depth    0.755 0.219 0.175
+    ## 4            MLR Log of Max. Thick & Log of Plat. Surf.    0.736 0.227 0.182
+    ## 5            ANN    Mean Thickness & Log of Plat. Depth    0.764 0.215 0.171
+    ## 6            ANN    Mean Thickness & Log of Plat. Surf.    0.748 0.222 0.177
+    ## 7            ANN Log of Max. Thick & Log of Plat. Depth    0.765 0.214 0.170
+    ## 8            ANN Log of Max. Thick & Log of Plat. Surf.    0.747 0.222 0.177
+    ## 9  Random Forest    Mean Thickness & Log of Plat. Depth    0.707 0.248 0.200
+    ## 10 Random Forest    Mean Thickness & Log of Plat. Surf.    0.695 0.253 0.204
+    ## 11 Random Forest Log of Max. Thick & Log of Plat. Depth    0.714 0.246 0.197
+    ## 12 Random Forest Log of Max. Thick & Log of Plat. Surf.    0.698 0.251 0.201
+
+All models with best combinations of non-collinear variables presented
+performance metrics (*r*<sup>2</sup>, RMSE, MAE) slightly lower, but
+similar to those of models including collinear variables. When predicted
+values from models with collinear variables are compared to predicted
+values of models with no collinear variables, no significant difference
+is present for the Multiple Linear Regression (t = -0.002, p = 0.998),
+ANN (t \< 0.001, p = 1) or Random Forest (t = -0.08, p = 0.936). The
+following table presents performance metrics when predictions and
+observations from the best models without collinear variables are
+transformed into linear scale. Again, the exclusion of collinear
+variables results in slightly increased values of RMSE and MAE, and a
+lower *r*<sup>2</sup> value. Additionally, when collinear variables are
+excluded, RMSE and MAE indicate that ANN generalizes better to the
+linear scale. Both results of performance metrics (in the logarithmic
+and linear scale) indicate that the predictive power of models is
+slightly diminished when collinear variables are excluded from model
+training, but this diminishment is not significative.
+
+``` r
+# Get predictions from models with no collinear variables
+# and transform into linear scale for further use
+lm.pred <- as.data.frame(lm.model1$pred) %>% 
+group_by(rowIndex) %>% 
+  summarise(
+    obs = mean(obs),
+    pred = mean(pred)) %>% 
+  mutate(
+  Weigh = 10^obs,
+  Pred.Weight = 10^pred)
+
+nnet.pred <- as.data.frame(nnet_model$pred) %>% 
+  group_by(rowIndex) %>% 
+  summarise(
+    obs = mean(obs),
+    pred = mean(pred)) %>% 
+  mutate(
+    Weigh = 10^obs,
+    Pred.Weight = 10^pred)
+
+RF.pred <- as.data.frame(RF.model3$pred) %>% 
+  group_by(rowIndex) %>% 
+  summarise(
+    obs = mean(obs),
+    pred = mean(pred)) %>% 
+  mutate(
+    Weigh = 10^obs,
+    Pred.Weight = 10^pred)
+```
+
+``` r
+# t-test to check if there is differences between predictions
+t.test(lm.pred$pred, lm.pred$coll.pred)
+```
+
+    ## Warning: Unknown or uninitialised column: `coll.pred`.
+
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  lm.pred$pred
+    ## t = 64.776, df = 499, p-value < 2.2e-16
+    ## alternative hypothesis: true mean is not equal to 0
+    ## 95 percent confidence interval:
+    ##  1.079283 1.146803
+    ## sample estimates:
+    ## mean of x 
+    ##  1.113043
+
+``` r
+t.test(nnet.pred$pred, nnet.pred$coll.pred)
+```
+
+    ## Warning: Unknown or uninitialised column: `coll.pred`.
+
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  nnet.pred$pred
+    ## t = 64.613, df = 499, p-value < 2.2e-16
+    ## alternative hypothesis: true mean is not equal to 0
+    ## 95 percent confidence interval:
+    ##  1.079094 1.146778
+    ## sample estimates:
+    ## mean of x 
+    ##  1.112936
+
+``` r
+t.test(RF.pred$pred, RF.pred$coll.pred)
+```
+
+    ## Warning: Unknown or uninitialised column: `coll.pred`.
+
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  RF.pred$pred
+    ## t = 81.747, df = 499, p-value < 2.2e-16
+    ## alternative hypothesis: true mean is not equal to 0
+    ## 95 percent confidence interval:
+    ##  1.080997 1.134238
+    ## sample estimates:
+    ## mean of x 
+    ##  1.107618
+
+``` r
+# Performance metrics of best models without collinear variables in the linear scale
+tibble(
+  Model = c("MLR", "ANN", "RF"),
+  Rsquared = rbind(
+    round(R2(lm.pred$Weigh, lm.pred$Pred.Weight),3),
+    round(R2(nnet.pred$Weigh, nnet.pred$Pred.Weight),3),
+    round(R2(RF.pred$Weigh, RF.pred$Pred.Weight),3)),
+  RMSE = rbind(
+    round(RMSE(lm.pred$Weigh, lm.pred$Pred.Weight),3),
+    round(RMSE(nnet.pred$Weigh, nnet.pred$Pred.Weight),3),
+    round(RMSE(RF.pred$Weigh, RF.pred$Pred.Weight),3)),
+  MAE = rbind(
+    round(MAE(lm.pred$Weigh, lm.pred$Pred.Weight),3),
+    round(MAE(nnet.pred$Weigh, nnet.pred$Pred.Weight),3),
+    round(MAE(RF.pred$Weigh, RF.pred$Pred.Weight),3)))
+```
+
+    ## # A tibble: 3 x 4
+    ##   Model Rsquared[,1] RMSE[,1] MAE[,1]
+    ##   <chr>        <dbl>    <dbl>   <dbl>
+    ## 1 MLR          0.779     12.4    7.35
+    ## 2 ANN          0.777     12.0    7.22
+    ## 3 RF           0.619     18.0    8.90
 
 ## 05 References
 
