@@ -1620,6 +1620,8 @@ training, but this diminishment is not significative.
 ``` r
 # Get predictions from models with no collinear variables
 # and transform into linear scale for further use
+
+# Multiple Linear regression and join with previous predictions
 lm.pred <- as.data.frame(lm.model1$pred) %>% 
 group_by(rowIndex) %>% 
   summarise(
@@ -1629,6 +1631,15 @@ group_by(rowIndex) %>%
   Weigh = 10^obs,
   Pred.Weight = 10^pred)
 
+lm.pred <- cbind(
+  lm.pred, 
+(MLR_model$pred %>% group_by(rowIndex) %>% 
+  summarise(coll.pred = mean(pred),
+            coll.obs = mean(obs)) %>% 
+  mutate(Coll.pred.Weight = 10^coll.pred) %>% 
+   select(-rowIndex))) 
+
+# ANN and join with previous predictions
 nnet.pred <- as.data.frame(nnet_model$pred) %>% 
   group_by(rowIndex) %>% 
   summarise(
@@ -1638,6 +1649,16 @@ nnet.pred <- as.data.frame(nnet_model$pred) %>%
     Weigh = 10^obs,
     Pred.Weight = 10^pred)
 
+nnet.pred <- cbind(
+  nnet.pred, 
+  (nnet_model_f$pred %>% group_by(rowIndex) %>% 
+     summarise(coll.pred = mean(pred),
+               coll.obs = mean(obs)) %>% 
+     mutate(Coll.pred.Weight = 10^coll.pred) %>% 
+     select(-rowIndex))) 
+
+
+# RF and join with previous predictions
 RF.pred <- as.data.frame(RF.model3$pred) %>% 
   group_by(rowIndex) %>% 
   summarise(
@@ -1646,6 +1667,13 @@ RF.pred <- as.data.frame(RF.model3$pred) %>%
   mutate(
     Weigh = 10^obs,
     Pred.Weight = 10^pred)
+RF.pred <- cbind(
+  RF.pred, 
+  (RF_model$pred %>% group_by(rowIndex) %>% 
+     summarise(coll.pred = mean(pred),
+               coll.obs = mean(obs)) %>% 
+     mutate(Coll.pred.Weight = 10^coll.pred) %>% 
+     select(-rowIndex))) 
 ```
 
 ``` r
@@ -1653,55 +1681,49 @@ RF.pred <- as.data.frame(RF.model3$pred) %>%
 t.test(lm.pred$pred, lm.pred$coll.pred)
 ```
 
-    ## Warning: Unknown or uninitialised column: `coll.pred`.
-
     ## 
-    ##  One Sample t-test
+    ##  Welch Two Sample t-test
     ## 
-    ## data:  lm.pred$pred
-    ## t = 64.776, df = 499, p-value < 2.2e-16
-    ## alternative hypothesis: true mean is not equal to 0
+    ## data:  lm.pred$pred and lm.pred$coll.pred
+    ## t = -0.0025274, df = 997.85, p-value = 0.998
+    ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  1.079283 1.146803
+    ##  -0.04804233  0.04791873
     ## sample estimates:
-    ## mean of x 
-    ##  1.113043
+    ## mean of x mean of y 
+    ##  1.113043  1.113105
 
 ``` r
 t.test(nnet.pred$pred, nnet.pred$coll.pred)
 ```
 
-    ## Warning: Unknown or uninitialised column: `coll.pred`.
-
     ## 
-    ##  One Sample t-test
+    ##  Welch Two Sample t-test
     ## 
-    ## data:  nnet.pred$pred
-    ## t = 64.613, df = 499, p-value < 2.2e-16
-    ## alternative hypothesis: true mean is not equal to 0
+    ## data:  nnet.pred$pred and nnet.pred$coll.pred
+    ## t = 7.5427e-06, df = 997.9, p-value = 1
+    ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  1.079094 1.146778
+    ##  -0.04803739  0.04803776
     ## sample estimates:
-    ## mean of x 
-    ##  1.112936
+    ## mean of x mean of y 
+    ##  1.112936  1.112936
 
 ``` r
 t.test(RF.pred$pred, RF.pred$coll.pred)
 ```
 
-    ## Warning: Unknown or uninitialised column: `coll.pred`.
-
     ## 
-    ##  One Sample t-test
+    ##  Welch Two Sample t-test
     ## 
-    ## data:  RF.pred$pred
-    ## t = 81.747, df = 499, p-value < 2.2e-16
-    ## alternative hypothesis: true mean is not equal to 0
+    ## data:  RF.pred$pred and RF.pred$coll.pred
+    ## t = -0.080636, df = 995.11, p-value = 0.9357
+    ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  1.080997 1.134238
+    ##  -0.04024728  0.03707017
     ## sample estimates:
-    ## mean of x 
-    ##  1.107618
+    ## mean of x mean of y 
+    ##  1.107618  1.109206
 
 ``` r
 # Performance metrics of best models without collinear variables in the linear scale
