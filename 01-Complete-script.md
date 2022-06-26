@@ -485,14 +485,7 @@ important since collinearity affects variable importance (making hard to
 separate the individual effect of a variable on the response), it
 reduces the accuracy of the estimates on a Multiple Linear Regression,
 and it can result in counterintuitive estimates ([James et al.,
-2013](#ref-james_introduction_2013)) Collinearity of the mentioned pairs
-of predictors is addressed by retrieving combinations of variables and
-selecting the best model based on performance metrics. While retrieving
-pairs of collinear variables allows to determine variable importance, it
-is important to consider that collinearity between predictors does not
-affect predictions and the inferential power of a model ([Alin,
-2010](#ref-alin_multicollinearity_2010); [Paul,
-2006](#ref-paul_multicollinearity_2006)).
+2013](#ref-james_introduction_2013)).
 
 ``` r
 # Collinearity between measures of thickness
@@ -613,6 +606,29 @@ values and residuals (difference between true value and predicted value)
 allowing to observe if there is systematic bias of the model. The
 residual plot of a good model will have the points evenly distributed
 among the 0 value.
+
+Collinearity of the mentioned pairs of predictors is addressed by two
+means: first, by calculating variance inflation factor; and second by
+comparing performance metrics values and residual distribution of the
+best models without collinear variables. Variance inflation factor
+provides a measure of correlation between predictors and their effects
+on the model. In the present study variance inflation factor is
+calculated using the package “car” ([Fox and Weisberg,
+2018](#ref-fox_r_2018)). Thresholds for evaluating variance inflation
+factor values vary, although commonly values between 1 and 10 are
+considered inconsequential, values between 10 and 30 are cause of
+concern, and values above 30 are considered seriously harmful
+([Marquardt, 1970](#ref-marquardt_generalized_1970); [O’brien,
+2007](#ref-obrien_caution_2007)). At the present, package “car” ([Fox
+and Weisberg, 2018](#ref-fox_r_2018)). Although the different nature of
+the models can result in different effects of collinearity, results from
+calculating the variance inflation factor in the Multiple Linear
+Regression can be extrapolated to the Random Forest and the ANN. While
+retrieving pairs of collinear variables allows to determine variable
+importance, it is important to consider that collinearity between
+predictors does not affect predictions and the inferential power of a
+model ([Alin, 2010](#ref-alin_multicollinearity_2010); [Paul,
+2006](#ref-paul_multicollinearity_2006)).
 
 The complete workflow is developed using the R language (version 4.0.2)
 in the RStudio IDE (version 1.4.1103; ([R. C. Team,
@@ -2318,6 +2334,13 @@ PLoS ONE 7, e29273. <https://doi.org/10.1371/journal.pone.0029273>
 
 </div>
 
+<div id="ref-fox_r_2018" class="csl-entry">
+
+Fox, J., Weisberg, S., 2018. An r companion to applied regression,
+Third. ed. Sage publications, Thousand Oaks.
+
+</div>
+
 <div id="ref-furnival_regressions_2000" class="csl-entry">
 
 Furnival, G.M., Wilson, R.W., 2000. Regressions by leaps and bounds.
@@ -2417,6 +2440,13 @@ Reports 29, 102068.
 
 </div>
 
+<div id="ref-marquardt_generalized_1970" class="csl-entry">
+
+Marquardt, D.W., 1970. Generalized inverses, ridge regression, biased
+linear estimation, and nonlinear estimation. Technometrics 12, 591–612.
+
+</div>
+
 <div id="ref-marwick_computational_2017" class="csl-entry">
 
 Marwick, B., 2017. Computational reproducibility in archaeological
@@ -2457,6 +2487,14 @@ Nuevo Delaunay, A., Belardi, J.B., Carballo Marina, F., Saletta, M.J.,
 De Angelis, H., 2017. Glass and stoneware knapped tools among
 hunter-gatherers in southern patagonia and tierra del fuego. Antiquity
 91, 1330–1343. <https://doi.org/10.15184/aqy.2017.125>
+
+</div>
+
+<div id="ref-obrien_caution_2007" class="csl-entry">
+
+O’brien, R.M., 2007. A caution regarding rules of thumb for variance
+inflation factors. Qual Quant 41, 673–690.
+<https://doi.org/10.1007/s11135-006-9018-6>
 
 </div>
 
