@@ -1377,6 +1377,16 @@ kable(
 
 ### 4.4 Collinearity and variable importance
 
+``` r
+# Variance inflation factor of Multiple Linear Regression
+car::vif(MLR_model$finalModel)
+```
+
+    ##     MeanThick        Cortex      No_Scars           EPA Log_Max_Thick 
+    ##      8.432394      1.969457      1.835175      1.183984      8.880526 
+    ##      Log_Plat   Log_Plat_De 
+    ##      4.764830      5.136607
+
 Previous to test non-collinear combination of variables it is necessary
 to set the formulas with the different possible combinations. The
 following code provides four additional formulas for training the models
