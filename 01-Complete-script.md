@@ -1377,6 +1377,12 @@ kable(
 
 ### 4.4 Collinearity and variable importance
 
+The following table presents the variance inflation factor of each of
+the predictors in the Multiple Linear Regression model. Although mean
+thickness and log10 of maximum thickness present the highest values
+(8.43 and 8.88 respectively), neither of the predictors presents a value
+above 10, indicating that collinearity is irrelevant.
+
 ``` r
 # Variance inflation factor of Multiple Linear Regression
 car::vif(MLR_model$finalModel)
@@ -1528,17 +1534,16 @@ RF.model4 <- train(frmla4,
 ```
 
 The following table presents model performance metrics of the three
-tested methods when collinear variables are retrieved. In all cases,
-models best performed when mean thickness and log10 of platform depth
-were excluded from model training (remaining log10 of maximum thickness
-and log10 of platform surface). For Multiple Linear Regression and ANN
-performance metrics had lowest values when average thickness and log10
-of platform depth were kept has predictive variables. In the case of
-Random Forest Regression, performance values were lowest when mean
-thickness and log10 of platform surface were excluded as predictive
-variables. However, these values are similar to the ones obtained when
-log10 of maximum thickness and log10 of platform surface are excluded
-when training the Random Forest Regression.
+tested methods when collinear variables are retrieved. For Multiple
+Linear Regression and ANN performance metrics were the best when mean
+thickness and log10 of platform depth are retrieved, and presented the
+lowest performance values when average thickness and log10 of platform
+depth were kept has predictive variables. In the case of Random Forest
+Regression, performance values were lowest when mean thickness and log10
+of platform surface were excluded as predictive variables. However,
+these values are similar to the ones obtained when log10 of maximum
+thickness and log10 of platform surface are excluded when training the
+Random Forest Regression.
 
 ``` r
 data.frame(
@@ -1627,21 +1632,21 @@ data.frame(
 
 All models with best combinations of non-collinear variables presented
 performance metrics (*r*<sup>2</sup>, RMSE, MAE) slightly lower, but
-similar to those of models including collinear variables. When predicted
-values from models with collinear variables are compared to predicted
-values of models with no collinear variables, no significant difference
-is present for the Multiple Linear Regression (t = -0.002, p = 0.998),
-ANN (t \< 0.001, p = 1) or Random Forest (t = -0.08, p = 0.936). The
-following table presents performance metrics when predictions and
-observations from the best models without collinear variables are
-transformed into linear scale. Again, the exclusion of collinear
-variables results in slightly increased values of RMSE and MAE, and a
-lower *r*<sup>2</sup> value. Additionally, when collinear variables are
-excluded, RMSE and MAE indicate that ANN generalizes better to the
-linear scale. Both results of performance metrics (in the logarithmic
-and linear scale) indicate that the predictive power of models is
-slightly diminished when collinear variables are excluded from model
-training, but this diminishment is not significative.
+similar to those of models including collinear variables. When the
+predicted values from models with collinear variables are compared to
+the predicted values of models with no collinear variables, no
+significant difference is present for the Multiple Linear Regression (t
+= -0.002, p = 0.998), ANN (t \< 0.001, p = 1) or Random Forest (t =
+-0.08, p = 0.936). The following table presents performance metrics when
+predictions and observations from the best models without collinear
+variables are transformed into linear scale. Again, the exclusion of
+collinear variables results in slightly increased values of RMSE and
+MAE, and a lower *r*<sup>2</sup> value. Additionally, when collinear
+variables are excluded, RMSE and MAE indicate that ANN generalizes
+better to the linear scale. Both results of performance metrics (in the
+logarithmic and linear scale) indicate that the predictive power of
+models is slightly diminished when collinear variables are excluded from
+model training, but this diminishment is not significative.
 
 ``` r
 # Get predictions from models with no collinear variables
@@ -1860,20 +1865,22 @@ determine log10 of flake mass based on previously selected variables
 ([Bustos-Pérez and Baena, 2021](#ref-bustos-perez_predicting_2021)).
 Additionally, predicted results and true values have been transformed
 back to the linear scale to explore further relations. ANN and Multiple
-Linear regression present similar r2 values (0.78 in both cases),
-performance metrics and residual distributions in the logarithmic scale.
-Comparatively, Random Forest performed poorly with a lower r2 (0.72),
-worst performance metrics and clearly biased distributions of residuals.
-Transformation of predicted and true values back to the linear scale
-slightly reinforced ANN and Multiple Linear Regression increasing their
-r2 values (0.8 and 0.81 respectively) while decreasing the Random Forest
-r2 (0.66). Results from residual analysis and distribution, performance
-metrics and regression plots indicate that Multiple Linear Regression is
-the model that best generalizes to the linear scale when collinear
-variables are included.
+Linear regression present similar *r*<sup>2</sup> values (0.78 in both
+cases), performance metrics and residual distributions in the
+logarithmic scale. Comparatively, Random Forest performed poorly with a
+lower *r*<sup>2</sup> (0.72), worst performance metrics and clearly
+biased distributions of residuals. Transformation of predicted and true
+values back to the linear scale slightly reinforced ANN and Multiple
+Linear Regression increasing their *r*<sup>2</sup> values (0.8 and 0.81
+respectively) while decreasing the Random Forest *r*<sup>2</sup> (0.66).
+Results from residual analysis and distribution, performance metrics and
+regression plots indicate that Multiple Linear Regression is the model
+that best generalizes to the linear scale when collinear variables are
+included.
 
 Results from removing collinear variables allowed to evaluate predictor
 importance on model performance and reliability of predictions. Results
+from variance inflation factor and comparing residual distribution
 indicate that no statistical difference exists between predictions which
 include collinear variables, and predictions without collinear
 variables. This indicates that predictions from models including
