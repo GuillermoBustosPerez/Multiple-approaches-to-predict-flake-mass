@@ -2140,12 +2140,12 @@ Agencia Estatal de Investigación (AEI), Fondo Europeo de Desarrollo
 Regional (FEDER); and “En Los Limites De La Diversidad: Comportamiento
 Neandertal En El Centro Y Sur De La Penisula Iberica”
 (ID2019-103987GB-C33) financed by the Programa Estatal de Generación de
-Conocimiento y Fortalecimiento Científico y Tecnológico del Sistema de I
-+ D+i y de I + D+i Orientada a los Retos de la Sociedad, del Plan
-Estatal de Investigación Científica y Técnica y de Innovación
-(2017–2020). Development of the experimentation and analysis of the
-materials were undertaken at the Laboratory of Experimental Archaeology
-(Universidad Autónoma de Madrid).
+Conocimiento y Fortalecimiento Científico y Tecnológico del Sistema de
+I+D+i y de I+D+i Orientada a los Retos de la Sociedad, del Plan Estatal
+de Investigación Científica y Técnica y de Innovación (2017–2020).
+Development of the experimentation and analysis of the materials were
+undertaken at the Laboratory of Experimental Archaeology (Universidad
+Autónoma de Madrid).
 
 ## 06 References
 
