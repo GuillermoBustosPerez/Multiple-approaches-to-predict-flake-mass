@@ -1,19 +1,13 @@
 ## README
 
-Author: Guillermo Bustos-Pérez <sup>1, 2</sup>
-
-<sup>1</sup> Departamento de Prehistoria y Arqueología, Universidad
-Autónoma de Madrid, Madrid, Spain  
-<sup>2</sup> Corresponding author at: <guillermo.willbustos@gmail.com>
-
 The data and code present in this repository are part of the article
 “Multiple approaches to predict flake mass” and intended for reviewers.
 Data and code have been processed in compliance with reproducibility
 standards for machine learning (Heil et al., 2021).
 
-If the article is accepted for publication data and code will be publish
-in the general-purpose open-access repository Zenodo along with making
-it a public repository at GitHub.
+If the article is accepted for publication, data and code will be
+publish in the general-purpose open-access repository Zenodo along with
+making it a public repository at GitHub.
 
 Other examples of publications in the same repository:
 
