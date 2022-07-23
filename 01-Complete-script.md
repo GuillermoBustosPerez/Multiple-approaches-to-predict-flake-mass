@@ -1,11 +1,16 @@
 # Multiple approaches to predict flake mass
 
--   Guillermo Bustos-Pérez <sup>(1,2)</sup>  
+-   Guillermo Bustos-Pérez <sup>(1,2,3,4)</sup>  
 -   Javier Baena Preysler <sup>(1)</sup>
 
 <sup>1</sup> Departamento de Prehistoria y Arqueología, Universidad
 Autónoma de Madrid, Madrid, Spain  
-<sup>2</sup> Corresponding author at:
+<sup>2</sup> Institut Català de Paleoecologia Humana i Evolució Social
+(IPHES), Zona Educacional 4, Campus Sescelades URV (Edifici W3), 43007
+Tarragona, Spain  
+<sup>3</sup> Àrea de Prehistoria, Universitat Rovira i Virgili (URV),
+Avinguda de Catalunya 35, 43002 Tarragona, Spain  
+<sup>4</sup> Corresponding author at:
 <guillermo.bustos@estudiante.uam.es> \| <guillermo.willbustos@gmail.com>
 
 ## Abstract
