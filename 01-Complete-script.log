@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  13 SEP 2022 08:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  13 SEP 2022 08:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -516,101 +516,36 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 346.
 
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
 
-Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
 
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
 
-Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
 
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
 
-Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+Overfull \hbox (7.99359pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [8] "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse"[] 
  []
 
-
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
- []
-
-
-Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
- []
-
-
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
- []
-
-
-Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
- []
-
-
-Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
- []
-
-
-Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
-[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
- []
-
-[3]
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ##   Length Width MeanThick Max_Thick Weight Surface.Plat Platfom_Depth Cortex No_Scars Termination_type[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 1   51.3  29.8 10.066667      13.1  17.83       83.585           7.3      5        4          Feather[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 2   49.1  30.0  8.566667       9.7  13.33       90.480           7.8      5        3          Feather[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 3   30.8  43.8 11.566667      16.8  20.33       40.500           3.6      3        2          Feather[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 4   30.2  19.6  5.500000       6.7   3.98       59.670           5.1      5        3          Feather[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 5   57.1  37.8 11.166667      13.3  22.18      109.800          12.0      4        3          Feather[] 
- []
-
-
-Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
-[]\T1/lmtt/m/n/10 ## 6   37.5  34.2  5.466667       6.7   7.97       51.340           6.8      5        1            Hinge[] 
- []
-
-[4] [5]
+[3] [4] [5]
 <01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf, id=229, 469.755pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf>
@@ -999,29 +934,19 @@ Overfull \hbox (9.14117pt too wide) in paragraph at lines 1821--1822
  []|\T1/lmr/m/n/10 152.07560|
  []
 
-[26 <./01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf>]
-Overfull \hbox (55.24345pt too wide) in paragraph at lines 1845--1845
-[]\T1/lmtt/m/n/10 ##     MeanThick        Cortex      No_Scars           EPA Log_Max_Thick      Log_Plat   Log_Plat_De[] 
+[26 <./01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf>] [27]
+Underfull \vbox (badness 10000) detected at line 1991
  []
 
 
-Overfull \hbox (55.24345pt too wide) in paragraph at lines 1845--1845
-[]\T1/lmtt/m/n/10 ##      8.432394      1.969457      1.835175      1.183984      8.880526      4.764830      5.136607[] 
- []
-
-[27]
-Underfull \vbox (badness 10000) detected at line 1989
- []
-
-
-Underfull \vbox (badness 10000) detected at line 1989
+Underfull \vbox (badness 10000) detected at line 1991
  []
 
 [28] [29] [30] [31] [32] [33] [34]
 <01-Complete-script_files/figure-latex/fig.he5-1.pdf, id=547, 578.16pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/fig.he5-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/fig.he5-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/fig.he5-1.pdf  used on input line 2336.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/fig.he5-1.pdf  used on input line 2338.
 (pdftex.def)             Requested size: 469.75385pt x 264.23653pt.
 [35 <./01-Complete-script_files/figure-latex/fig.he5-1.pdf>] [36] [37] [38] [39] [40] [41] [42] (./01-Complete-script.aux)
 Package rerunfilecheck Info: File `01-Complete-script.out' has not changed.
@@ -1034,9 +959,9 @@ Here is how much of TeX's memory you used:
  33358 multiletter control sequences out of 15000+600000
  520753 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,7n,77p,440b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,7n,77p,440b,546s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtko10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on 01-Complete-script.pdf (42 pages, 9298980 bytes).
+Output written on 01-Complete-script.pdf (42 pages, 9298667 bytes).
 PDF statistics:
  847 PDF objects out of 1000 (max. 8388607)
  739 compressed objects within 8 object streams
