@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  12 SEP 2022 16:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.9.12)  13 SEP 2022 08:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -515,45 +515,140 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 346.
-[3] [4] [5]
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+ []
+
+
+Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+ []
+
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+ []
+
+
+Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+ []
+
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"     "purrr"[] 
+ []
+
+
+Overfull \hbox (70.99341pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices"[] 
+ []
+
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
+ []
+
+
+Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
+ []
+
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
+ []
+
+
+Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
+ []
+
+
+Overfull \hbox (49.99347pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"[] 
+ []
+
+
+Overfull \hbox (65.74342pt too wide) in paragraph at lines 394--394
+[]\T1/lmtt/m/n/10 ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics"[] 
+ []
+
+[3]
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ##   Length Width MeanThick Max_Thick Weight Surface.Plat Platfom_Depth Cortex No_Scars Termination_type[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 1   51.3  29.8 10.066667      13.1  17.83       83.585           7.3      5        4          Feather[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 2   49.1  30.0  8.566667       9.7  13.33       90.480           7.8      5        3          Feather[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 3   30.8  43.8 11.566667      16.8  20.33       40.500           3.6      3        2          Feather[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 4   30.2  19.6  5.500000       6.7   3.98       59.670           5.1      5        3          Feather[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 5   57.1  37.8 11.166667      13.3  22.18      109.800          12.0      4        3          Feather[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 427--427
+[]\T1/lmtt/m/n/10 ## 6   37.5  34.2  5.466667       6.7   7.97       51.340           6.8      5        1            Hinge[] 
+ []
+
+[4] [5]
 <01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf, id=229, 469.755pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf  used on input line 610.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf  used on input line 604.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [6]
 <01-Complete-script_files/figure-latex/Histogramm of flake weight-1.pdf, id=234, 469.755pt x 180.675pt>
 File: 01-Complete-script_files/figure-latex/Histogramm of flake weight-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Histogramm of flake weight-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Histogramm of flake weight-1.pdf  used on input line 629.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Histogramm of flake weight-1.pdf  used on input line 623.
 (pdftex.def)             Requested size: 469.75386pt x 180.67455pt.
 [7 <./01-Complete-script_files/figure-latex/Baggolini scatter plot-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 651--655
+Underfull \hbox (badness 10000) in paragraph at lines 645--649
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 655--658
+Underfull \hbox (badness 10000) in paragraph at lines 649--652
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--661
+Underfull \hbox (badness 10000) in paragraph at lines 652--655
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--668
+Underfull \hbox (badness 10000) in paragraph at lines 655--662
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--672
+Underfull \hbox (badness 10000) in paragraph at lines 662--666
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 672--676
+Underfull \hbox (badness 10000) in paragraph at lines 666--670
 
  []
 
@@ -561,213 +656,213 @@ Underfull \hbox (badness 10000) in paragraph at lines 672--676
 <Figures/Flake measures.png, id=289, 2218.689pt x 1623.666pt>
 File: Figures/Flake measures.png Graphic file (type png)
 <use Figures/Flake measures.png>
-Package pdftex.def Info: Figures/Flake measures.png  used on input line 724.
+Package pdftex.def Info: Figures/Flake measures.png  used on input line 718.
 (pdftex.def)             Requested size: 469.73015pt x 343.75473pt.
 <Figures/Fig amount of cortex.jpg, id=291, 1484.21931pt x 360.52406pt>
 File: Figures/Fig amount of cortex.jpg Graphic file (type jpg)
 <use Figures/Fig amount of cortex.jpg>
-Package pdftex.def Info: Figures/Fig amount of cortex.jpg  used on input line 732.
+Package pdftex.def Info: Figures/Fig amount of cortex.jpg  used on input line 726.
 (pdftex.def)             Requested size: 469.751pt x 114.10478pt.
 [9 <./Figures/Flake measures.png>]
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 
-LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 784.
+LaTeX Warning: Command \textperiodcentered invalid in math mode on input line 778.
 
 <Figures/ANN.png, id=308, 718.5801pt x 420.7453pt>
 File: Figures/ANN.png Graphic file (type png)
 <use Figures/ANN.png>
-Package pdftex.def Info: Figures/ANN.png  used on input line 813.
+Package pdftex.def Info: Figures/ANN.png  used on input line 807.
 (pdftex.def)             Requested size: 469.75786pt x 275.05411pt.
 [10 <./Figures/Fig amount of cortex.jpg>] [11 <./Figures/ANN.png>] [12]
 
 LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 982.
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 976.
 
 [13]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 1106.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 1100.
 (c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [14]
 <01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf, id=376, 469.755pt x 216.81pt>
 File: 01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf  used on input line 1151.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf  used on input line 1145.
 (pdftex.def)             Requested size: 469.75386pt x 216.80946pt.
 [15 <./01-Complete-script_files/figure-latex/graph of random forest hyperparamters-1.pdf>]
 <01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf, id=392, 469.755pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf  used on input line 1178.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf  used on input line 1172.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [16 <./01-Complete-script_files/figure-latex/Plot of ANN performance for diferent topologies-1.pdf>] [17]
 <01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf, id=411, 867.24pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf  used on input line 1277.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf  used on input line 1271.
 (pdftex.def)             Requested size: 469.75827pt x 176.15933pt.
 [18 <./01-Complete-script_files/figure-latex/Regression plots of all models-1.pdf>]
 <01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf, id=426, 867.24pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf  used on input line 1322.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf  used on input line 1316.
 (pdftex.def)             Requested size: 469.75827pt x 176.15933pt.
 [19 <./01-Complete-script_files/figure-latex/Plots of observed values and residuals-1.pdf>] [20]
 <01-Complete-script_files/figure-latex/Density plot of residuals-1.pdf, id=447, 650.43pt x 216.81pt>
 File: 01-Complete-script_files/figure-latex/Density plot of residuals-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/Density plot of residuals-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/Density plot of residuals-1.pdf  used on input line 1446.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/Density plot of residuals-1.pdf  used on input line 1440.
 (pdftex.def)             Requested size: 469.76817pt x 156.58939pt.
 
-Overfull \hbox (5.12244pt too wide) in paragraph at lines 1493--1494
+Overfull \hbox (5.12244pt too wide) in paragraph at lines 1487--1488
  []\T1/lmr/m/n/10 1Quantile
  []
 
 
-Overfull \hbox (8.86363pt too wide) in paragraph at lines 1499--1500
+Overfull \hbox (8.86363pt too wide) in paragraph at lines 1493--1494
  []\T1/lmr/m/n/10 3Quantile
  []
 
 
-Overfull \hbox (3.74115pt too wide) in alignment at lines 1484--1506
+Overfull \hbox (3.74115pt too wide) in alignment at lines 1478--1500
  [] [] [] [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1501--1501
  \T1/lmr/m/n/10 0.6952028|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1501--1501
  \T1/lmr/m/n/10 0.3790468|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1501--1501
  \T1/lmr/m/n/10 0.1331217|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1501--1501
  []|\T1/lmr/m/n/10 0.0000595|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1501--1501
  []|\T1/lmr/m/n/10 0.0240733|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1508--1508
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1502--1502
  []|\T1/lmr/m/n/10 0.1428723|
  []
 
 
-Overfull \hbox (1.66449pt too wide) in paragraph at lines 1508--1508
+Overfull \hbox (1.66449pt too wide) in paragraph at lines 1502--1502
  []|\T1/lmr/m/n/10 0.3295823|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1508--1509
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1502--1503
  []|\T1/lmr/m/n/10 0.4993439|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1503--1503
  \T1/lmr/m/n/10 0.7046012|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1503--1503
  \T1/lmr/m/n/10 0.3711780|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1503--1503
  \T1/lmr/m/n/10 0.1368752|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1510--1510
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1504--1504
  \T1/lmr/m/n/10 0.0001095|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1510--1510
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1504--1504
  []|\T1/lmr/m/n/10 0.0204098|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1510--1510
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1504--1504
  []|\T1/lmr/m/n/10 0.1341937|
  []
 
 
-Overfull \hbox (1.66449pt too wide) in paragraph at lines 1510--1510
+Overfull \hbox (1.66449pt too wide) in paragraph at lines 1504--1504
  []|\T1/lmr/m/n/10 0.3332873|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1510--1511
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1504--1505
  []|\T1/lmr/m/n/10 0.4823185|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1511--1511
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1505--1505
  \T1/lmr/m/n/10 0.8456258|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1511--1511
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1505--1505
  \T1/lmr/m/n/10 0.4117285|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1511--1511
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1505--1505
  \T1/lmr/m/n/10 0.1383524|
  []
 
 
-Overfull \hbox (5.39998pt too wide) in paragraph at lines 1511--1511
+Overfull \hbox (5.39998pt too wide) in paragraph at lines 1505--1505
  []|\T1/lmr/m/n/10 0.0037893|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1512--1512
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1506--1506
  []|\T1/lmr/m/n/10 0.0133008|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1512--1512
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1506--1506
  []|\T1/lmr/m/n/10 0.1773731|
  []
 
 
-Overfull \hbox (1.66449pt too wide) in paragraph at lines 1512--1512
+Overfull \hbox (1.66449pt too wide) in paragraph at lines 1506--1506
  []|\T1/lmr/m/n/10 0.3550391|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1512--1513
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1506--1507
  []|\T1/lmr/m/n/10 0.6154902|
  []
 
 
-Overfull \hbox (3.74115pt too wide) in alignment at lines 1506--1514
+Overfull \hbox (3.74115pt too wide) in alignment at lines 1500--1508
  [] [] [] [] [] [] [] [] [] 
  []
 
@@ -775,20 +870,20 @@ Overfull \hbox (3.74115pt too wide) in alignment at lines 1506--1514
 <01-Complete-script_files/figure-latex/residuals according to termination-1.pdf, id=459, 578.16pt x 216.81pt>
 File: 01-Complete-script_files/figure-latex/residuals according to termination-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/residuals according to termination-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/residuals according to termination-1.pdf  used on input line 1552.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/residuals according to termination-1.pdf  used on input line 1546.
 (pdftex.def)             Requested size: 469.75385pt x 176.15768pt.
 [22 <./01-Complete-script_files/figure-latex/residuals according to termination-1.pdf>]
-Overfull \hbox (91.99335pt too wide) in paragraph at lines 1587--1587
+Overfull \hbox (91.99335pt too wide) in paragraph at lines 1581--1581
 []\T1/lmtt/m/n/10 ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0[] 
  []
 
 
-Overfull \hbox (91.99335pt too wide) in paragraph at lines 1608--1608
+Overfull \hbox (91.99335pt too wide) in paragraph at lines 1602--1602
 []\T1/lmtt/m/n/10 ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0[] 
  []
 
 
-Overfull \hbox (91.99335pt too wide) in paragraph at lines 1629--1629
+Overfull \hbox (91.99335pt too wide) in paragraph at lines 1623--1623
 []\T1/lmtt/m/n/10 ## alternative hypothesis: true difference in means between group Feather and group Other is not equal to 0[] 
  []
 
@@ -796,142 +891,152 @@ Overfull \hbox (91.99335pt too wide) in paragraph at lines 1629--1629
 <01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf, id=485, 867.24pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 1714.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf  used on input line 1708.
 (pdftex.def)             Requested size: 469.75827pt x 176.15933pt.
 [25 <./01-Complete-script_files/figure-latex/unnamed-chunk-8-1.pdf>]
 <01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf, id=501, 469.755pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 1770.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf  used on input line 1764.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (8.86363pt too wide) in paragraph at lines 1808--1809
+Overfull \hbox (8.86363pt too wide) in paragraph at lines 1802--1803
  []\T1/lmr/m/n/10 1Quantile
  []
 
 
-Overfull \hbox (8.86363pt too wide) in paragraph at lines 1814--1815
+Overfull \hbox (8.86363pt too wide) in paragraph at lines 1808--1809
  []\T1/lmr/m/n/10 3Quantile
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1822--1822
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1816--1816
  \T1/lmr/m/n/10 47.08316|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1822--1822
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1816--1816
  \T1/lmr/m/n/10 2.516174|
  []
 
 
-Overfull \hbox (7.87668pt too wide) in paragraph at lines 1822--1822
+Overfull \hbox (7.87668pt too wide) in paragraph at lines 1816--1816
  []|\T1/lmr/m/n/10 1.816030|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1822--1822
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1816--1816
  []|\T1/lmr/m/n/10 0.4762883|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1823--1823
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1817--1817
  []|\T1/lmr/m/n/10 5.552758|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1823--1824
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1817--1818
  []|\T1/lmr/m/n/10 84.98876|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1824--1824
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1818--1818
  \T1/lmr/m/n/10 60.22261|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1824--1824
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1818--1818
  \T1/lmr/m/n/10 2.422225|
  []
 
 
-Overfull \hbox (7.87668pt too wide) in paragraph at lines 1825--1825
+Overfull \hbox (7.87668pt too wide) in paragraph at lines 1819--1819
  []|\T1/lmr/m/n/10 1.400462|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1825--1825
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1819--1819
  []|\T1/lmr/m/n/10 0.3307878|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1825--1825
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1819--1819
  []|\T1/lmr/m/n/10 5.724842|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1825--1826
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1819--1820
  []|\T1/lmr/m/n/10 55.58517|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1826--1826
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1820--1820
  \T1/lmr/m/n/10 20.06615|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1826--1826
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1820--1820
  \T1/lmr/m/n/10 2.641137|
  []
 
 
-Overfull \hbox (7.87668pt too wide) in paragraph at lines 1826--1826
+Overfull \hbox (7.87668pt too wide) in paragraph at lines 1820--1820
  []|\T1/lmr/m/n/10 4.611775|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1826--1827
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1820--1821
  []|\T1/lmr/m/n/10 0.3338027|
  []
 
 
-Overfull \hbox (4.14117pt too wide) in paragraph at lines 1827--1827
+Overfull \hbox (4.14117pt too wide) in paragraph at lines 1821--1821
  []|\T1/lmr/m/n/10 7.059517|
  []
 
 
-Overfull \hbox (9.14117pt too wide) in paragraph at lines 1827--1828
+Overfull \hbox (9.14117pt too wide) in paragraph at lines 1821--1822
  []|\T1/lmr/m/n/10 152.07560|
  []
 
-[26 <./01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf>] [27]
-Underfull \vbox (badness 10000) detected at line 1997
+[26 <./01-Complete-script_files/figure-latex/unnamed-chunk-9-1.pdf>]
+Overfull \hbox (55.24345pt too wide) in paragraph at lines 1845--1845
+[]\T1/lmtt/m/n/10 ##     MeanThick        Cortex      No_Scars           EPA Log_Max_Thick      Log_Plat   Log_Plat_De[] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 1997
+Overfull \hbox (55.24345pt too wide) in paragraph at lines 1845--1845
+[]\T1/lmtt/m/n/10 ##      8.432394      1.969457      1.835175      1.183984      8.880526      4.764830      5.136607[] 
+ []
+
+[27]
+Underfull \vbox (badness 10000) detected at line 1989
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1989
  []
 
 [28] [29] [30] [31] [32] [33] [34]
 <01-Complete-script_files/figure-latex/fig.he5-1.pdf, id=547, 578.16pt x 325.215pt>
 File: 01-Complete-script_files/figure-latex/fig.he5-1.pdf Graphic file (type pdf)
 <use 01-Complete-script_files/figure-latex/fig.he5-1.pdf>
-Package pdftex.def Info: 01-Complete-script_files/figure-latex/fig.he5-1.pdf  used on input line 2344.
+Package pdftex.def Info: 01-Complete-script_files/figure-latex/fig.he5-1.pdf  used on input line 2336.
 (pdftex.def)             Requested size: 469.75385pt x 264.23653pt.
 [35 <./01-Complete-script_files/figure-latex/fig.he5-1.pdf>] [36] [37] [38] [39] [40] [41] [42] (./01-Complete-script.aux)
 Package rerunfilecheck Info: File `01-Complete-script.out' has not changed.
-(rerunfilecheck)             Checksum: DC8C1C7C6310E82741B6248DC3C8A859;3227.
+(rerunfilecheck)             Checksum: FE4DC7677ACCFE0AA3DD3BADFE378275;3227.
  ) 
 Here is how much of TeX's memory you used:
  12606 strings out of 477035
  204756 string characters out of 5826398
- 582431 words of memory out of 5000000
+ 581844 words of memory out of 5000000
  33358 multiletter control sequences out of 15000+600000
  520753 words of font info for 73 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,7n,77p,440b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtko10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/Guillermo/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on 01-Complete-script.pdf (42 pages, 9299038 bytes).
+Output written on 01-Complete-script.pdf (42 pages, 9298980 bytes).
 PDF statistics:
  847 PDF objects out of 1000 (max. 8388607)
  739 compressed objects within 8 object streams

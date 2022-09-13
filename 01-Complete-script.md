@@ -183,40 +183,34 @@ lapply(list.of.packages, library, character.only = TRUE)
 ```
 
     ## [[1]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"     
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[2]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"     
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[3]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"     
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[4]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"     
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[5]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"     
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"     
     ## 
     ## [[6]]
-    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"  
-    ##  [7] "stringr"   "dplyr"     "purrr"     "readr"     "tidyr"     "tibble"   
-    ## [13] "ggplot2"   "tidyverse" "stats"     "graphics"  "grDevices" "utils"    
-    ## [19] "datasets"  "methods"   "base"
+    ##  [1] "neuralnet" "knitr"     "ranger"    "caret"     "lattice"   "forcats"   "stringr"   "dplyr"    
+    ##  [9] "purrr"     "readr"     "tidyr"     "tibble"    "ggplot2"   "tidyverse" "stats"     "graphics" 
+    ## [17] "grDevices" "utils"     "datasets"  "methods"   "base"
 
 The following code load the dataset from a .csv file and allows to see a
 preview of the data.
@@ -230,20 +224,20 @@ Reg_Data <- read.csv("Data/Flake Mass v02 Eng.csv")
 head(Reg_Data[1:10,])
 ```
 
-    ##   Length Width MeanThick Max_Thick Weight Surface.Plat Platfom_Depth Cortex
-    ## 1   51.3  29.8 10.066667      13.1  17.83       83.585           7.3      5
-    ## 2   49.1  30.0  8.566667       9.7  13.33       90.480           7.8      5
-    ## 3   30.8  43.8 11.566667      16.8  20.33       40.500           3.6      3
-    ## 4   30.2  19.6  5.500000       6.7   3.98       59.670           5.1      5
-    ## 5   57.1  37.8 11.166667      13.3  22.18      109.800          12.0      4
-    ## 6   37.5  34.2  5.466667       6.7   7.97       51.340           6.8      5
-    ##   No_Scars Termination_type EPA Log_Weight Log_Max_Thick Log_Plat Log_Plat_De
-    ## 1        4          Feather  51  1.2511513     1.1172713 1.922128   0.8633229
-    ## 2        3          Feather  70  1.1248301     0.9867717 1.956553   0.8920946
-    ## 3        2          Feather  35  1.3081374     1.2253093 1.607455   0.5563025
-    ## 4        3          Feather  66  0.5998831     0.8260748 1.775756   0.7075702
-    ## 5        3          Feather  68  1.3459615     1.1238516 2.040602   1.0791812
-    ## 6        1            Hinge  65  0.9014583     0.8260748 1.710456   0.8325089
+    ##   Length Width MeanThick Max_Thick Weight Surface.Plat Platfom_Depth Cortex No_Scars Termination_type
+    ## 1   51.3  29.8 10.066667      13.1  17.83       83.585           7.3      5        4          Feather
+    ## 2   49.1  30.0  8.566667       9.7  13.33       90.480           7.8      5        3          Feather
+    ## 3   30.8  43.8 11.566667      16.8  20.33       40.500           3.6      3        2          Feather
+    ## 4   30.2  19.6  5.500000       6.7   3.98       59.670           5.1      5        3          Feather
+    ## 5   57.1  37.8 11.166667      13.3  22.18      109.800          12.0      4        3          Feather
+    ## 6   37.5  34.2  5.466667       6.7   7.97       51.340           6.8      5        1            Hinge
+    ##   EPA Log_Weight Log_Max_Thick Log_Plat Log_Plat_De
+    ## 1  51  1.2511513     1.1172713 1.922128   0.8633229
+    ## 2  70  1.1248301     0.9867717 1.956553   0.8920946
+    ## 3  35  1.3081374     1.2253093 1.607455   0.5563025
+    ## 4  66  0.5998831     0.8260748 1.775756   0.7075702
+    ## 5  68  1.3459615     1.1238516 2.040602   1.0791812
+    ## 6  65  0.9014583     0.8260748 1.710456   0.8325089
 
 ## 2. Methods
 
@@ -1412,10 +1406,8 @@ above 10, indicating that collinearity is irrelevant.
 car::vif(MLR_model$finalModel)
 ```
 
-    ##     MeanThick        Cortex      No_Scars           EPA Log_Max_Thick      Log_Plat 
-    ##      8.432394      1.969457      1.835175      1.183984      8.880526      4.764830 
-    ##   Log_Plat_De 
-    ##      5.136607
+    ##     MeanThick        Cortex      No_Scars           EPA Log_Max_Thick      Log_Plat   Log_Plat_De 
+    ##      8.432394      1.969457      1.835175      1.183984      8.880526      4.764830      5.136607
 
 Previous to test non-collinear combination of variables it is necessary
 to set the formulas with the different possible combinations. The
@@ -2247,7 +2239,7 @@ financial support from the Spanish Ministry of Science and Innovation
 through the “María de Maeztu” program for Units of Excellence
 (CEX2019-000945-M).
 
-## 06 References
+## 6. References
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
